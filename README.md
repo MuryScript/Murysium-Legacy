@@ -53,7 +53,7 @@ Organizes elements inside a tab.
 ```lua
 local SecVar = TabVar:CreateSection({
     Title = "Main Controls",
-    Position = "left" -- only left or right
+    Position = "left"
 })
 ```
 
@@ -148,19 +148,6 @@ SecVar:CreateSlider({
         print("Value:", Value)
     end
 })
-
-```
-
----
-
----
-
-# 💡 all elements title can be changed by :
-
-```lua
-
-ElementVar.Title:Set(string)
-
 ```
 
 ---
