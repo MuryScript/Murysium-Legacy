@@ -393,7 +393,7 @@ function Library:CreateWindow(Cfg)
         task.delay(.34,function()
             Win.Visible=false Win.BackgroundTransparency=0 Win.Position=wp WinScale.Scale=1
             ShowBtn.Visible=true ShowBtn.ImageTransparency=0 ShowBtn.BackgroundTransparency=1 ShowBtnScale.Scale=.60
-            TweenService:Create(ShowBtn,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=q,BackgroundTransparency=0}):Play()
+            TweenService:Create(ShowBtn,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=0,BackgroundTransparency=0}):Play()
             TweenService:Create(ShowBtnScale,TweenInfo.new(.50,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
         end)
     end)
