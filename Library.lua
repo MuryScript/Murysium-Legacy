@@ -342,36 +342,30 @@ function Library:CreateWindow(Cfg)
     TabFadeOverlay.Parent=ContentArea
     Reg(TabFadeOverlay,"BackgroundColor3","BG")
 
-    local ShowBtn
-    if ButtonId then
-        ShowBtn=Instance.new("ImageButton")
-        ShowBtn.Image="rbxassetid://"..tostring(ButtonId)
-        ShowBtn.BackgroundTransparency=1
-        ShowBtn.Size=UDim2.new(0,38,0,38)
-        ShowBtn.Position=UDim2.new(0,14,0,14)
-        ShowBtn.ZIndex=100 ShowBtn.Visible=false ShowBtn.Parent=Gui
-        local ShowBtnStroke=Stroke(ShowBtn,T.Separator,1.5)
-        Reg(ShowBtnStroke,"Color","Separator")
-        Corner(ShowBtn,12)
-    else
-        ShowBtn=Instance.new("ImageButton")
-        ShowBtn.BackgroundColor3=T.Sidebar
-        ShowBtn.Image=""
-        ShowBtn.Size=UDim2.new(0,48,0,48)
-        ShowBtn.Position=UDim2.new(0,14,0,14)
-        ShowBtn.ZIndex=100 ShowBtn.Visible=false ShowBtn.Parent=Gui
-        Corner(ShowBtn,12)
-        Stroke(ShowBtn,T.Separator,1.5)
-        local ShowBtnLbl=Instance.new("TextLabel") ShowBtnLbl.BackgroundTransparency=1
-        ShowBtnLbl.Size=UDim2.new(1,0,1,0) ShowBtnLbl.Text="≡"
-        ShowBtnLbl.TextColor3=T.Accent ShowBtnLbl.Font=Enum.Font.GothamBold
-        ShowBtnLbl.TextSize=18 ShowBtnLbl.ZIndex=101 ShowBtnLbl.Parent=ShowBtn
-        Reg(ShowBtnLbl,"TextColor3","Accent")
-        Reg(ShowBtn,"BackgroundColor3","Sidebar")
-    end
+    local ImgId = ButtonId and tostring(ButtonId) or "85798284091961"
+    local ShowBtn = Instance.new("ImageButton")
+    ShowBtn.Image              = "rbxassetid://" .. ImgId
+    ShowBtn.ImageTransparency  = 1
+    ShowBtn.BackgroundColor3   = T.Sidebar
+    ShowBtn.BackgroundTransparency = 0
+    ShowBtn.Size               = UDim2.new(0, 42, 0, 42)
+    ShowBtn.Position           = UDim2.new(0, 14, 0, 14)
+    ShowBtn.ZIndex             = 100
+    ShowBtn.Visible            = false
+    ShowBtn.Parent             = Gui
+    Corner(ShowBtn, 12)
+    local ShowBtnStroke = Stroke(ShowBtn, T.Separator, 1.5)
+    Reg(ShowBtnStroke, "Color", "Separator")
+    Reg(ShowBtn, "BackgroundColor3", "Sidebar")
     local ShowBtnScale=Instance.new("UIScale") ShowBtnScale.Scale=1 ShowBtnScale.Parent=ShowBtn
-    ShowBtn.MouseButton1Down:Connect(function() TwL(ShowBtnScale,{Scale=.88},.08) end)
-    ShowBtn.MouseButton1Up:Connect(function() TwB(ShowBtnScale,{Scale=1},.40) end)
+    ShowBtn.MouseButton1Down:Connect(function()
+        TweenService:Create(ShowBtnScale,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Scale=.82}):Play()
+        TweenService:Create(ShowBtn,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=.4}):Play()
+    end)
+    ShowBtn.MouseButton1Up:Connect(function()
+        TweenService:Create(ShowBtnScale,TweenInfo.new(.44,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        TweenService:Create(ShowBtn,TweenInfo.new(.22,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
+    end)
 
     local isDragging=false local dragStart=nil local startWinPos=nil
 
@@ -394,30 +388,27 @@ function Library:CreateWindow(Cfg)
 
     CloseBtn.MouseButton1Click:Connect(function()
         local wp=Win.Position
-        Tw(WinScale,{Scale=.92},.24,Enum.EasingStyle.Quint)
-        Tw(Win,{BackgroundTransparency=1,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+22)},.28,Enum.EasingStyle.Quint)
-        task.delay(.30,function()
+        TweenService:Create(WinScale,TweenInfo.new(.32,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{Scale=.88}):Play()
+        TweenService:Create(Win,TweenInfo.new(.32,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{BackgroundTransparency=1,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+32)}):Play()
+        task.delay(.34,function()
             Win.Visible=false Win.BackgroundTransparency=0 Win.Position=wp WinScale.Scale=1
-            ShowBtn.Visible=true
-            if ButtonId then ShowBtn.ImageTransparency=1 Tw(ShowBtn,{ImageTransparency=0},.26,Enum.EasingStyle.Quint)
-            else ShowBtn.BackgroundTransparency=1 Tw(ShowBtn,{BackgroundTransparency=0},.26,Enum.EasingStyle.Quint) end
-            ShowBtnScale.Scale=.78
-            Tw(ShowBtnScale,{Scale=1},.42,Enum.EasingStyle.Quint)
+            ShowBtn.Visible=true ShowBtn.ImageTransparency=1 ShowBtn.BackgroundTransparency=1 ShowBtnScale.Scale=.60
+            TweenService:Create(ShowBtn,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=0,BackgroundTransparency=0}):Play()
+            TweenService:Create(ShowBtnScale,TweenInfo.new(.50,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
         end)
     end)
 
     ShowBtn.MouseButton1Click:Connect(function()
-        if ButtonId then Tw(ShowBtn,{ImageTransparency=1},.18,Enum.EasingStyle.Quint)
-        else Tw(ShowBtn,{BackgroundTransparency=1},.18,Enum.EasingStyle.Quint) end
-        Tw(ShowBtnScale,{Scale=.88},.14,Enum.EasingStyle.Quint)
-        task.delay(.18,function()
+        TweenService:Create(ShowBtnScale,TweenInfo.new(.16,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{Scale=.74}):Play()
+        TweenService:Create(ShowBtn,TweenInfo.new(.20,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{ImageTransparency=1,BackgroundTransparency=1}):Play()
+        task.delay(.22,function()
             ShowBtn.Visible=false ShowBtnScale.Scale=1
             local wp=Win.Position
             Win.Visible=true Win.BackgroundTransparency=1
-            Win.Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+36)
-            WinScale.Scale=.88
-            Tw(Win,{BackgroundTransparency=0,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset)},.46,Enum.EasingStyle.Quint)
-            Tw(WinScale,{Scale=1},.48,Enum.EasingStyle.Quint)
+            Win.Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+40)
+            WinScale.Scale=.82
+            TweenService:Create(Win,TweenInfo.new(.52,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset)}):Play()
+            TweenService:Create(WinScale,TweenInfo.new(.60,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
         end)
     end)
 
@@ -436,10 +427,10 @@ function Library:CreateWindow(Cfg)
         task.wait(.40) LoadBG:Destroy()
         local nw,nh=GetWinSize()
         Win.Visible=true Win.BackgroundTransparency=1
-        Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+38)
-        WinScale.Scale=.84
-        Tw(Win,{BackgroundTransparency=0,Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)},.56,Enum.EasingStyle.Quint)
-        TwB(WinScale,{Scale=1},.62)
+        Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+52)
+        WinScale.Scale=.78
+        TweenService:Create(Win,TweenInfo.new(.56,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0,Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)}):Play()
+        TweenService:Create(WinScale,TweenInfo.new(.66,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
     end)
 
     local WindowObj={}
@@ -556,17 +547,19 @@ function Library:CreateWindow(Cfg)
 
         local function ActivateThis()
             DeactivateAllTabs()
-            TabFadeOverlay.BackgroundTransparency=.50 TabFadeOverlay.ZIndex=50
-            Tw(TabFadeOverlay,{BackgroundTransparency=1},.40,Enum.EasingStyle.Quint)
+            TabFadeOverlay.BackgroundTransparency=.55 TabFadeOverlay.ZIndex=50
+            TweenService:Create(TabFadeOverlay,TweenInfo.new(.42,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=1}):Play()
             TabFrame.Visible=true
-            Tw(TabLbl,{TextColor3=T.TabActive},.16)
+            TabFrame.Position=UDim2.new(.05,0,0,0)
+            TweenService:Create(TabFrame,TweenInfo.new(.34,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Position=UDim2.new(0,0,0,0)}):Play()
+            TweenService:Create(TabLbl,TweenInfo.new(.20,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{TextColor3=T.TabActive}):Play()
             PillBG.BackgroundTransparency=1
-            Tw(PillBG,{BackgroundTransparency=0},.20,Enum.EasingStyle.Quint)
-            Pill.BackgroundTransparency=1 Pill.Size=UDim2.new(0,3,0,14)
-            Tw(Pill,{BackgroundTransparency=0,Size=UDim2.new(0,2,0,16)},.36,Enum.EasingStyle.Quint)
+            TweenService:Create(PillBG,TweenInfo.new(.28,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
+            Pill.BackgroundTransparency=1 Pill.Size=UDim2.new(0,2,0,8)
+            TweenService:Create(Pill,TweenInfo.new(.52,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{BackgroundTransparency=0,Size=UDim2.new(0,2,0,16)}):Play()
             if TabIcon then
                 local pr=TabIcon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                Tw(TabIcon,{[pr]=T.TabActive},.16)
+                TweenService:Create(TabIcon,TweenInfo.new(.20,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{[pr]=T.TabActive}):Play()
             end
         end
 
@@ -620,11 +613,11 @@ function Library:CreateWindow(Cfg)
             local CardStroke=Stroke(Card,T.Separator,.6)
             Reg(CardStroke,"Color","Separator")
 
-            local CEntryScale=Instance.new("UIScale") CEntryScale.Scale=.90 CEntryScale.Parent=Card
+            local CEntryScale=Instance.new("UIScale") CEntryScale.Scale=.86 CEntryScale.Parent=Card
             Card.BackgroundTransparency=1
-            task.delay((SecCnt-1)*.05,function()
-                Tw(Card,{BackgroundTransparency=0},.26,Enum.EasingStyle.Quint)
-                TwB(CEntryScale,{Scale=1},.44)
+            task.delay((SecCnt-1)*.06,function()
+                TweenService:Create(Card,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
+                TweenService:Create(CEntryScale,TweenInfo.new(.52,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
             end)
 
             local CL=Instance.new("UIListLayout") CL.FillDirection=Enum.FillDirection.Vertical
@@ -694,13 +687,15 @@ function Library:CreateWindow(Cfg)
                     local Tgt=V and UDim2.new(0,14,.5,0) or UDim2.new(0,2,.5,0)
                     local Col=V and T.ToggleOn or T.ToggleOff
                     if Anim then
-                        Tw(Track,{BackgroundColor3=Col},.18)
-                        Tw(Thumb,{Size=UDim2.new(0,16,0,14)},.10)
-                        task.delay(.10,function() Tw(Thumb,{Position=Tgt,Size=UDim2.new(0,14,0,14)},.30,Enum.EasingStyle.Quint) end)
+                        TweenService:Create(Track,TweenInfo.new(.24,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundColor3=Col}):Play()
+                        TweenService:Create(Thumb,TweenInfo.new(.08,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Size=UDim2.new(0,18,0,14)}):Play()
+                        task.delay(.08,function()
+                            TweenService:Create(Thumb,TweenInfo.new(.44,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Position=Tgt,Size=UDim2.new(0,14,0,14)}):Play()
+                        end)
                     else
-                        Track.BackgroundColor3=Col Thumb.Position=Tgt Thumb.Size=UDim2.new(0,18,0,18)
+                        Track.BackgroundColor3=Col Thumb.Position=Tgt Thumb.Size=UDim2.new(0,14,0,14)
                     end
-                    task.delay(.34,function() Busy=false end)
+                    task.delay(.46,function() Busy=false end)
                 end
                 RegFn(function() Tw(Track,{BackgroundColor3=State and T.ToggleOn or T.ToggleOff},.22) end)
 
