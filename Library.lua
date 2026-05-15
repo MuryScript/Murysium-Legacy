@@ -6,93 +6,124 @@ local UserInputService = game:GetService("UserInputService")
 local RunService       = game:GetService("RunService")
 
 local Themes = {
-    Light = {
-        BG           = Color3.fromRGB(242, 242, 247),
-        HeaderBG     = Color3.fromRGB(249, 249, 251),
-        SectionBG    = Color3.fromRGB(255, 255, 255),
-        SectionTitle = Color3.fromRGB(108, 108, 112),
-        Text         = Color3.fromRGB(0,   0,   0),
-        SubText      = Color3.fromRGB(138, 138, 142),
-        Separator    = Color3.fromRGB(200, 200, 204),
-        Accent       = Color3.fromRGB(0,   122, 255),
-        AccentDark   = Color3.fromRGB(0,   84,  196),
-        ToggleOn     = Color3.fromRGB(48,  209, 88),
-        ToggleOff    = Color3.fromRGB(230, 230, 235),
-        SliderTrack  = Color3.fromRGB(230, 230, 235),
-        SliderFill   = Color3.fromRGB(0,   122, 255),
-        White        = Color3.fromRGB(255, 255, 255),
-        PressHL      = Color3.fromRGB(216, 216, 220),
-        TabActive    = Color3.fromRGB(0,   122, 255),
-        TabInactive  = Color3.fromRGB(138, 138, 142),
-        Handle       = Color3.fromRGB(210, 210, 214),
-        DropHL       = Color3.fromRGB(242, 242, 247),
+    Onyx = {
+        BG          = Color3.fromRGB(16,  16,  22),
+        Sidebar     = Color3.fromRGB(22,  22,  30),
+        HeaderBG    = Color3.fromRGB(22,  22,  30),
+        SectionBG   = Color3.fromRGB(28,  28,  38),
+        SecTitle    = Color3.fromRGB(80,  82, 115),
+        Text        = Color3.fromRGB(228, 230, 245),
+        SubText     = Color3.fromRGB(96,  98, 132),
+        Separator   = Color3.fromRGB(40,  42,  58),
+        Accent      = Color3.fromRGB(0,   152, 255),
+        AccentDark  = Color3.fromRGB(0,   112, 210),
+        ToggleOn    = Color3.fromRGB(0,   152, 255),
+        ToggleOff   = Color3.fromRGB(40,  42,  58),
+        SliderTrack = Color3.fromRGB(40,  42,  58),
+        SliderFill  = Color3.fromRGB(0,   152, 255),
+        White       = Color3.fromRGB(255, 255, 255),
+        PressHL     = Color3.fromRGB(34,  34,  46),
+        TabActive   = Color3.fromRGB(0,   152, 255),
+        TabInactive = Color3.fromRGB(80,  82, 115),
+        TabActiveBG = Color3.fromRGB(30,  32,  46),
+        Handle      = Color3.fromRGB(52,  54,  74),
+        DropHL      = Color3.fromRGB(28,  30,  42),
     },
-    Dark = {
-        BG           = Color3.fromRGB(28,  28,  30),
-        HeaderBG     = Color3.fromRGB(44,  44,  46),
-        SectionBG    = Color3.fromRGB(44,  44,  46),
-        SectionTitle = Color3.fromRGB(152, 152, 158),
-        Text         = Color3.fromRGB(255, 255, 255),
-        SubText      = Color3.fromRGB(152, 152, 158),
-        Separator    = Color3.fromRGB(58,  58,  62),
-        Accent       = Color3.fromRGB(10,  132, 255),
-        AccentDark   = Color3.fromRGB(32,  148, 255),
-        ToggleOn     = Color3.fromRGB(48,  209, 88),
-        ToggleOff    = Color3.fromRGB(72,  72,  74),
-        SliderTrack  = Color3.fromRGB(72,  72,  74),
-        SliderFill   = Color3.fromRGB(10,  132, 255),
-        White        = Color3.fromRGB(255, 255, 255),
-        PressHL      = Color3.fromRGB(60,  60,  64),
-        TabActive    = Color3.fromRGB(10,  132, 255),
-        TabInactive  = Color3.fromRGB(152, 152, 158),
-        Handle       = Color3.fromRGB(88,  88,  92),
-        DropHL       = Color3.fromRGB(38,  38,  40),
+    Phantom = {
+        BG          = Color3.fromRGB(10,   8,  16),
+        Sidebar     = Color3.fromRGB(16,  14,  24),
+        HeaderBG    = Color3.fromRGB(16,  14,  24),
+        SectionBG   = Color3.fromRGB(22,  18,  34),
+        SecTitle    = Color3.fromRGB(110,  85, 160),
+        Text        = Color3.fromRGB(225, 218, 248),
+        SubText     = Color3.fromRGB(110,  85, 155),
+        Separator   = Color3.fromRGB(38,  30,  58),
+        Accent      = Color3.fromRGB(162, 102, 255),
+        AccentDark  = Color3.fromRGB(122,  72, 218),
+        ToggleOn    = Color3.fromRGB(162, 102, 255),
+        ToggleOff   = Color3.fromRGB(42,  34,  64),
+        SliderTrack = Color3.fromRGB(42,  34,  64),
+        SliderFill  = Color3.fromRGB(162, 102, 255),
+        White       = Color3.fromRGB(225, 218, 248),
+        PressHL     = Color3.fromRGB(30,  24,  46),
+        TabActive   = Color3.fromRGB(162, 102, 255),
+        TabInactive = Color3.fromRGB(110,  85, 155),
+        TabActiveBG = Color3.fromRGB(30,  22,  50),
+        Handle      = Color3.fromRGB(60,  48,  92),
+        DropHL      = Color3.fromRGB(26,  20,  40),
     },
-    Midnight = {
-        BG           = Color3.fromRGB(15,  15,  20),
-        HeaderBG     = Color3.fromRGB(24,  24,  32),
-        SectionBG    = Color3.fromRGB(24,  24,  32),
-        SectionTitle = Color3.fromRGB(120, 110, 160),
-        Text         = Color3.fromRGB(230, 225, 255),
-        SubText      = Color3.fromRGB(120, 110, 160),
-        Separator    = Color3.fromRGB(50,  44,  72),
-        Accent       = Color3.fromRGB(148, 108, 255),
-        AccentDark   = Color3.fromRGB(120, 80,  230),
-        ToggleOn     = Color3.fromRGB(148, 108, 255),
-        ToggleOff    = Color3.fromRGB(50,  44,  72),
-        SliderTrack  = Color3.fromRGB(50,  44,  72),
-        SliderFill   = Color3.fromRGB(148, 108, 255),
-        White        = Color3.fromRGB(230, 225, 255),
-        PressHL      = Color3.fromRGB(40,  34,  60),
-        TabActive    = Color3.fromRGB(148, 108, 255),
-        TabInactive  = Color3.fromRGB(100, 90,  140),
-        Handle       = Color3.fromRGB(70,  62,  100),
-        DropHL       = Color3.fromRGB(30,  26,  48),
+    Arctic = {
+        BG          = Color3.fromRGB(240, 244, 252),
+        Sidebar     = Color3.fromRGB(228, 234, 248),
+        HeaderBG    = Color3.fromRGB(228, 234, 248),
+        SectionBG   = Color3.fromRGB(255, 255, 255),
+        SecTitle    = Color3.fromRGB(110, 122, 168),
+        Text        = Color3.fromRGB(18,  22,  44),
+        SubText     = Color3.fromRGB(112, 124, 170),
+        Separator   = Color3.fromRGB(204, 210, 232),
+        Accent      = Color3.fromRGB(0,   112, 230),
+        AccentDark  = Color3.fromRGB(0,   84,  196),
+        ToggleOn    = Color3.fromRGB(0,   112, 230),
+        ToggleOff   = Color3.fromRGB(204, 210, 232),
+        SliderTrack = Color3.fromRGB(204, 210, 232),
+        SliderFill  = Color3.fromRGB(0,   112, 230),
+        White       = Color3.fromRGB(255, 255, 255),
+        PressHL     = Color3.fromRGB(218, 224, 244),
+        TabActive   = Color3.fromRGB(0,   112, 230),
+        TabInactive = Color3.fromRGB(112, 124, 170),
+        TabActiveBG = Color3.fromRGB(214, 224, 248),
+        Handle      = Color3.fromRGB(182, 192, 222),
+        DropHL      = Color3.fromRGB(232, 237, 252),
+    },
+    Ember = {
+        BG          = Color3.fromRGB(14,  12,  10),
+        Sidebar     = Color3.fromRGB(20,  17,  14),
+        HeaderBG    = Color3.fromRGB(20,  17,  14),
+        SectionBG   = Color3.fromRGB(26,  22,  18),
+        SecTitle    = Color3.fromRGB(140, 108,  72),
+        Text        = Color3.fromRGB(248, 238, 222),
+        SubText     = Color3.fromRGB(142, 112,  78),
+        Separator   = Color3.fromRGB(46,  38,  28),
+        Accent      = Color3.fromRGB(255, 138,  24),
+        AccentDark  = Color3.fromRGB(220, 108,   6),
+        ToggleOn    = Color3.fromRGB(255, 138,  24),
+        ToggleOff   = Color3.fromRGB(46,  38,  28),
+        SliderTrack = Color3.fromRGB(46,  38,  28),
+        SliderFill  = Color3.fromRGB(255, 138,  24),
+        White       = Color3.fromRGB(248, 238, 222),
+        PressHL     = Color3.fromRGB(36,  30,  22),
+        TabActive   = Color3.fromRGB(255, 138,  24),
+        TabInactive = Color3.fromRGB(142, 112,  78),
+        TabActiveBG = Color3.fromRGB(34,  26,  16),
+        Handle      = Color3.fromRGB(68,  54,  38),
+        DropHL      = Color3.fromRGB(30,  24,  16),
     },
     Rose = {
-        BG           = Color3.fromRGB(255, 245, 248),
-        HeaderBG     = Color3.fromRGB(255, 250, 252),
-        SectionBG    = Color3.fromRGB(255, 255, 255),
-        SectionTitle = Color3.fromRGB(180, 100, 120),
-        Text         = Color3.fromRGB(40,  20,  28),
-        SubText      = Color3.fromRGB(180, 130, 145),
-        Separator    = Color3.fromRGB(240, 210, 220),
-        Accent       = Color3.fromRGB(220, 60,  100),
-        AccentDark   = Color3.fromRGB(190, 40,  80),
-        ToggleOn     = Color3.fromRGB(220, 60,  100),
-        ToggleOff    = Color3.fromRGB(240, 210, 220),
-        SliderTrack  = Color3.fromRGB(240, 210, 220),
-        SliderFill   = Color3.fromRGB(220, 60,  100),
-        White        = Color3.fromRGB(255, 255, 255),
-        PressHL      = Color3.fromRGB(250, 225, 232),
-        TabActive    = Color3.fromRGB(220, 60,  100),
-        TabInactive  = Color3.fromRGB(180, 130, 145),
-        Handle       = Color3.fromRGB(230, 190, 205),
-        DropHL       = Color3.fromRGB(255, 240, 245),
+        BG          = Color3.fromRGB(252, 242, 248),
+        Sidebar     = Color3.fromRGB(244, 232, 242),
+        HeaderBG    = Color3.fromRGB(244, 232, 242),
+        SectionBG   = Color3.fromRGB(255, 255, 255),
+        SecTitle    = Color3.fromRGB(190, 110, 145),
+        Text        = Color3.fromRGB(38,  18,  30),
+        SubText     = Color3.fromRGB(190, 130, 160),
+        Separator   = Color3.fromRGB(234, 206, 222),
+        Accent      = Color3.fromRGB(220,  56, 108),
+        AccentDark  = Color3.fromRGB(188,  36,  84),
+        ToggleOn    = Color3.fromRGB(220,  56, 108),
+        ToggleOff   = Color3.fromRGB(234, 206, 222),
+        SliderTrack = Color3.fromRGB(234, 206, 222),
+        SliderFill  = Color3.fromRGB(220,  56, 108),
+        White       = Color3.fromRGB(255, 255, 255),
+        PressHL     = Color3.fromRGB(244, 220, 232),
+        TabActive   = Color3.fromRGB(220,  56, 108),
+        TabInactive = Color3.fromRGB(190, 130, 160),
+        TabActiveBG = Color3.fromRGB(244, 220, 236),
+        Handle      = Color3.fromRGB(224, 186, 208),
+        DropHL      = Color3.fromRGB(250, 236, 246),
     },
 }
 
-local T = Themes.Light
+local T = Themes.Onyx
 
 local ICONS = {
     home="⌂", settings="⚙", user="👤", search="🔍", star="★", heart="♥",
@@ -633,1575 +664,894 @@ local ICONS = {
     ["x-2"]="✕", ["zero"]="0", ["zap-2"]="⚡",
 }
 
-local function Tween(obj, props, t, style, dir)
-    TweenService:Create(obj, TweenInfo.new(
-        t     or 0.25,
-        style or Enum.EasingStyle.Quint,
-        dir   or Enum.EasingDirection.Out
-    ), props):Play()
-end
+local function Tw(o,p,t,s,d) TweenService:Create(o,TweenInfo.new(t or .24,s or Enum.EasingStyle.Quint,d or Enum.EasingDirection.Out),p):Play() end
+local function TwB(o,p,t) TweenService:Create(o,TweenInfo.new(t or .42,Enum.EasingStyle.Back,Enum.EasingDirection.Out),p):Play() end
+local function TwL(o,p,t) TweenService:Create(o,TweenInfo.new(t or .10,Enum.EasingStyle.Linear,Enum.EasingDirection.Out),p):Play() end
 
-local function Spring(obj, props, t)
-    TweenService:Create(obj, TweenInfo.new(
-        t or 0.40,
-        Enum.EasingStyle.Back,
-        Enum.EasingDirection.Out
-    ), props):Play()
-end
-
-local function Snap(obj, props, t)
-    TweenService:Create(obj, TweenInfo.new(
-        t or 0.18,
-        Enum.EasingStyle.Quint,
-        Enum.EasingDirection.Out
-    ), props):Play()
-end
-
-local function Corner(parent, r)
-    local c = Instance.new("UICorner")
-    c.CornerRadius = UDim.new(0, r or 10)
-    c.Parent = parent
-    return c
-end
-
-local function Pad(parent, top, right, bottom, left)
-    local p = Instance.new("UIPadding")
-    p.PaddingTop    = UDim.new(0, top    or 0)
-    p.PaddingRight  = UDim.new(0, right  or 0)
-    p.PaddingBottom = UDim.new(0, bottom or 0)
-    p.PaddingLeft   = UDim.new(0, left   or 0)
-    p.Parent = parent
-end
+local function Corner(p,r) local c=Instance.new("UICorner") c.CornerRadius=UDim.new(0,r or 8) c.Parent=p return c end
+local function Stroke(p,c,th) local s=Instance.new("UIStroke") s.Color=c s.Thickness=th or 1 s.Parent=p return s end
+local function Pad(p,t,r,b,l) local u=Instance.new("UIPadding") u.PaddingTop=UDim.new(0,t or 0) u.PaddingRight=UDim.new(0,r or 0) u.PaddingBottom=UDim.new(0,b or 0) u.PaddingLeft=UDim.new(0,l or 0) u.Parent=p end
 
 local function ResolveIcon(icon)
-    if not icon then return nil, false end
-    if type(icon) == "number" then return "rbxassetid://" .. icon, true end
-    if type(icon) == "string" then
-        if icon:match("^rbxassetid://") then return icon, true end
-        if icon:match("^%d+$") then return "rbxassetid://" .. icon, true end
-        return ICONS[icon:lower()] or icon, false
+    if not icon then return nil,false end
+    if type(icon)=="number" then return "rbxassetid://"..icon,true end
+    if type(icon)=="string" then
+        if icon:match("^rbxassetid://") then return icon,true end
+        if icon:match("^%d+$") then return "rbxassetid://"..icon,true end
+        return ICONS[icon:lower()] or icon,false
     end
-    return nil, false
+    return nil,false
 end
 
-function Library:CreateWindow(cfg)
-    cfg = cfg or {}
-    local title      = cfg.Title           or "Settings"
-    local subtitle   = cfg.SubTitle        or ""
-    local loadTitle  = cfg.LoadingTitle    or "Loading"
-    local loadSub    = cfg.LoadingSubtitle or "Please wait…"
-    local loadImage  = cfg.LoadingImage
-    local showText   = cfg.ShowText        or "Open"
-    local themeName  = cfg.Theme           or "Light"
+function Library:CreateWindow(Cfg)
+    Cfg = Cfg or {}
+    local Title     = Cfg.Title           or "Menu"
+    local Subtitle  = Cfg.SubTitle        or ""
+    local LoadTitle = Cfg.LoadingTitle    or "Loading"
+    local LoadSub   = Cfg.LoadingSubtitle or "Please wait…"
+    local LoadImage = Cfg.LoadingImage
+    local ButtonId  = Cfg.ButtonId
+    local ThemeName = Cfg.Theme           or "Onyx"
 
-    T = Themes[themeName] or Themes.Light
+    T = Themes[ThemeName] or Themes.Onyx
 
-    local _nodes = {}
-
-    local function Reg(obj, prop, key)
-        if obj and prop and key then
-            table.insert(_nodes, {obj = obj, prop = prop, key = key})
-        end
-    end
-
-    local function RegFn(fn)
-        if fn then table.insert(_nodes, {fn = fn}) end
-    end
+    local Nodes = {}
+    local function Reg(o,p,k) if o and p and k then table.insert(Nodes,{o=o,p=p,k=k}) end end
+    local function RegFn(fn) if fn then table.insert(Nodes,{fn=fn}) end end
 
     local Gui = Instance.new("ScreenGui")
-    Gui.Name            = "iOSUILib"
-    Gui.ResetOnSpawn    = false
-    Gui.ZIndexBehavior  = Enum.ZIndexBehavior.Sibling
-    Gui.IgnoreGuiInset  = true
-    local ok = pcall(function() Gui.Parent = gethui() end)
-    if not ok then
-        Gui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-    end
+    Gui.Name="PremiumUI" Gui.ResetOnSpawn=false Gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling Gui.IgnoreGuiInset=true
+    local ok=pcall(function() Gui.Parent=gethui() end)
+    if not ok then Gui.Parent=game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui") end
 
     local function GetWinSize()
-        local sw = Gui.AbsoluteSize.X
-        local sh = Gui.AbsoluteSize.Y
-        local w  = math.clamp(math.floor(sw * 0.74), 256, 464)
-        local h  = math.clamp(math.floor(sh * 0.64), 320, 496)
-        return w, h
+        local sw=Gui.AbsoluteSize.X local sh=Gui.AbsoluteSize.Y
+        local w=math.clamp(math.floor(sw*.80),340,560)
+        local h=math.clamp(math.floor(sh*.76),360,540)
+        return w,h
     end
 
-    local LoadScreen = Instance.new("Frame")
-    LoadScreen.Name             = "LoadScreen"
-    LoadScreen.BackgroundColor3 = T.HeaderBG
-    LoadScreen.BorderSizePixel  = 0
-    LoadScreen.Size             = UDim2.new(1, 0, 1, 0)
-    LoadScreen.ZIndex           = 200
-    LoadScreen.Parent           = Gui
+    local LoadBG = Instance.new("Frame")
+    LoadBG.BackgroundColor3=Color3.fromRGB(10,10,16) LoadBG.BorderSizePixel=0
+    LoadBG.Size=UDim2.new(1,0,1,0) LoadBG.ZIndex=200 LoadBG.Parent=Gui
+
+    local LoadGrad = Instance.new("UIGradient")
+    LoadGrad.Color=ColorSequence.new{ColorSequenceKeypoint.new(0,Color3.fromRGB(14,10,24)),ColorSequenceKeypoint.new(1,Color3.fromRGB(6,6,12))}
+    LoadGrad.Rotation=135 LoadGrad.Parent=LoadBG
 
     local LoadCenter = Instance.new("Frame")
-    LoadCenter.BackgroundTransparency = 1
-    LoadCenter.Size     = UDim2.new(0, 224, 0, 192)
-    LoadCenter.Position = UDim2.new(0.5, -112, 0.5, -96)
-    LoadCenter.ZIndex   = 201
-    LoadCenter.Parent   = LoadScreen
+    LoadCenter.BackgroundTransparency=1 LoadCenter.Size=UDim2.new(0,240,0,200)
+    LoadCenter.Position=UDim2.new(0.5,-120,0.5,-100) LoadCenter.ZIndex=201 LoadCenter.Parent=LoadBG
 
-    local loadOff = 0
-    if loadImage then
-        local iconVal, isAsset = ResolveIcon(loadImage)
-        local iconSize = 64
-        if isAsset then
-            local img = Instance.new("ImageLabel")
-            img.BackgroundColor3 = T.BG
-            img.BorderSizePixel  = 0
-            img.Size             = UDim2.new(0, iconSize, 0, iconSize)
-            img.Position         = UDim2.new(0.5, -iconSize/2, 0, 0)
-            img.Image            = iconVal
-            img.ScaleType        = Enum.ScaleType.Fit
-            img.ZIndex           = 202
-            img.Parent           = LoadCenter
-            Corner(img, 16)
-        else
-            local gl = Instance.new("TextLabel")
-            gl.BackgroundTransparency = 1
-            gl.Size       = UDim2.new(0, iconSize, 0, iconSize)
-            gl.Position   = UDim2.new(0.5, -iconSize/2, 0, 0)
-            gl.Text       = iconVal or "⊙"
-            gl.TextSize   = 42
-            gl.Font       = Enum.Font.Gotham
-            gl.TextColor3 = T.Accent
-            gl.ZIndex     = 202
-            gl.Parent     = LoadCenter
+    local loadOff=0
+    if LoadImage then
+        local iv,isA=ResolveIcon(LoadImage)
+        if isA then
+            local img=Instance.new("ImageLabel")
+            img.BackgroundColor3=Color3.fromRGB(22,22,32) img.BorderSizePixel=0
+            img.Size=UDim2.new(0,72,0,72) img.Position=UDim2.new(0.5,-36,0,0)
+            img.Image=iv img.ScaleType=Enum.ScaleType.Fit img.ZIndex=202 img.Parent=LoadCenter
+            Corner(img,16) Stroke(img,Color3.fromRGB(50,50,80),1)
         end
-        loadOff = iconSize + 14
+        loadOff=86
     end
 
-    local function MkLoadLbl(text, y, bold, size)
-        local l = Instance.new("TextLabel")
-        l.BackgroundTransparency = 1
-        l.Size     = UDim2.new(1, 0, 0, 22)
-        l.Position = UDim2.new(0, 0, 0, loadOff + y)
-        l.Text     = text
-        l.TextColor3     = bold and T.Text or T.SubText
-        l.Font           = bold and Enum.Font.GothamBold or Enum.Font.Gotham
-        l.TextSize       = size or (bold and 16 or 11)
-        l.TextXAlignment = Enum.TextXAlignment.Center
-        l.ZIndex   = 202
-        l.Parent   = LoadCenter
-        return l
-    end
-    MkLoadLbl(loadTitle, 3,  true,  16)
-    MkLoadLbl(loadSub,   26, false, 11)
+    local LTitle=Instance.new("TextLabel") LTitle.BackgroundTransparency=1
+    LTitle.Size=UDim2.new(1,0,0,22) LTitle.Position=UDim2.new(0,0,0,loadOff+4)
+    LTitle.Text=LoadTitle LTitle.TextColor3=Color3.fromRGB(230,230,250)
+    LTitle.Font=Enum.Font.GothamBold LTitle.TextSize=16
+    LTitle.TextXAlignment=Enum.TextXAlignment.Center LTitle.ZIndex=202 LTitle.Parent=LoadCenter
 
-    local Spinner = Instance.new("Frame")
-    Spinner.BackgroundTransparency = 1
-    Spinner.Size     = UDim2.new(0, 29, 0, 29)
-    Spinner.Position = UDim2.new(0.5, -14, 0, loadOff + 61)
-    Spinner.ZIndex   = 202
-    Spinner.Parent   = LoadCenter
+    local LSub=Instance.new("TextLabel") LSub.BackgroundTransparency=1
+    LSub.Size=UDim2.new(1,0,0,16) LSub.Position=UDim2.new(0,0,0,loadOff+30)
+    LSub.Text=LoadSub LSub.TextColor3=Color3.fromRGB(88,88,120)
+    LSub.Font=Enum.Font.Gotham LSub.TextSize=11
+    LSub.TextXAlignment=Enum.TextXAlignment.Center LSub.ZIndex=202 LSub.Parent=LoadCenter
 
-    for i = 1, 10 do
-        local dot = Instance.new("Frame")
-        dot.BackgroundColor3       = T.Accent
-        dot.BackgroundTransparency = 1 - ((i / 10) ^ 1.4)
-        dot.BorderSizePixel        = 0
-        local dotSize = 2 + (i / 10) * 4
-        dot.Size        = UDim2.new(0, dotSize, 0, dotSize)
-        dot.AnchorPoint = Vector2.new(0.5, 0.5)
-        local ang = math.rad((i - 1) * 36)
-        dot.Position = UDim2.new(0.5, math.cos(ang) * 12, 0.5, math.sin(ang) * 12)
-        dot.ZIndex   = 203
-        dot.Parent   = Spinner
-        Corner(dot, math.ceil(dotSize / 2))
-    end
+    local BarBG=Instance.new("Frame") BarBG.BackgroundColor3=Color3.fromRGB(28,28,40)
+    BarBG.BorderSizePixel=0 BarBG.Size=UDim2.new(0,160,0,3)
+    BarBG.Position=UDim2.new(0.5,-80,0,loadOff+64) BarBG.ZIndex=202 BarBG.Parent=LoadCenter
+    Corner(BarBG,2)
+    local BarFill=Instance.new("Frame") BarFill.BackgroundColor3=T.Accent
+    BarFill.BorderSizePixel=0 BarFill.Size=UDim2.new(0,0,1,0) BarFill.ZIndex=203 BarFill.Parent=BarBG
+    Corner(BarFill,2)
+    local BarGlow=Instance.new("UIGradient")
+    BarGlow.Color=ColorSequence.new{ColorSequenceKeypoint.new(0,Color3.fromRGB(255,255,255)),ColorSequenceKeypoint.new(1,T.Accent)}
+    BarGlow.Parent=BarFill
 
-    local spinAngle = 0
-    local spinConn  = RunService.Heartbeat:Connect(function(dt)
-        spinAngle = (spinAngle + dt * 320) % 360
-        Spinner.Rotation = spinAngle
+    local barConn=RunService.Heartbeat:Connect(function(dt)
+        local t=tick()%2/2
+        BarFill.Size=UDim2.new(t,0,1,0)
     end)
 
-    local winW, winH = GetWinSize()
-    local HEADER_H   = 46
-    local TABBAR_H   = 40
+    local winW,winH=GetWinSize()
+    local SIDEBAR_W=110
+    local HEADER_H=50
 
-    local Win = Instance.new("Frame")
-    Win.Name             = "Window"
-    Win.BackgroundColor3 = T.BG
-    Win.BorderSizePixel  = 0
-    Win.Size             = UDim2.new(0, winW, 0, winH)
-    Win.Position         = UDim2.new(0.5, -winW/2, 0.5, -winH/2)
-    Win.ClipsDescendants = true
-    Win.Visible          = false
-    Win.ZIndex           = 10
-    Win.Parent           = Gui
-    Corner(Win, 16)
-    Reg(Win, "BackgroundColor3", "BG")
+    local Win=Instance.new("Frame") Win.Name="Window"
+    Win.BackgroundColor3=T.BG Win.BorderSizePixel=0
+    Win.Size=UDim2.new(0,winW,0,winH)
+    Win.Position=UDim2.new(0.5,-winW/2,0.5,-winH/2)
+    Win.ClipsDescendants=true Win.Visible=false Win.ZIndex=10 Win.Parent=Gui
+    Corner(Win,14)
+    Reg(Win,"BackgroundColor3","BG")
+    local WinScale=Instance.new("UIScale") WinScale.Scale=1 WinScale.Parent=Win
+    local WinStroke=Stroke(Win,T.Separator,1)
+    Reg(WinStroke,"Color","Separator")
 
-    local DragHandle = Instance.new("Frame")
-    DragHandle.BackgroundColor3 = T.Handle
-    DragHandle.BorderSizePixel  = 0
-    DragHandle.Size             = UDim2.new(0, 29, 0, 3)
-    DragHandle.Position         = UDim2.new(0.5, -14, 0, 7)
-    DragHandle.ZIndex           = 20
-    DragHandle.Parent           = Win
-    Corner(DragHandle, 2)
-    Reg(DragHandle, "BackgroundColor3", "Handle")
+    local Sidebar=Instance.new("Frame") Sidebar.Name="Sidebar"
+    Sidebar.BackgroundColor3=T.Sidebar Sidebar.BorderSizePixel=0
+    Sidebar.Size=UDim2.new(0,SIDEBAR_W,1,0) Sidebar.Position=UDim2.new(0,0,0,0)
+    Sidebar.ZIndex=12 Sidebar.Parent=Win
+    Reg(Sidebar,"BackgroundColor3","Sidebar")
 
-    local Header = Instance.new("Frame")
-    Header.Name             = "Header"
-    Header.BackgroundColor3 = T.HeaderBG
-    Header.BorderSizePixel  = 0
-    Header.Size             = UDim2.new(1, 0, 0, HEADER_H)
-    Header.Position         = UDim2.new(0, 0, 0, 0)
-    Header.ZIndex           = 12
-    Header.Parent           = Win
-    Reg(Header, "BackgroundColor3", "HeaderBG")
+    local SidebarLine=Instance.new("Frame") SidebarLine.BackgroundColor3=T.Separator
+    SidebarLine.BorderSizePixel=0 SidebarLine.Size=UDim2.new(0,1,1,0)
+    SidebarLine.Position=UDim2.new(1,-1,0,0) SidebarLine.ZIndex=13 SidebarLine.Parent=Sidebar
+    Reg(SidebarLine,"BackgroundColor3","Separator")
 
-    local NavLine = Instance.new("Frame")
-    NavLine.BackgroundColor3 = T.Separator
-    NavLine.BorderSizePixel  = 0
-    NavLine.Size     = UDim2.new(1, 0, 0, 1)
-    NavLine.Position = UDim2.new(0, 0, 1, -1)
-    NavLine.ZIndex   = 13
-    NavLine.Parent   = Header
-    Reg(NavLine, "BackgroundColor3", "Separator")
+    local SidebarTop=Instance.new("Frame") SidebarTop.BackgroundTransparency=1
+    SidebarTop.Size=UDim2.new(1,0,0,HEADER_H) SidebarTop.ZIndex=13 SidebarTop.Parent=Sidebar
+    Pad(SidebarTop,0,8,0,8)
 
-    local hasSub = subtitle ~= ""
-
-    local TitleLbl = Instance.new("TextLabel")
-    TitleLbl.BackgroundTransparency = 1
-    TitleLbl.AnchorPoint     = Vector2.new(0.5, 0.5)
-    TitleLbl.Size            = UDim2.new(0, 208, 0, hasSub and 16 or 21)
-    TitleLbl.Position        = UDim2.new(0.5, 0, 0.5, hasSub and -9 or 0)
-    TitleLbl.Text            = title
-    TitleLbl.TextColor3      = T.Text
-    TitleLbl.Font            = Enum.Font.GothamBold
-    TitleLbl.TextSize        = 14
-    TitleLbl.TextXAlignment  = Enum.TextXAlignment.Center
-    TitleLbl.TextYAlignment  = Enum.TextYAlignment.Center
-    TitleLbl.ZIndex          = 13
-    TitleLbl.Parent          = Header
-    Reg(TitleLbl, "TextColor3", "Text")
-
-    if hasSub then
-        local SubLbl = Instance.new("TextLabel")
-        SubLbl.BackgroundTransparency = 1
-        SubLbl.AnchorPoint     = Vector2.new(0.5, 0.5)
-        SubLbl.Size            = UDim2.new(0, 208, 0, 13)
-        SubLbl.Position        = UDim2.new(0.5, 0, 0.5, 8)
-        SubLbl.Text            = subtitle
-        SubLbl.TextColor3      = T.SubText
-        SubLbl.Font            = Enum.Font.Gotham
-        SubLbl.TextSize        = 10
-        SubLbl.TextXAlignment  = Enum.TextXAlignment.Center
-        SubLbl.TextYAlignment  = Enum.TextYAlignment.Center
-        SubLbl.ZIndex          = 13
-        SubLbl.Parent          = Header
-        Reg(SubLbl, "TextColor3", "SubText")
+    local SideLogoImg=nil
+    if LoadImage then
+        local iv,isA=ResolveIcon(LoadImage)
+        if isA then
+            SideLogoImg=Instance.new("ImageLabel")
+            SideLogoImg.BackgroundTransparency=1 SideLogoImg.AnchorPoint=Vector2.new(0.5,0.5)
+            SideLogoImg.Size=UDim2.new(0,28,0,28) SideLogoImg.Position=UDim2.new(0.5,0,0.5,0)
+            SideLogoImg.Image=iv SideLogoImg.ScaleType=Enum.ScaleType.Fit
+            SideLogoImg.ZIndex=14 SideLogoImg.Parent=SidebarTop
+        end
     end
 
-    local CloseBtn = Instance.new("TextButton")
-    CloseBtn.BackgroundTransparency = 1
-    CloseBtn.AnchorPoint     = Vector2.new(1, 0.5)
-    CloseBtn.Size            = UDim2.new(0, 42, 0, 29)
-    CloseBtn.Position        = UDim2.new(1, -6, 0.5, 0)
-    CloseBtn.Text            = "Done"
-    CloseBtn.TextColor3      = T.Accent
-    CloseBtn.Font            = Enum.Font.GothamBold
-    CloseBtn.TextSize        = 13
-    CloseBtn.ZIndex          = 14
-    CloseBtn.Parent          = Header
-    Reg(CloseBtn, "TextColor3", "Accent")
+    if not SideLogoImg then
+        local SideTitleLbl=Instance.new("TextLabel") SideTitleLbl.BackgroundTransparency=1
+        SideTitleLbl.AnchorPoint=Vector2.new(0.5,0.5)
+        SideTitleLbl.Size=UDim2.new(1,-4,0,20) SideTitleLbl.Position=UDim2.new(0.5,0,0.5,-4)
+        SideTitleLbl.Text=Title SideTitleLbl.TextColor3=T.Text
+        SideTitleLbl.Font=Enum.Font.GothamBold SideTitleLbl.TextSize=11
+        SideTitleLbl.TextXAlignment=Enum.TextXAlignment.Center
+        SideTitleLbl.TextTruncate=Enum.TextTruncate.AtEnd
+        SideTitleLbl.ZIndex=14 SideTitleLbl.Parent=SidebarTop
+        Reg(SideTitleLbl,"TextColor3","Text")
+        if Subtitle~="" then
+            local SideSubLbl=Instance.new("TextLabel") SideSubLbl.BackgroundTransparency=1
+            SideSubLbl.AnchorPoint=Vector2.new(0.5,0.5)
+            SideSubLbl.Size=UDim2.new(1,-4,0,12) SideSubLbl.Position=UDim2.new(0.5,0,0.5,10)
+            SideSubLbl.Text=Subtitle SideSubLbl.TextColor3=T.SubText
+            SideSubLbl.Font=Enum.Font.Gotham SideSubLbl.TextSize=9
+            SideSubLbl.TextXAlignment=Enum.TextXAlignment.Center
+            SideSubLbl.TextTruncate=Enum.TextTruncate.AtEnd
+            SideSubLbl.ZIndex=14 SideSubLbl.Parent=SidebarTop
+            Reg(SideSubLbl,"TextColor3","SubText")
+        end
+    end
 
-    local closeBtnScale = Instance.new("UIScale")
-    closeBtnScale.Scale  = 1
-    closeBtnScale.Parent = CloseBtn
+    local SideTabLine=Instance.new("Frame") SideTabLine.BackgroundColor3=T.Separator
+    SideTabLine.BorderSizePixel=0 SideTabLine.Size=UDim2.new(1,-16,0,1)
+    SideTabLine.Position=UDim2.new(0,8,0,HEADER_H-1) SideTabLine.ZIndex=13 SideTabLine.Parent=Sidebar
+    Reg(SideTabLine,"BackgroundColor3","Separator")
 
-    CloseBtn.MouseEnter:Connect(function()
-        Snap(CloseBtn, {TextColor3 = T.AccentDark}, 0.12)
-    end)
-    CloseBtn.MouseLeave:Connect(function()
-        Tween(CloseBtn, {TextColor3 = T.Accent}, 0.22)
-    end)
-    CloseBtn.MouseButton1Down:Connect(function()
-        Snap(closeBtnScale, {Scale = 0.88}, 0.10)
-    end)
-    CloseBtn.MouseButton1Up:Connect(function()
-        Spring(closeBtnScale, {Scale = 1}, 0.36)
-    end)
+    local TabListScroll=Instance.new("ScrollingFrame")
+    TabListScroll.BackgroundTransparency=1 TabListScroll.BorderSizePixel=0
+    TabListScroll.Size=UDim2.new(1,0,1,-(HEADER_H+40)) TabListScroll.Position=UDim2.new(0,0,0,HEADER_H)
+    TabListScroll.CanvasSize=UDim2.new(0,0,0,0) TabListScroll.ScrollBarThickness=0
+    TabListScroll.ScrollingDirection=Enum.ScrollingDirection.Y
+    TabListScroll.ZIndex=13 TabListScroll.Parent=Sidebar
+    Pad(TabListScroll,6,0,6,0)
 
-    local TabBar = Instance.new("Frame")
-    TabBar.Name             = "TabBar"
-    TabBar.BackgroundColor3 = T.HeaderBG
-    TabBar.BorderSizePixel  = 0
-    TabBar.Size             = UDim2.new(1, 0, 0, TABBAR_H)
-    TabBar.Position         = UDim2.new(0, 0, 0, HEADER_H)
-    TabBar.ZIndex           = 12
-    TabBar.Parent           = Win
-    Reg(TabBar, "BackgroundColor3", "HeaderBG")
+    local TabListLayout=Instance.new("UIListLayout")
+    TabListLayout.FillDirection=Enum.FillDirection.Vertical
+    TabListLayout.SortOrder=Enum.SortOrder.LayoutOrder
+    TabListLayout.Padding=UDim.new(0,2)
+    TabListLayout.Parent=TabListScroll
 
-    local TabBarBorder = Instance.new("Frame")
-    TabBarBorder.BackgroundColor3 = T.Separator
-    TabBarBorder.BorderSizePixel  = 0
-    TabBarBorder.Size     = UDim2.new(1, 0, 0, 1)
-    TabBarBorder.Position = UDim2.new(0, 0, 1, -1)
-    TabBarBorder.ZIndex   = 13
-    TabBarBorder.Parent   = TabBar
-    Reg(TabBarBorder, "BackgroundColor3", "Separator")
-
-    local TabScroll = Instance.new("ScrollingFrame")
-    TabScroll.BackgroundTransparency = 1
-    TabScroll.BorderSizePixel        = 0
-    TabScroll.Size                   = UDim2.new(1, 0, 1, 0)
-    TabScroll.CanvasSize             = UDim2.new(0, 0, 0, 0)
-    TabScroll.ScrollBarThickness     = 0
-    TabScroll.ScrollingDirection     = Enum.ScrollingDirection.X
-    TabScroll.ZIndex                 = 13
-    TabScroll.Parent                 = TabBar
-
-    local TabLayout = Instance.new("UIListLayout")
-    TabLayout.FillDirection = Enum.FillDirection.Horizontal
-    TabLayout.SortOrder     = Enum.SortOrder.LayoutOrder
-    TabLayout.Padding       = UDim.new(0, 0)
-    TabLayout.Parent        = TabScroll
-
-    local lastTabW = -1
-    TabLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        local w = TabLayout.AbsoluteContentSize.X
-        if w == lastTabW then return end
-        lastTabW = w
-        TabScroll.CanvasSize = UDim2.new(0, w, 0, 0)
+    TabListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        TabListScroll.CanvasSize=UDim2.new(0,0,0,TabListLayout.AbsoluteContentSize.Y+12)
     end)
 
-    local ContentArea = Instance.new("Frame")
-    ContentArea.BackgroundTransparency = 1
-    ContentArea.Size             = UDim2.new(1, 0, 1, -(HEADER_H + TABBAR_H))
-    ContentArea.Position         = UDim2.new(0, 0, 0, HEADER_H + TABBAR_H)
-    ContentArea.ClipsDescendants = true
-    ContentArea.ZIndex           = 11
-    ContentArea.Parent           = Win
+    local SideBottom=Instance.new("Frame") SideBottom.BackgroundTransparency=1
+    SideBottom.Size=UDim2.new(1,0,0,40) SideBottom.AnchorPoint=Vector2.new(0,1)
+    SideBottom.Position=UDim2.new(0,0,1,0) SideBottom.ZIndex=13 SideBottom.Parent=Sidebar
+    Pad(SideBottom,0,8,8,8)
 
-    local TabFadeOverlay = Instance.new("Frame")
-    TabFadeOverlay.BackgroundColor3       = T.BG
-    TabFadeOverlay.BackgroundTransparency = 1
-    TabFadeOverlay.BorderSizePixel        = 0
-    TabFadeOverlay.Size                   = UDim2.new(1, 0, 1, 0)
-    TabFadeOverlay.ZIndex                 = 50
-    TabFadeOverlay.Parent                 = ContentArea
-    Reg(TabFadeOverlay, "BackgroundColor3", "BG")
+    local CloseBtn=Instance.new("TextButton") CloseBtn.BackgroundColor3=T.SectionBG
+    CloseBtn.BorderSizePixel=0 CloseBtn.Size=UDim2.new(1,0,0,26)
+    CloseBtn.Position=UDim2.new(0,0,0,0) CloseBtn.Text=""
+    CloseBtn.ZIndex=14 CloseBtn.Parent=SideBottom
+    Corner(CloseBtn,7)
+    Reg(CloseBtn,"BackgroundColor3","SectionBG")
+    local CloseBtnStroke=Stroke(CloseBtn,T.Separator,1)
+    Reg(CloseBtnStroke,"Color","Separator")
+    local CloseBtnLbl=Instance.new("TextLabel") CloseBtnLbl.BackgroundTransparency=1
+    CloseBtnLbl.Size=UDim2.new(1,0,1,0) CloseBtnLbl.Text="✕  Close"
+    CloseBtnLbl.TextColor3=T.SubText CloseBtnLbl.Font=Enum.Font.GothamMedium
+    CloseBtnLbl.TextSize=10 CloseBtnLbl.ZIndex=15 CloseBtnLbl.Parent=CloseBtn
+    Reg(CloseBtnLbl,"TextColor3","SubText")
+    local CloseBtnScale=Instance.new("UIScale") CloseBtnScale.Scale=1 CloseBtnScale.Parent=CloseBtn
+    CloseBtn.MouseEnter:Connect(function() Tw(CloseBtnLbl,{TextColor3=T.Text},.14) end)
+    CloseBtn.MouseLeave:Connect(function() Tw(CloseBtnLbl,{TextColor3=T.SubText},.20) end)
+    CloseBtn.MouseButton1Down:Connect(function() TwL(CloseBtnScale,{Scale=.94},.07) end)
+    CloseBtn.MouseButton1Up:Connect(function() TwB(CloseBtnScale,{Scale=1},.36) end)
 
-    local ShowBtn = Instance.new("TextButton")
-    ShowBtn.BackgroundColor3 = T.Accent
-    ShowBtn.Size             = UDim2.new(0, 86, 0, 34)
-    ShowBtn.Position         = UDim2.new(0.5, -43, 0, 14)
-    ShowBtn.Text             = showText
-    ShowBtn.TextColor3       = T.White
-    ShowBtn.Font             = Enum.Font.GothamBold
-    ShowBtn.TextSize         = 12
-    ShowBtn.Visible          = false
-    ShowBtn.ZIndex           = 100
-    ShowBtn.Parent           = Gui
-    Corner(ShowBtn, 17)
-    Reg(ShowBtn, "BackgroundColor3", "Accent")
-    Reg(ShowBtn, "TextColor3", "White")
+    local MainArea=Instance.new("Frame") MainArea.BackgroundTransparency=1
+    MainArea.Size=UDim2.new(1,-SIDEBAR_W,1,0) MainArea.Position=UDim2.new(0,SIDEBAR_W,0,0)
+    MainArea.ClipsDescendants=true MainArea.ZIndex=11 MainArea.Parent=Win
 
-    local showBtnScale = Instance.new("UIScale")
-    showBtnScale.Scale  = 1
-    showBtnScale.Parent = ShowBtn
-    ShowBtn.MouseButton1Down:Connect(function()
-        Snap(showBtnScale, {Scale = 0.94}, 0.10)
-    end)
-    ShowBtn.MouseButton1Up:Connect(function()
-        Spring(showBtnScale, {Scale = 1}, 0.36)
-    end)
+    local ContentArea=Instance.new("Frame") ContentArea.BackgroundTransparency=1
+    ContentArea.Size=UDim2.new(1,0,1,0) ContentArea.ZIndex=11 ContentArea.Parent=MainArea
+    ContentArea.ClipsDescendants=true
 
-    local isDragging  = false
-    local dragStart   = nil
-    local startWinPos = nil
+    local TabFadeOverlay=Instance.new("Frame") TabFadeOverlay.BackgroundColor3=T.BG
+    TabFadeOverlay.BackgroundTransparency=1 TabFadeOverlay.BorderSizePixel=0
+    TabFadeOverlay.Size=UDim2.new(1,0,1,0) TabFadeOverlay.ZIndex=50
+    TabFadeOverlay.Parent=ContentArea
+    Reg(TabFadeOverlay,"BackgroundColor3","BG")
 
-    Header.InputBegan:Connect(function(inp)
-        if inp.UserInputType == Enum.UserInputType.MouseButton1
-        or inp.UserInputType == Enum.UserInputType.Touch then
-            isDragging  = true
-            dragStart   = inp.Position
-            startWinPos = Win.Position
-            Snap(DragHandle, {Size = UDim2.new(0, 22, 0, 3)}, 0.16)
+    local ShowBtn
+    if ButtonId then
+        ShowBtn=Instance.new("ImageButton")
+        ShowBtn.Image="rbxassetid://"..tostring(ButtonId)
+        ShowBtn.BackgroundTransparency=1
+        ShowBtn.Size=UDim2.new(0,48,0,48)
+        ShowBtn.Position=UDim2.new(0,14,0,14)
+        ShowBtn.ZIndex=100 ShowBtn.Visible=false ShowBtn.Parent=Gui
+        local ShowBtnStroke=Stroke(ShowBtn,T.Separator,1.5)
+        Reg(ShowBtnStroke,"Color","Separator")
+        Corner(ShowBtn,12)
+    else
+        ShowBtn=Instance.new("ImageButton")
+        ShowBtn.BackgroundColor3=T.Sidebar
+        ShowBtn.Image=""
+        ShowBtn.Size=UDim2.new(0,48,0,48)
+        ShowBtn.Position=UDim2.new(0,14,0,14)
+        ShowBtn.ZIndex=100 ShowBtn.Visible=false ShowBtn.Parent=Gui
+        Corner(ShowBtn,12)
+        Stroke(ShowBtn,T.Separator,1.5)
+        local ShowBtnLbl=Instance.new("TextLabel") ShowBtnLbl.BackgroundTransparency=1
+        ShowBtnLbl.Size=UDim2.new(1,0,1,0) ShowBtnLbl.Text="≡"
+        ShowBtnLbl.TextColor3=T.Accent ShowBtnLbl.Font=Enum.Font.GothamBold
+        ShowBtnLbl.TextSize=22 ShowBtnLbl.ZIndex=101 ShowBtnLbl.Parent=ShowBtn
+        Reg(ShowBtnLbl,"TextColor3","Accent")
+        Reg(ShowBtn,"BackgroundColor3","Sidebar")
+    end
+    local ShowBtnScale=Instance.new("UIScale") ShowBtnScale.Scale=1 ShowBtnScale.Parent=ShowBtn
+    ShowBtn.MouseButton1Down:Connect(function() TwL(ShowBtnScale,{Scale=.88},.08) end)
+    ShowBtn.MouseButton1Up:Connect(function() TwB(ShowBtnScale,{Scale=1},.40) end)
+
+    local isDragging=false local dragStart=nil local startWinPos=nil
+
+    Sidebar.InputBegan:Connect(function(inp)
+        if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then
+            isDragging=true dragStart=inp.Position startWinPos=Win.Position
         end
     end)
-
     UserInputService.InputChanged:Connect(function(inp)
         if not isDragging then return end
-        if inp.UserInputType ~= Enum.UserInputType.MouseMovement
-        and inp.UserInputType ~= Enum.UserInputType.Touch then return end
-        local d = inp.Position - dragStart
-        Win.Position = UDim2.new(
-            startWinPos.X.Scale, startWinPos.X.Offset + d.X,
-            startWinPos.Y.Scale, startWinPos.Y.Offset + d.Y
-        )
+        if inp.UserInputType~=Enum.UserInputType.MouseMovement and inp.UserInputType~=Enum.UserInputType.Touch then return end
+        local d=inp.Position-dragStart
+        Win.Position=UDim2.new(startWinPos.X.Scale,startWinPos.X.Offset+d.X,startWinPos.Y.Scale,startWinPos.Y.Offset+d.Y)
     end)
-
     UserInputService.InputEnded:Connect(function(inp)
-        if inp.UserInputType == Enum.UserInputType.MouseButton1
-        or inp.UserInputType == Enum.UserInputType.Touch then
-            isDragging = false
-            Spring(DragHandle, {Size = UDim2.new(0, 29, 0, 3)}, 0.38)
+        if inp.UserInputType==Enum.UserInputType.MouseButton1 or inp.UserInputType==Enum.UserInputType.Touch then
+            isDragging=false
         end
     end)
-
-    local winScale = nil
 
     CloseBtn.MouseButton1Click:Connect(function()
-        local wp = Win.Position
-        if winScale then Tween(winScale, {Scale = 0.92}, 0.30) end
-        Tween(Win, {
-            BackgroundTransparency = 1,
-            Position = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset + 36)
-        }, 0.48, Enum.EasingStyle.Quint)
-        for _, d in ipairs(Win:GetDescendants()) do
-            if d:IsA("TextLabel") or d:IsA("TextButton") then
-                Tween(d, {TextTransparency = 1}, 0.32, Enum.EasingStyle.Quint)
-            end
-        end
-        task.delay(0.52, function()
-            Win.Visible                = false
-            Win.BackgroundTransparency = 0
-            Win.Position               = wp
-            if winScale then winScale.Scale = 1 end
-            for _, d in ipairs(Win:GetDescendants()) do
-                if d:IsA("TextLabel") or d:IsA("TextButton") then
-                    d.TextTransparency = 0
-                end
-            end
-            ShowBtn.Visible                = true
-            ShowBtn.BackgroundTransparency = 1
-            ShowBtn.Size = UDim2.new(0, 64, 0, 29)
-            showBtnScale.Scale = 0.82
-            Tween(ShowBtn, {BackgroundTransparency = 0, Size = UDim2.new(0, 86, 0, 34)},
-                0.40, Enum.EasingStyle.Quint)
-            Spring(showBtnScale, {Scale = 1}, 0.56)
+        local wp=Win.Position
+        Tw(WinScale,{Scale=.94},.20)
+        Tw(Win,{BackgroundTransparency=1,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+28)},.28,Enum.EasingStyle.Quint)
+        task.delay(.30,function()
+            Win.Visible=false Win.BackgroundTransparency=0 Win.Position=wp WinScale.Scale=1
+            ShowBtn.Visible=true ShowBtn.BackgroundTransparency=1 ShowBtnScale.Scale=.78
+            Tw(ShowBtn,{BackgroundTransparency=0},.22,Enum.EasingStyle.Quint)
+            TwB(ShowBtnScale,{Scale=1},.46)
         end)
     end)
 
     ShowBtn.MouseButton1Click:Connect(function()
-        Tween(ShowBtn, {BackgroundTransparency = 1}, 0.24, Enum.EasingStyle.Quint)
-        Tween(showBtnScale, {Scale = 0.88}, 0.24)
-        task.delay(0.26, function()
-            ShowBtn.Visible = false
-            ShowBtn.Size    = UDim2.new(0, 86, 0, 34)
-            showBtnScale.Scale = 1
-            local wp = Win.Position
-            Win.Visible                = true
-            Win.BackgroundTransparency = 1
-            Win.Position = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset + 44)
-            if winScale then winScale.Scale = 0.90 end
-            Tween(Win, {
-                BackgroundTransparency = 0,
-                Position = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset)
-            }, 0.60, Enum.EasingStyle.Quint)
-            if winScale then Spring(winScale, {Scale = 1}, 0.64) end
+        Tw(ShowBtn,{BackgroundTransparency=1},.16,Enum.EasingStyle.Quint)
+        TwL(ShowBtnScale,{Scale=.88},.12)
+        task.delay(.18,function()
+            ShowBtn.Visible=false ShowBtnScale.Scale=1
+            local wp=Win.Position
+            Win.Visible=true Win.BackgroundTransparency=1
+            Win.Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+44)
+            WinScale.Scale=.88
+            Tw(Win,{BackgroundTransparency=0,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset)},.46,Enum.EasingStyle.Quint)
+            TwB(WinScale,{Scale=1},.52)
         end)
     end)
 
     task.spawn(function()
         task.wait(2.4)
-        spinConn:Disconnect()
-
-        Tween(LoadScreen, {BackgroundTransparency = 1}, 0.38, Enum.EasingStyle.Quint)
-        for _, d in ipairs(LoadScreen:GetDescendants()) do
+        barConn:Disconnect()
+        Tw(LoadBG,{BackgroundTransparency=1},.36,Enum.EasingStyle.Quint)
+        for _,d in ipairs(LoadBG:GetDescendants()) do
             if d:IsA("GuiObject") then
-                local tp = {BackgroundTransparency = 1}
-                if d:IsA("TextLabel")  then tp.TextTransparency  = 1 end
-                if d:IsA("ImageLabel") then tp.ImageTransparency = 1 end
-                Tween(d, tp, 0.34, Enum.EasingStyle.Quint)
+                local tp={BackgroundTransparency=1}
+                if d:IsA("TextLabel") then tp.TextTransparency=1 end
+                if d:IsA("ImageLabel") then tp.ImageTransparency=1 end
+                Tw(d,tp,.28,Enum.EasingStyle.Quint)
             end
         end
-        task.wait(0.42)
-        LoadScreen:Destroy()
-
-        local nw, nh = GetWinSize()
-        Win.Visible                = true
-        Win.BackgroundTransparency = 1
-        Win.Position = UDim2.new(0.5, -nw/2, 0.5, -nh/2 + 52)
-
-        winScale = Instance.new("UIScale")
-        winScale.Scale  = 0.86
-        winScale.Parent = Win
-
-        Tween(Win, {
-            BackgroundTransparency = 0,
-            Position = UDim2.new(0.5, -nw/2, 0.5, -nh/2)
-        }, 0.62, Enum.EasingStyle.Quint)
-        Spring(winScale, {Scale = 1}, 0.66)
+        task.wait(.40) LoadBG:Destroy()
+        local nw,nh=GetWinSize()
+        Win.Visible=true Win.BackgroundTransparency=1
+        Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+48)
+        WinScale.Scale=.84
+        Tw(Win,{BackgroundTransparency=0,Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)},.52,Enum.EasingStyle.Quint)
+        TwB(WinScale,{Scale=1},.58)
     end)
 
-    local WindowObj = {}
-    local _tabs     = {}
-    local _tabCount = 0
+    local WindowObj={}
+    local Tabs={}
+    local TabCount=0
 
     local function DeactivateAllTabs()
-        for _, td in ipairs(_tabs) do
-            td.content.Visible    = false
-            td.activeLine.Visible = false
-            td.activeLine.Size    = UDim2.new(0, 0, 0, 2)
-            Snap(td.label, {TextColor3 = T.TabInactive}, 0.16)
+        for _,td in ipairs(Tabs) do
+            td.content.Visible=false
+            Tw(td.label,{TextColor3=T.TabInactive},.18)
+            Tw(td.pill,{BackgroundTransparency=1,Size=UDim2.new(0,3,0,20)},.22,Enum.EasingStyle.Quint)
+            Tw(td.pillColor,{BackgroundColor3=T.TabActiveBG},.18)
+            td.pillColor.BackgroundTransparency=1
             if td.icon then
-                local prop = td.icon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                Snap(td.icon, {[prop] = T.TabInactive}, 0.16)
-            end
-            if td.tabScale then
-                Snap(td.tabScale, {Scale = 1}, 0.16)
+                local pr=td.icon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
+                Tw(td.icon,{[pr]=T.TabInactive},.18)
             end
         end
     end
 
-    function WindowObj:SetTheme(name)
-        T = Themes[name] or Themes.Light
-        local live = {}
-        for _, n in ipairs(_nodes) do
-            if n.fn then
-                n.fn()
-                live[#live + 1] = n
-            elseif n.obj and n.obj.Parent then
-                local val = T[n.key]
-                if val then
-                    Tween(n.obj, {[n.prop] = val}, 0.28, Enum.EasingStyle.Quint)
-                end
-                live[#live + 1] = n
+    function WindowObj:SetTheme(Name)
+        T=Themes[Name] or Themes.Onyx
+        local Live={}
+        for _,N in ipairs(Nodes) do
+            if N.fn then N.fn() Live[#Live+1]=N
+            elseif N.o and N.o.Parent then
+                local v=T[N.k] if v then Tw(N.o,{[N.p]=v},.26) end
+                Live[#Live+1]=N
             end
         end
-        _nodes = live
-        for _, td in ipairs(_tabs) do
-            local isActive = td.content.Visible
-            local col = isActive and T.TabActive or T.TabInactive
-            Tween(td.label, {TextColor3 = col}, 0.28, Enum.EasingStyle.Quint)
-            Tween(td.activeLine, {BackgroundColor3 = T.TabActive}, 0.28, Enum.EasingStyle.Quint)
+        Nodes=Live
+        for _,td in ipairs(Tabs) do
+            local isActive=td.content.Visible
+            local col=isActive and T.TabActive or T.TabInactive
+            Tw(td.label,{TextColor3=col},.26)
             if td.icon then
-                local prop = td.icon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                Tween(td.icon, {[prop] = col}, 0.28, Enum.EasingStyle.Quint)
+                local pr=td.icon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
+                Tw(td.icon,{[pr]=col},.26)
             end
-        end
-        if TabFadeOverlay then
-            Reg(TabFadeOverlay, "BackgroundColor3", "BG")
         end
     end
 
-    function WindowObj:CreateTab(tabCfg)
-        tabCfg = tabCfg or {}
-        local tabTitle = tabCfg.Title or "Tab"
-        local tabLogo  = tabCfg.Logo
+    function WindowObj:CreateTab(TabCfg)
+        TabCfg=TabCfg or {}
+        local TabTitle=TabCfg.Title or "Tab"
+        local TabLogo=TabCfg.Logo
+        TabCount=TabCount+1
+        local Idx=TabCount
 
-        _tabCount = _tabCount + 1
-        local idx  = _tabCount
-        local minW = math.max(62, #tabTitle * 6 + 29)
+        local TabBtn=Instance.new("TextButton") TabBtn.BackgroundTransparency=1
+        TabBtn.Size=UDim2.new(1,0,0,32) TabBtn.Text=""
+        TabBtn.ZIndex=14 TabBtn.LayoutOrder=Idx TabBtn.Parent=TabListScroll
+        Pad(TabBtn,0,8,0,8)
 
-        local TabBtn = Instance.new("TextButton")
-        TabBtn.BackgroundTransparency = 1
-        TabBtn.Size        = UDim2.new(0, minW, 1, 0)
-        TabBtn.Text        = ""
-        TabBtn.ZIndex      = 14
-        TabBtn.LayoutOrder = idx
-        TabBtn.Parent      = TabScroll
+        local PillBG=Instance.new("Frame") PillBG.BackgroundColor3=T.TabActiveBG
+        PillBG.BackgroundTransparency=1 PillBG.BorderSizePixel=0
+        PillBG.Size=UDim2.new(1,0,1,0) PillBG.ZIndex=13 PillBG.Parent=TabBtn
+        Corner(PillBG,7)
 
-        local tabScale = Instance.new("UIScale")
-        tabScale.Scale  = 1
-        tabScale.Parent = TabBtn
+        local Pill=Instance.new("Frame") Pill.BackgroundColor3=T.TabActive
+        Pill.BorderSizePixel=0 Pill.AnchorPoint=Vector2.new(0,.5)
+        Pill.Size=UDim2.new(0,3,0,20) Pill.Position=UDim2.new(0,0,.5,0)
+        Pill.BackgroundTransparency=1 Pill.ZIndex=15 Pill.Parent=TabBtn
+        Corner(Pill,2)
+        Reg(Pill,"BackgroundColor3","TabActive")
 
-        local tabIcon  = nil
-        local iconXOff = 0
-
-        if tabLogo then
-            local iconVal, isAsset = ResolveIcon(tabLogo)
-            if isAsset then
-                tabIcon = Instance.new("ImageLabel")
-                tabIcon.BackgroundTransparency = 1
-                tabIcon.AnchorPoint  = Vector2.new(0, 0.5)
-                tabIcon.Size         = UDim2.new(0, 12, 0, 12)
-                tabIcon.Position     = UDim2.new(0, 8, 0.5, 0)
-                tabIcon.Image        = iconVal
-                tabIcon.ImageColor3  = T.TabInactive
-                tabIcon.ZIndex       = 15
-                tabIcon.Parent       = TabBtn
-                iconXOff = 16
+        local TabIcon=nil local IconXOff=0
+        if TabLogo then
+            local iv,isA=ResolveIcon(TabLogo)
+            if isA then
+                TabIcon=Instance.new("ImageLabel") TabIcon.BackgroundTransparency=1
+                TabIcon.AnchorPoint=Vector2.new(0,.5) TabIcon.Size=UDim2.new(0,14,0,14)
+                TabIcon.Position=UDim2.new(0,10,.5,0) TabIcon.Image=iv
+                TabIcon.ImageColor3=T.TabInactive TabIcon.ZIndex=15 TabIcon.Parent=TabBtn
+                IconXOff=22
             else
-                tabIcon = Instance.new("TextLabel")
-                tabIcon.BackgroundTransparency = 1
-                tabIcon.AnchorPoint    = Vector2.new(0, 0.5)
-                tabIcon.Size           = UDim2.new(0, 13, 0, 13)
-                tabIcon.Position       = UDim2.new(0, 6, 0.5, 0)
-                tabIcon.Text           = iconVal or ""
-                tabIcon.TextColor3     = T.TabInactive
-                tabIcon.Font           = Enum.Font.Gotham
-                tabIcon.TextSize       = 10
-                tabIcon.TextXAlignment = Enum.TextXAlignment.Center
-                tabIcon.TextYAlignment = Enum.TextYAlignment.Center
-                tabIcon.ZIndex         = 15
-                tabIcon.Parent         = TabBtn
-                iconXOff = 20
+                TabIcon=Instance.new("TextLabel") TabIcon.BackgroundTransparency=1
+                TabIcon.AnchorPoint=Vector2.new(0,.5) TabIcon.Size=UDim2.new(0,14,0,14)
+                TabIcon.Position=UDim2.new(0,9,.5,0) TabIcon.Text=iv or ""
+                TabIcon.TextColor3=T.TabInactive TabIcon.Font=Enum.Font.Gotham
+                TabIcon.TextSize=12 TabIcon.TextXAlignment=Enum.TextXAlignment.Center
+                TabIcon.TextYAlignment=Enum.TextYAlignment.Center
+                TabIcon.ZIndex=15 TabIcon.Parent=TabBtn
+                IconXOff=22
             end
         end
 
-        local TabLbl = Instance.new("TextLabel")
-        TabLbl.BackgroundTransparency = 1
-        TabLbl.AnchorPoint     = Vector2.new(0, 0.5)
-        TabLbl.Size            = UDim2.new(1, -iconXOff - 6, 0, 14)
-        TabLbl.Position        = UDim2.new(0, iconXOff + 5, 0.5, 0)
-        TabLbl.Text            = tabTitle
-        TabLbl.TextColor3      = T.TabInactive
-        TabLbl.Font            = Enum.Font.GothamMedium
-        TabLbl.TextSize        = 10
-        TabLbl.TextXAlignment  = Enum.TextXAlignment.Center
-        TabLbl.TextYAlignment  = Enum.TextYAlignment.Center
-        TabLbl.ZIndex          = 15
-        TabLbl.Parent          = TabBtn
+        local TabLbl=Instance.new("TextLabel") TabLbl.BackgroundTransparency=1
+        TabLbl.AnchorPoint=Vector2.new(0,.5)
+        TabLbl.Size=UDim2.new(1,-IconXOff-14,0,14) TabLbl.Position=UDim2.new(0,IconXOff+8,.5,0)
+        TabLbl.Text=TabTitle TabLbl.TextColor3=T.TabInactive
+        TabLbl.Font=Enum.Font.GothamMedium TabLbl.TextSize=11
+        TabLbl.TextXAlignment=Enum.TextXAlignment.Left
+        TabLbl.TextYAlignment=Enum.TextYAlignment.Center
+        TabLbl.ZIndex=15 TabLbl.Parent=TabBtn
 
-        local ActiveLine = Instance.new("Frame")
-        ActiveLine.BackgroundColor3 = T.TabActive
-        ActiveLine.BorderSizePixel  = 0
-        ActiveLine.AnchorPoint      = Vector2.new(0.5, 1)
-        ActiveLine.Size             = UDim2.new(0, 0, 0, 2)
-        ActiveLine.Position         = UDim2.new(0.5, 0, 1, 0)
-        ActiveLine.ZIndex           = 16
-        ActiveLine.Visible          = false
-        ActiveLine.Parent           = TabBtn
-        Corner(ActiveLine, 2)
-        Reg(ActiveLine, "BackgroundColor3", "TabActive")
+        local TabFrame=Instance.new("Frame") TabFrame.Name="Tab_"..Idx
+        TabFrame.BackgroundTransparency=1 TabFrame.Size=UDim2.new(1,0,1,0)
+        TabFrame.Visible=false TabFrame.ZIndex=11 TabFrame.Parent=ContentArea
 
-        local TabFrame = Instance.new("Frame")
-        TabFrame.Name                   = "Tab_" .. idx
-        TabFrame.BackgroundTransparency = 1
-        TabFrame.Size                   = UDim2.new(1, 0, 1, 0)
-        TabFrame.Visible                = false
-        TabFrame.ZIndex                 = 11
-        TabFrame.Parent                 = ContentArea
+        local COL_PAD=8 local COL_GAP=6 local COL_TOP=12 local COL_BOT=14
 
-        local COL_PAD = 6
-        local COL_GAP = 6
-        local COL_TOP = 11
-        local COL_BOT = 14
+        local LeftScroll=Instance.new("ScrollingFrame") LeftScroll.BackgroundTransparency=1
+        LeftScroll.BorderSizePixel=0 LeftScroll.Size=UDim2.new(.5,-COL_GAP/2-COL_PAD,1,0)
+        LeftScroll.Position=UDim2.new(0,COL_PAD,0,0) LeftScroll.CanvasSize=UDim2.new(0,0,0,0)
+        LeftScroll.ScrollBarThickness=0 LeftScroll.ScrollingDirection=Enum.ScrollingDirection.Y
+        LeftScroll.ZIndex=11 LeftScroll.Parent=TabFrame
 
-        local LeftScroll = Instance.new("ScrollingFrame")
-        LeftScroll.BackgroundTransparency = 1
-        LeftScroll.BorderSizePixel        = 0
-        LeftScroll.Size               = UDim2.new(0.5, -COL_GAP/2 - COL_PAD, 1, 0)
-        LeftScroll.Position           = UDim2.new(0, COL_PAD, 0, 0)
-        LeftScroll.CanvasSize         = UDim2.new(0, 0, 0, 0)
-        LeftScroll.ScrollBarThickness = 0
-        LeftScroll.ScrollingDirection = Enum.ScrollingDirection.Y
-        LeftScroll.ZIndex             = 11
-        LeftScroll.Parent             = TabFrame
+        local RightScroll=Instance.new("ScrollingFrame") RightScroll.BackgroundTransparency=1
+        RightScroll.BorderSizePixel=0 RightScroll.Size=UDim2.new(.5,-COL_GAP/2-COL_PAD,1,0)
+        RightScroll.Position=UDim2.new(.5,COL_GAP/2,0,0) RightScroll.CanvasSize=UDim2.new(0,0,0,0)
+        RightScroll.ScrollBarThickness=0 RightScroll.ScrollingDirection=Enum.ScrollingDirection.Y
+        RightScroll.ZIndex=11 RightScroll.Parent=TabFrame
 
-        local RightScroll = Instance.new("ScrollingFrame")
-        RightScroll.BackgroundTransparency = 1
-        RightScroll.BorderSizePixel        = 0
-        RightScroll.Size               = UDim2.new(0.5, -COL_GAP/2 - COL_PAD, 1, 0)
-        RightScroll.Position           = UDim2.new(0.5, COL_GAP/2, 0, 0)
-        RightScroll.CanvasSize         = UDim2.new(0, 0, 0, 0)
-        RightScroll.ScrollBarThickness = 0
-        RightScroll.ScrollingDirection = Enum.ScrollingDirection.Y
-        RightScroll.ZIndex             = 11
-        RightScroll.Parent             = TabFrame
-
-        local function MakeColInner(scrollFrame)
-            local inner = Instance.new("Frame")
-            inner.BackgroundTransparency = 1
-            inner.Size          = UDim2.new(1, 0, 0, 0)
-            inner.AutomaticSize = Enum.AutomaticSize.Y
-            inner.ZIndex        = 12
-            inner.Parent        = scrollFrame
-
-            local lay = Instance.new("UIListLayout")
-            lay.FillDirection = Enum.FillDirection.Vertical
-            lay.SortOrder     = Enum.SortOrder.LayoutOrder
-            lay.Padding       = UDim.new(0, 0)
-            lay.Parent        = inner
-
-            Pad(inner, COL_TOP, 0, COL_BOT, 0)
-
-            lay:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-                local h = lay.AbsoluteContentSize.Y + COL_TOP + COL_BOT
-                scrollFrame.CanvasSize = UDim2.new(0, 0, 0, h)
+        local function MakeColInner(SF)
+            local I=Instance.new("Frame") I.BackgroundTransparency=1
+            I.Size=UDim2.new(1,0,0,0) I.AutomaticSize=Enum.AutomaticSize.Y
+            I.ZIndex=12 I.Parent=SF
+            local L=Instance.new("UIListLayout") L.FillDirection=Enum.FillDirection.Vertical
+            L.SortOrder=Enum.SortOrder.LayoutOrder L.Padding=UDim.new(0,0) L.Parent=I
+            Pad(I,COL_TOP,0,COL_BOT,0)
+            L:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+                SF.CanvasSize=UDim2.new(0,0,0,L.AbsoluteContentSize.Y+COL_TOP+COL_BOT)
             end)
-
-            return inner, lay
+            return I
         end
 
-        local LeftInner,  _LeftLay  = MakeColInner(LeftScroll)
-        local RightInner, _RightLay = MakeColInner(RightScroll)
+        local LeftInner=MakeColInner(LeftScroll)
+        local RightInner=MakeColInner(RightScroll)
 
-        local tabData = {
-            btn        = TabBtn,
-            content    = TabFrame,
-            activeLine = ActiveLine,
-            label      = TabLbl,
-            icon       = tabIcon,
-            tabScale   = tabScale,
-        }
-        table.insert(_tabs, tabData)
+        local tabData={btn=TabBtn,content=TabFrame,label=TabLbl,icon=TabIcon,pill=Pill,pillColor=PillBG}
+        table.insert(Tabs,tabData)
 
         local function ActivateThis()
             DeactivateAllTabs()
-            TabFadeOverlay.BackgroundTransparency = 0.55
-            TabFadeOverlay.ZIndex = 50
-            Tween(TabFadeOverlay, {BackgroundTransparency = 1}, 0.32, Enum.EasingStyle.Quint)
-
-            TabFrame.Visible   = true
-            ActiveLine.Visible = true
-            ActiveLine.Size    = UDim2.new(0, 0, 0, 2)
-            Spring(ActiveLine, {Size = UDim2.new(0.78, 0, 0, 2)}, 0.42)
-            Snap(tabScale, {Scale = 0.92}, 0.10)
-            Spring(tabScale, {Scale = 1}, 0.38)
-            Snap(TabLbl, {TextColor3 = T.TabActive}, 0.14)
-            if tabIcon then
-                local prop = tabIcon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                Snap(tabIcon, {[prop] = T.TabActive}, 0.14)
+            TabFadeOverlay.BackgroundTransparency=.50 TabFadeOverlay.ZIndex=50
+            Tw(TabFadeOverlay,{BackgroundTransparency=1},.30,Enum.EasingStyle.Quint)
+            TabFrame.Visible=true
+            Tw(TabLbl,{TextColor3=T.TabActive},.16)
+            PillBG.BackgroundTransparency=1
+            Tw(PillBG,{BackgroundTransparency=0},.20,Enum.EasingStyle.Quint)
+            Pill.BackgroundTransparency=1 Pill.Size=UDim2.new(0,3,0,14)
+            TwB(Pill,{BackgroundTransparency=0,Size=UDim2.new(0,3,0,20)},.40)
+            if TabIcon then
+                local pr=TabIcon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
+                Tw(TabIcon,{[pr]=T.TabActive},.16)
             end
         end
 
         TabBtn.MouseButton1Click:Connect(ActivateThis)
-        if idx == 1 then ActivateThis() end
+        TabBtn.MouseButton1Down:Connect(function()
+            Tw(PillBG,{BackgroundTransparency=.5},.08)
+        end)
+        TabBtn.MouseButton1Up:Connect(function()
+            if TabFrame.Visible then Tw(PillBG,{BackgroundTransparency=0},.16)
+            else Tw(PillBG,{BackgroundTransparency=1},.16) end
+        end)
+        if Idx==1 then ActivateThis() end
 
-        local TabObj  = {}
-        local _secCnt = 0
+        local TabObj={} local SecCnt=0
 
-        function TabObj:CreateSection(secCfg)
-            secCfg = secCfg or {}
-            local secTitle = secCfg.Title    or "Section"
-            local secPos   = (secCfg.Position or "left"):lower()
+        function TabObj:CreateSection(SCfg)
+            SCfg=SCfg or {}
+            local SecTitle=SCfg.Title or "Section"
+            local SecPos=(SCfg.Position or "left"):lower()
+            SecCnt=SecCnt+1
+            local SecOrder=SecCnt
+            local ParentCol=SecPos=="right" and RightInner or LeftInner
 
-            _secCnt = _secCnt + 1
-            local secOrder  = _secCnt
-            local parentCol = secPos == "right" and RightInner or LeftInner
+            local SW=Instance.new("Frame") SW.BackgroundTransparency=1
+            SW.Size=UDim2.new(1,0,0,0) SW.AutomaticSize=Enum.AutomaticSize.Y
+            SW.LayoutOrder=SecOrder SW.ZIndex=13 SW.Parent=ParentCol
+            local SWL=Instance.new("UIListLayout") SWL.FillDirection=Enum.FillDirection.Vertical
+            SWL.SortOrder=Enum.SortOrder.LayoutOrder SWL.Padding=UDim.new(0,0) SWL.Parent=SW
 
-            local SecWrap = Instance.new("Frame")
-            SecWrap.BackgroundTransparency = 1
-            SecWrap.Size          = UDim2.new(1, 0, 0, 0)
-            SecWrap.AutomaticSize = Enum.AutomaticSize.Y
-            SecWrap.LayoutOrder   = secOrder
-            SecWrap.ZIndex        = 13
-            SecWrap.Parent        = parentCol
+            local TopSp=Instance.new("Frame") TopSp.BackgroundTransparency=1
+            TopSp.Size=UDim2.new(1,0,0,10) TopSp.LayoutOrder=0 TopSp.ZIndex=13 TopSp.Parent=SW
 
-            local SecWrapLayout = Instance.new("UIListLayout")
-            SecWrapLayout.FillDirection = Enum.FillDirection.Vertical
-            SecWrapLayout.SortOrder     = Enum.SortOrder.LayoutOrder
-            SecWrapLayout.Padding       = UDim.new(0, 0)
-            SecWrapLayout.Parent        = SecWrap
+            local SHW=Instance.new("Frame") SHW.BackgroundTransparency=1
+            SHW.Size=UDim2.new(1,0,0,14) SHW.LayoutOrder=1 SHW.ZIndex=13 SHW.Parent=SW
+            Pad(SHW,0,2,0,4)
+            local SH=Instance.new("TextLabel") SH.BackgroundTransparency=1
+            SH.Size=UDim2.new(1,0,1,0) SH.Text=SecTitle:upper()
+            SH.TextColor3=T.SecTitle SH.Font=Enum.Font.GothamBold SH.TextSize=8
+            SH.TextXAlignment=Enum.TextXAlignment.Left SH.TextYAlignment=Enum.TextYAlignment.Center
+            SH.ZIndex=14 SH.Parent=SHW
+            Reg(SH,"TextColor3","SecTitle")
 
-            local TopSpacer = Instance.new("Frame")
-            TopSpacer.BackgroundTransparency = 1
-            TopSpacer.Size        = UDim2.new(1, 0, 0, 10)
-            TopSpacer.LayoutOrder = 0
-            TopSpacer.ZIndex      = 13
-            TopSpacer.Parent      = SecWrap
+            local HSp=Instance.new("Frame") HSp.BackgroundTransparency=1
+            HSp.Size=UDim2.new(1,0,0,3) HSp.LayoutOrder=2 HSp.ZIndex=13 HSp.Parent=SW
 
-            local SecHeadWrap = Instance.new("Frame")
-            SecHeadWrap.BackgroundTransparency = 1
-            SecHeadWrap.Size        = UDim2.new(1, 0, 0, 16)
-            SecHeadWrap.LayoutOrder = 1
-            SecHeadWrap.ZIndex      = 13
-            SecHeadWrap.Parent      = SecWrap
-            Pad(SecHeadWrap, 0, 3, 0, 11)
+            local Card=Instance.new("Frame") Card.BackgroundColor3=T.SectionBG
+            Card.BorderSizePixel=0 Card.Size=UDim2.new(1,0,0,0)
+            Card.AutomaticSize=Enum.AutomaticSize.Y Card.ClipsDescendants=true
+            Card.LayoutOrder=3 Card.ZIndex=13 Card.Parent=SW
+            Corner(Card,10) Reg(Card,"BackgroundColor3","SectionBG")
+            local CardStroke=Stroke(Card,T.Separator,.6)
+            Reg(CardStroke,"Color","Separator")
 
-            local SecHead = Instance.new("TextLabel")
-            SecHead.BackgroundTransparency = 1
-            SecHead.Size           = UDim2.new(1, 0, 1, 0)
-            SecHead.Text           = secTitle:upper()
-            SecHead.TextColor3     = T.SectionTitle
-            SecHead.Font           = Enum.Font.GothamMedium
-            SecHead.TextSize       = 9
-            SecHead.TextXAlignment = Enum.TextXAlignment.Left
-            SecHead.TextYAlignment = Enum.TextYAlignment.Center
-            SecHead.ZIndex         = 14
-            SecHead.Parent         = SecHeadWrap
-            Reg(SecHead, "TextColor3", "SectionTitle")
-
-            local HeadSpacer = Instance.new("Frame")
-            HeadSpacer.BackgroundTransparency = 1
-            HeadSpacer.Size        = UDim2.new(1, 0, 0, 3)
-            HeadSpacer.LayoutOrder = 2
-            HeadSpacer.ZIndex      = 13
-            HeadSpacer.Parent      = SecWrap
-
-            local Card = Instance.new("Frame")
-            Card.BackgroundColor3 = T.SectionBG
-            Card.BorderSizePixel  = 0
-            Card.Size             = UDim2.new(1, 0, 0, 0)
-            Card.AutomaticSize    = Enum.AutomaticSize.Y
-            Card.ClipsDescendants = true
-            Card.LayoutOrder      = 3
-            Card.ZIndex           = 13
-            Card.Parent           = SecWrap
-            Corner(Card, 10)
-            Reg(Card, "BackgroundColor3", "SectionBG")
-
-            local CardStroke = Instance.new("UIStroke")
-            CardStroke.Color        = T.Separator
-            CardStroke.Thickness    = 0.5
-            CardStroke.Transparency = 0
-            CardStroke.Parent       = Card
-            Reg(CardStroke, "Color", "Separator")
-
-            local cardStagger = (_secCnt - 1) * 0.055
-            local cardEntryScale = Instance.new("UIScale")
-            cardEntryScale.Scale  = 0.92
-            cardEntryScale.Parent = Card
-            Card.BackgroundTransparency = 1
-            task.delay(cardStagger, function()
-                Tween(Card, {BackgroundTransparency = 0}, 0.28, Enum.EasingStyle.Quint)
-                Spring(cardEntryScale, {Scale = 1}, 0.46)
+            local CEntryScale=Instance.new("UIScale") CEntryScale.Scale=.90 CEntryScale.Parent=Card
+            Card.BackgroundTransparency=1
+            task.delay((SecCnt-1)*.05,function()
+                Tw(Card,{BackgroundTransparency=0},.26,Enum.EasingStyle.Quint)
+                TwB(CEntryScale,{Scale=1},.44)
             end)
 
-            local CardLayout = Instance.new("UIListLayout")
-            CardLayout.FillDirection = Enum.FillDirection.Vertical
-            CardLayout.SortOrder     = Enum.SortOrder.LayoutOrder
-            CardLayout.Padding       = UDim.new(0, 0)
-            CardLayout.Parent        = Card
+            local CL=Instance.new("UIListLayout") CL.FillDirection=Enum.FillDirection.Vertical
+            CL.SortOrder=Enum.SortOrder.LayoutOrder CL.Padding=UDim.new(0,0) CL.Parent=Card
 
-            local BottomSpacer = Instance.new("Frame")
-            BottomSpacer.BackgroundTransparency = 1
-            BottomSpacer.Size        = UDim2.new(1, 0, 0, 8)
-            BottomSpacer.LayoutOrder = 4
-            BottomSpacer.ZIndex      = 13
-            BottomSpacer.Parent      = SecWrap
+            local BSp=Instance.new("Frame") BSp.BackgroundTransparency=1
+            BSp.Size=UDim2.new(1,0,0,8) BSp.LayoutOrder=4 BSp.ZIndex=13 BSp.Parent=SW
 
-            local SecObj = {}
-            SecObj._card = Card
-            SecObj._rowN = 0
+            local SecObj={} SecObj._card=Card SecObj._rowN=0
 
-            local function MakeRow(h, autoY)
-                SecObj._rowN = SecObj._rowN + 1
-                local n = SecObj._rowN
-
-                if n > 1 then
-                    local sepWrap = Instance.new("Frame")
-                    sepWrap.BackgroundTransparency = 1
-                    sepWrap.BorderSizePixel        = 0
-                    sepWrap.Size        = UDim2.new(1, 0, 0, 1)
-                    sepWrap.ZIndex      = 15
-                    sepWrap.LayoutOrder = n * 10 - 5
-                    sepWrap.Parent      = Card
-
-                    local sep = Instance.new("Frame")
-                    sep.BackgroundColor3 = T.Separator
-                    sep.BorderSizePixel  = 0
-                    sep.Size     = UDim2.new(1, -16, 1, 0)
-                    sep.Position = UDim2.new(0, 16, 0, 0)
-                    sep.ZIndex   = 15
-                    sep.Parent   = sepWrap
-                    Reg(sep, "BackgroundColor3", "Separator")
-                end
-
-                local row = Instance.new("Frame")
-                row.BackgroundTransparency = 1
-                row.BorderSizePixel        = 0
-                row.ZIndex                 = 14
-                row.LayoutOrder            = n * 10
-                row.Parent                 = Card
-
-                if autoY then
-                    row.Size          = UDim2.new(1, 0, 0, 0)
-                    row.AutomaticSize = Enum.AutomaticSize.Y
-                else
-                    row.Size = UDim2.new(1, 0, 0, h or 48)
-                end
-                Pad(row, 0, 13, 0, 13)
-                return row
+            local function MkSep(N)
+                local SW2=Instance.new("Frame") SW2.BackgroundTransparency=1
+                SW2.BorderSizePixel=0 SW2.Size=UDim2.new(1,0,0,1)
+                SW2.ZIndex=15 SW2.LayoutOrder=N*10-5 SW2.Parent=Card
+                local S=Instance.new("Frame") S.BackgroundColor3=T.Separator
+                S.BorderSizePixel=0 S.Size=UDim2.new(1,-16,1,0)
+                S.Position=UDim2.new(0,13,0,0) S.ZIndex=15 S.Parent=SW2
+                Reg(S,"BackgroundColor3","Separator")
             end
 
-            function SecObj:CreateToggle(cfg)
-                cfg = cfg or {}
-                local ttl = cfg.Title    or "Toggle"
-                local def = cfg.Default  ~= nil and cfg.Default or false
-                local cb  = cfg.Callback or function() end
+            local function MkRow(H,AY)
+                SecObj._rowN=SecObj._rowN+1 local N=SecObj._rowN
+                if N>1 then MkSep(N) end
+                local Row=Instance.new("Frame") Row.BackgroundTransparency=1
+                Row.BorderSizePixel=0 Row.ZIndex=14 Row.LayoutOrder=N*10 Row.Parent=Card
+                if AY then Row.Size=UDim2.new(1,0,0,0) Row.AutomaticSize=Enum.AutomaticSize.Y
+                else Row.Size=UDim2.new(1,0,0,H or 40) end
+                Pad(Row,0,12,0,12)
+                return Row
+            end
 
-                local row = MakeRow(40)
+            local function RowPress(Row) Tw(Row,{BackgroundColor3=T.PressHL},.06) Row.BackgroundTransparency=0 end
+            local function RowRelease(Row) Tw(Row,{BackgroundColor3=T.SectionBG},.26,Enum.EasingStyle.Quint) task.delay(.26,function() Row.BackgroundTransparency=1 end) end
 
-                local lbl = Instance.new("TextLabel")
-                lbl.BackgroundTransparency = 1
-                lbl.AnchorPoint    = Vector2.new(0, 0.5)
-                lbl.Size           = UDim2.new(1, -53, 0, 16)
-                lbl.Position       = UDim2.new(0, 0, 0.5, 0)
-                lbl.Text           = ttl
-                lbl.TextColor3     = T.Text
-                lbl.Font           = Enum.Font.Gotham
-                lbl.TextSize       = 13
-                lbl.TextXAlignment = Enum.TextXAlignment.Left
-                lbl.TextYAlignment = Enum.TextYAlignment.Center
-                lbl.ZIndex         = 15
-                lbl.Parent         = row
-                Reg(lbl, "TextColor3", "Text")
+            function SecObj:CreateToggle(Cfg2)
+                Cfg2=Cfg2 or {}
+                local Ttl=Cfg2.Title or "Toggle"
+                local Def=Cfg2.Default~=nil and Cfg2.Default or false
+                local Cb=Cfg2.Callback or function() end
+                local Row=MkRow(40)
 
-                local track = Instance.new("Frame")
-                track.BackgroundColor3 = def and T.ToggleOn or T.ToggleOff
-                track.BorderSizePixel  = 0
-                track.AnchorPoint      = Vector2.new(1, 0.5)
-                track.Size             = UDim2.new(0, 41, 0, 25)
-                track.Position         = UDim2.new(1, 0, 0.5, 0)
-                track.ZIndex           = 15
-                track.Parent           = row
-                Corner(track, 13)
+                local Lbl=Instance.new("TextLabel") Lbl.BackgroundTransparency=1
+                Lbl.AnchorPoint=Vector2.new(0,.5) Lbl.Size=UDim2.new(1,-50,0,14)
+                Lbl.Position=UDim2.new(0,0,.5,0) Lbl.Text=Ttl
+                Lbl.TextColor3=T.Text Lbl.Font=Enum.Font.Gotham Lbl.TextSize=12
+                Lbl.TextXAlignment=Enum.TextXAlignment.Left
+                Lbl.TextYAlignment=Enum.TextYAlignment.Center
+                Lbl.ZIndex=15 Lbl.Parent=Row
+                Reg(Lbl,"TextColor3","Text")
 
-                local thumb = Instance.new("Frame")
-                thumb.BackgroundColor3 = T.White
-                thumb.BorderSizePixel  = 0
-                thumb.AnchorPoint      = Vector2.new(0, 0.5)
-                thumb.Size             = UDim2.new(0, 21, 0, 21)
-                thumb.Position         = def
-                    and UDim2.new(0, 18, 0.5, 0)
-                    or  UDim2.new(0,  2, 0.5, 0)
-                thumb.ZIndex           = 16
-                thumb.Parent           = track
-                Corner(thumb, 9)
-                Reg(thumb, "BackgroundColor3", "White")
+                local Track=Instance.new("Frame") Track.BackgroundColor3=Def and T.ToggleOn or T.ToggleOff
+                Track.BorderSizePixel=0 Track.AnchorPoint=Vector2.new(1,.5)
+                Track.Size=UDim2.new(0,38,0,22) Track.Position=UDim2.new(1,0,.5,0)
+                Track.ZIndex=15 Track.Parent=Row Corner(Track,11)
 
-                local thumbStroke = Instance.new("UIStroke")
-                thumbStroke.Color        = Color3.fromRGB(0, 0, 0)
-                thumbStroke.Thickness    = 0.5
-                thumbStroke.Transparency = 0.82
-                thumbStroke.Parent       = thumb
+                local Thumb=Instance.new("Frame") Thumb.BackgroundColor3=T.White
+                Thumb.BorderSizePixel=0 Thumb.AnchorPoint=Vector2.new(0,.5)
+                Thumb.Size=UDim2.new(0,18,0,18)
+                Thumb.Position=Def and UDim2.new(0,18,.5,0) or UDim2.new(0,2,.5,0)
+                Thumb.ZIndex=16 Thumb.Parent=Track Corner(Thumb,9)
+                Reg(Thumb,"BackgroundColor3","White")
+                local ThSt=Stroke(Thumb,Color3.fromRGB(0,0,0),.5) ThSt.Transparency=.84
 
-                local state = def
-                local busy  = false
-
-                local function DoSet(v, anim)
-                    if busy then return end
-                    busy  = true
-                    state = v
-                    local thumbTarget = v and UDim2.new(0, 18, 0.5, 0) or UDim2.new(0, 2, 0.5, 0)
-                    local color       = v and T.ToggleOn or T.ToggleOff
-                    if anim then
-                        Snap(track, {BackgroundColor3 = color}, 0.18)
-                        Snap(thumb, {
-                            Size     = UDim2.new(0, 25, 0, 21),
-                        }, 0.12)
-                        task.delay(0.12, function()
-                            Spring(thumb, {
-                                Position = thumbTarget,
-                                Size     = UDim2.new(0, 21, 0, 21),
-                            }, 0.36)
-                        end)
+                local State=Def local Busy=false
+                local function DoSet(V,Anim)
+                    if Busy then return end Busy=true State=V
+                    local Tgt=V and UDim2.new(0,18,.5,0) or UDim2.new(0,2,.5,0)
+                    local Col=V and T.ToggleOn or T.ToggleOff
+                    if Anim then
+                        Tw(Track,{BackgroundColor3=Col},.18)
+                        TwL(Thumb,{Size=UDim2.new(0,22,0,18)},.08)
+                        task.delay(.08,function() TwB(Thumb,{Position=Tgt,Size=UDim2.new(0,18,0,18)},.34) end)
                     else
-                        track.BackgroundColor3 = color
-                        thumb.Position         = thumbTarget
-                        thumb.Size             = UDim2.new(0, 21, 0, 21)
+                        Track.BackgroundColor3=Col Thumb.Position=Tgt Thumb.Size=UDim2.new(0,18,0,18)
                     end
-                    task.delay(0.36, function() busy = false end)
+                    task.delay(.34,function() Busy=false end)
                 end
+                RegFn(function() Tw(Track,{BackgroundColor3=State and T.ToggleOn or T.ToggleOff},.22) end)
 
-                RegFn(function()
-                    Snap(track, {BackgroundColor3 = state and T.ToggleOn or T.ToggleOff}, 0.20)
-                end)
+                local Hit=Instance.new("TextButton") Hit.BackgroundTransparency=1
+                Hit.Size=UDim2.new(1,0,1,0) Hit.Text="" Hit.ZIndex=17 Hit.Parent=Row
+                Hit.MouseButton1Click:Connect(function() DoSet(not State,true) Cb(State) end)
+                Hit.MouseButton1Down:Connect(function() RowPress(Row) end)
+                Hit.MouseButton1Up:Connect(function() RowRelease(Row) end)
 
-                local hit = Instance.new("TextButton")
-                hit.BackgroundTransparency = 1
-                hit.Size   = UDim2.new(1, 0, 1, 0)
-                hit.Text   = ""
-                hit.ZIndex = 17
-                hit.Parent = row
-
-                hit.MouseButton1Click:Connect(function()
-                    DoSet(not state, true)
-                    cb(state)
-                end)
-                hit.MouseButton1Down:Connect(function()
-                    Snap(row, {BackgroundColor3 = T.PressHL}, 0.06)
-                    row.BackgroundTransparency = 0
-                end)
-                hit.MouseButton1Up:Connect(function()
-                    Tween(row, {BackgroundColor3 = T.SectionBG}, 0.28, Enum.EasingStyle.Quint)
-                    task.delay(0.28, function() row.BackgroundTransparency = 1 end)
-                end)
-
-                local obj = {}
-                obj.Value    = { Set = function(_, v) DoSet(v, true); cb(v) end }
-                obj.Name     = { Set = function(_, n) lbl.Text = n end }
-                obj.GetValue = function() return state end
-                return obj
+                local Obj={} Obj.Value={Set=function(_,V) DoSet(V,true) Cb(V) end}
+                Obj.Name={Set=function(_,N) Lbl.Text=N end} Obj.GetValue=function() return State end
+                return Obj
             end
 
-            function SecObj:CreateButton(cfg)
-                cfg = cfg or {}
-                local ttl = cfg.Title    or "Button"
-                local cb  = cfg.Callback or function() end
+            function SecObj:CreateButton(Cfg2)
+                Cfg2=Cfg2 or {}
+                local Ttl=Cfg2.Title or "Button"
+                local Cb=Cfg2.Callback or function() end
+                local Row=MkRow(38)
+                local RowScale=Instance.new("UIScale") RowScale.Scale=1 RowScale.Parent=Row
 
-                local row = MakeRow(38)
+                local Lbl=Instance.new("TextLabel") Lbl.BackgroundTransparency=1
+                Lbl.AnchorPoint=Vector2.new(.5,.5) Lbl.Size=UDim2.new(1,0,0,14)
+                Lbl.Position=UDim2.new(.5,0,.5,0) Lbl.Text=Ttl
+                Lbl.TextColor3=T.Accent Lbl.Font=Enum.Font.GothamMedium Lbl.TextSize=12
+                Lbl.TextXAlignment=Enum.TextXAlignment.Center Lbl.TextYAlignment=Enum.TextYAlignment.Center
+                Lbl.ZIndex=15 Lbl.Parent=Row
+                Reg(Lbl,"TextColor3","Accent")
 
-                local rowScale = Instance.new("UIScale")
-                rowScale.Scale  = 1
-                rowScale.Parent = row
+                local Hit=Instance.new("TextButton") Hit.BackgroundTransparency=1
+                Hit.Size=UDim2.new(1,0,1,0) Hit.Text="" Hit.ZIndex=16 Hit.Parent=Row
+                Hit.MouseButton1Down:Connect(function() RowPress(Row) Tw(Lbl,{TextColor3=T.AccentDark},.07) TwL(RowScale,{Scale=.94},.08) end)
+                Hit.MouseButton1Up:Connect(function() RowRelease(Row) Tw(Lbl,{TextColor3=T.Accent},.22) TwB(RowScale,{Scale=1},.38) end)
+                Hit.MouseButton1Click:Connect(Cb)
 
-                local lbl = Instance.new("TextLabel")
-                lbl.BackgroundTransparency = 1
-                lbl.AnchorPoint    = Vector2.new(0.5, 0.5)
-                lbl.Size           = UDim2.new(1, 0, 0, 16)
-                lbl.Position       = UDim2.new(0.5, 0, 0.5, 0)
-                lbl.Text           = ttl
-                lbl.TextColor3     = T.Accent
-                lbl.Font           = Enum.Font.GothamMedium
-                lbl.TextSize       = 13
-                lbl.TextXAlignment = Enum.TextXAlignment.Center
-                lbl.TextYAlignment = Enum.TextYAlignment.Center
-                lbl.ZIndex         = 15
-                lbl.Parent         = row
-                Reg(lbl, "TextColor3", "Accent")
-
-                local hit = Instance.new("TextButton")
-                hit.BackgroundTransparency = 1
-                hit.Size   = UDim2.new(1, 0, 1, 0)
-                hit.Text   = ""
-                hit.ZIndex = 16
-                hit.Parent = row
-
-                hit.MouseButton1Down:Connect(function()
-                    Snap(row, {BackgroundColor3 = T.PressHL}, 0.06)
-                    row.BackgroundTransparency = 0
-                    Snap(lbl, {TextColor3 = T.AccentDark}, 0.06)
-                    Snap(rowScale, {Scale = 0.95}, 0.10)
-                end)
-                hit.MouseButton1Up:Connect(function()
-                    Tween(row, {BackgroundColor3 = T.SectionBG}, 0.28, Enum.EasingStyle.Quint)
-                    task.delay(0.28, function() row.BackgroundTransparency = 1 end)
-                    Tween(lbl, {TextColor3 = T.Accent}, 0.22, Enum.EasingStyle.Quint)
-                    Spring(rowScale, {Scale = 1}, 0.38)
-                end)
-                hit.MouseButton1Click:Connect(cb)
-
-                local obj = {}
-                obj.Name = { Set = function(_, n) lbl.Text = n end }
-                return obj
+                local Obj={} Obj.Name={Set=function(_,N) Lbl.Text=N end}
+                return Obj
             end
 
-            function SecObj:CreateDropdown(cfg)
-                cfg = cfg or {}
-                local ttl     = cfg.Title    or "Dropdown"
-                local opts    = cfg.Options  or {}
-                local initSel = cfg.Selected or {}
-                local multi   = cfg.Multi    or false
-                local cb      = cfg.Callback or function() end
-
-                local selMap = {}
-                for _, v in ipairs(initSel) do selMap[v] = true end
-                if not multi and not next(selMap) and #opts > 0 then
-                    selMap[opts[1]] = true
+            function SecObj:CreateDropdown(Cfg2)
+                Cfg2=Cfg2 or {}
+                local Ttl=Cfg2.Title or "Dropdown"
+                local Opts=Cfg2.Options or {}
+                local InitSel=Cfg2.Selected or {}
+                local Multi=Cfg2.Multi or false
+                local Cb=Cfg2.Callback or function() end
+                local SelMap={}
+                for _,V in ipairs(InitSel) do SelMap[V]=true end
+                if not Multi and not next(SelMap) and #Opts>0 then SelMap[Opts[1]]=true end
+                local function SelTxt()
+                    local t={} for K,V in pairs(SelMap) do if V then t[#t+1]=K end end
+                    if #t==0 then return "None" end table.sort(t) return table.concat(t,", ")
                 end
-
-                local function SelText()
-                    local t = {}
-                    for k, v in pairs(selMap) do if v then t[#t+1] = k end end
-                    if #t == 0 then return "None" end
-                    table.sort(t)
-                    return table.concat(t, ", ")
-                end
-
-                local isOpen  = false
-                local curOpts = {table.unpack(opts)}
-
-                local row = MakeRow(38)
-
-                local ttlLbl = Instance.new("TextLabel")
-                ttlLbl.BackgroundTransparency = 1
-                ttlLbl.AnchorPoint    = Vector2.new(0, 0.5)
-                ttlLbl.Size           = UDim2.new(1, -69, 0, 16)
-                ttlLbl.Position       = UDim2.new(0, 0, 0.5, 0)
-                ttlLbl.Text           = ttl
-                ttlLbl.TextColor3     = T.Text
-                ttlLbl.Font           = Enum.Font.Gotham
-                ttlLbl.TextSize       = 13
-                ttlLbl.TextXAlignment = Enum.TextXAlignment.Left
-                ttlLbl.TextYAlignment = Enum.TextYAlignment.Center
-                ttlLbl.ZIndex         = 15
-                ttlLbl.Parent         = row
-                Reg(ttlLbl, "TextColor3", "Text")
-
-                local selLbl = Instance.new("TextLabel")
-                selLbl.BackgroundTransparency = 1
-                selLbl.AnchorPoint    = Vector2.new(1, 0.5)
-                selLbl.Size           = UDim2.new(0, 48, 0, 16)
-                selLbl.Position       = UDim2.new(1, -16, 0.5, 0)
-                selLbl.Text           = SelText()
-                selLbl.TextColor3     = T.SubText
-                selLbl.Font           = Enum.Font.Gotham
-                selLbl.TextSize       = 11
-                selLbl.TextXAlignment = Enum.TextXAlignment.Right
-                selLbl.TextYAlignment = Enum.TextYAlignment.Center
-                selLbl.TextTruncate   = Enum.TextTruncate.AtEnd
-                selLbl.ZIndex         = 15
-                selLbl.Parent         = row
-                Reg(selLbl, "TextColor3", "SubText")
-
-                local chevron = Instance.new("TextLabel")
-                chevron.BackgroundTransparency = 1
-                chevron.AnchorPoint    = Vector2.new(1, 0.5)
-                chevron.Size           = UDim2.new(0, 13, 0, 16)
-                chevron.Position       = UDim2.new(1, 0, 0.5, 0)
-                chevron.Text           = "›"
-                chevron.TextColor3     = T.SubText
-                chevron.Font           = Enum.Font.GothamBold
-                chevron.TextSize       = 18
-                chevron.TextXAlignment = Enum.TextXAlignment.Center
-                chevron.TextYAlignment = Enum.TextYAlignment.Center
-                chevron.ZIndex         = 15
-                chevron.Parent         = row
-                Reg(chevron, "TextColor3", "SubText")
-
-                local panel = Instance.new("Frame")
-                panel.BackgroundColor3 = T.SectionBG
-                panel.BorderSizePixel  = 0
-                panel.Size             = UDim2.new(1, 0, 0, 0)
-                panel.ClipsDescendants = true
-                panel.ZIndex           = 20
-                panel.Visible          = false
-                panel.LayoutOrder      = row.LayoutOrder + 1
-                panel.Parent           = Card
-                Reg(panel, "BackgroundColor3", "SectionBG")
-
-                local panelList = Instance.new("UIListLayout")
-                panelList.FillDirection = Enum.FillDirection.Vertical
-                panelList.SortOrder     = Enum.SortOrder.LayoutOrder
-                panelList.Parent        = panel
-
-                local optBtns  = {}
-                local panelH   = 0
-
-                local function RebuildOptions(newOpts)
-                    for _, b in ipairs(optBtns) do b:Destroy() end
-                    optBtns = {}
-
-                    for i, opt in ipairs(newOpts) do
-                        if i > 1 then
-                            local sepW = Instance.new("Frame")
-                            sepW.BackgroundTransparency = 1
-                            sepW.BorderSizePixel        = 0
-                            sepW.Size        = UDim2.new(1, 0, 0, 1)
-                            sepW.ZIndex      = 22
-                            sepW.LayoutOrder = i * 10 - 5
-                            sepW.Parent      = panel
-                            table.insert(optBtns, sepW)
-
-                            local sepLine = Instance.new("Frame")
-                            sepLine.BackgroundColor3 = T.Separator
-                            sepLine.BorderSizePixel  = 0
-                            sepLine.Size     = UDim2.new(1, -16, 1, 0)
-                            sepLine.Position = UDim2.new(0, 16, 0, 0)
-                            sepLine.ZIndex   = 22
-                            sepLine.Parent   = sepW
-                            Reg(sepLine, "BackgroundColor3", "Separator")
+                local IsOpen=false local CurOpts={table.unpack(Opts)}
+                local Row=MkRow(40)
+                local TtlLbl=Instance.new("TextLabel") TtlLbl.BackgroundTransparency=1
+                TtlLbl.AnchorPoint=Vector2.new(0,.5) TtlLbl.Size=UDim2.new(1,-76,0,14)
+                TtlLbl.Position=UDim2.new(0,0,.5,0) TtlLbl.Text=Ttl
+                TtlLbl.TextColor3=T.Text TtlLbl.Font=Enum.Font.Gotham TtlLbl.TextSize=12
+                TtlLbl.TextXAlignment=Enum.TextXAlignment.Left TtlLbl.TextYAlignment=Enum.TextYAlignment.Center
+                TtlLbl.ZIndex=15 TtlLbl.Parent=Row Reg(TtlLbl,"TextColor3","Text")
+                local SelLbl=Instance.new("TextLabel") SelLbl.BackgroundTransparency=1
+                SelLbl.AnchorPoint=Vector2.new(1,.5) SelLbl.Size=UDim2.new(0,54,0,14)
+                SelLbl.Position=UDim2.new(1,-16,.5,0) SelLbl.Text=SelTxt()
+                SelLbl.TextColor3=T.SubText SelLbl.Font=Enum.Font.Gotham SelLbl.TextSize=11
+                SelLbl.TextXAlignment=Enum.TextXAlignment.Right SelLbl.TextYAlignment=Enum.TextYAlignment.Center
+                SelLbl.TextTruncate=Enum.TextTruncate.AtEnd SelLbl.ZIndex=15 SelLbl.Parent=Row
+                Reg(SelLbl,"TextColor3","SubText")
+                local Chev=Instance.new("TextLabel") Chev.BackgroundTransparency=1
+                Chev.AnchorPoint=Vector2.new(1,.5) Chev.Size=UDim2.new(0,14,0,14)
+                Chev.Position=UDim2.new(1,0,.5,0) Chev.Text="›"
+                Chev.TextColor3=T.SubText Chev.Font=Enum.Font.GothamBold Chev.TextSize=18
+                Chev.TextXAlignment=Enum.TextXAlignment.Center Chev.TextYAlignment=Enum.TextYAlignment.Center
+                Chev.ZIndex=15 Chev.Parent=Row Reg(Chev,"TextColor3","SubText")
+                local Panel=Instance.new("Frame") Panel.BackgroundColor3=T.SectionBG
+                Panel.BorderSizePixel=0 Panel.Size=UDim2.new(1,0,0,0)
+                Panel.ClipsDescendants=true Panel.ZIndex=20 Panel.Visible=false
+                Panel.LayoutOrder=Row.LayoutOrder+1 Panel.Parent=Card
+                Reg(Panel,"BackgroundColor3","SectionBG")
+                local PanelList=Instance.new("UIListLayout") PanelList.FillDirection=Enum.FillDirection.Vertical
+                PanelList.SortOrder=Enum.SortOrder.LayoutOrder PanelList.Parent=Panel
+                local OptBtns={} local PanelH=0
+                local function Rebuild(NewOpts)
+                    for _,B in ipairs(OptBtns) do B:Destroy() end OptBtns={}
+                    for I,Opt in ipairs(NewOpts) do
+                        if I>1 then
+                            local Sw=Instance.new("Frame") Sw.BackgroundTransparency=1
+                            Sw.BorderSizePixel=0 Sw.Size=UDim2.new(1,0,0,1)
+                            Sw.ZIndex=22 Sw.LayoutOrder=I*10-5 Sw.Parent=Panel
+                            table.insert(OptBtns,Sw)
+                            local Sl=Instance.new("Frame") Sl.BackgroundColor3=T.Separator
+                            Sl.BorderSizePixel=0 Sl.Size=UDim2.new(1,-13,1,0)
+                            Sl.Position=UDim2.new(0,13,0,0) Sl.ZIndex=22 Sl.Parent=Sw
+                            Reg(Sl,"BackgroundColor3","Separator")
                         end
-
-                        local ob = Instance.new("TextButton")
-                        ob.BackgroundTransparency = 1
-                        ob.Size        = UDim2.new(1, 0, 0, 37)
-                        ob.Text        = ""
-                        ob.ZIndex      = 22
-                        ob.LayoutOrder = i * 10
-                        ob.Parent      = panel
-                        table.insert(optBtns, ob)
-                        Pad(ob, 0, 13, 0, 13)
-
-                        local ol = Instance.new("TextLabel")
-                        ol.Name       = "OptionLabel"
-                        ol.BackgroundTransparency = 1
-                        ol.AnchorPoint    = Vector2.new(0, 0.5)
-                        ol.Size           = UDim2.new(1, -22, 0, 16)
-                        ol.Position       = UDim2.new(0, 0, 0.5, 0)
-                        ol.Text           = opt
-                        ol.TextColor3     = T.Text
-                        ol.Font           = Enum.Font.Gotham
-                        ol.TextSize       = 12
-                        ol.TextXAlignment = Enum.TextXAlignment.Left
-                        ol.TextYAlignment = Enum.TextYAlignment.Center
-                        ol.ZIndex         = 23
-                        ol.Parent         = ob
-                        Reg(ol, "TextColor3", "Text")
-
-                        local ck = Instance.new("TextLabel")
-                        ck.Name       = "Checkmark"
-                        ck.BackgroundTransparency = 1
-                        ck.AnchorPoint    = Vector2.new(1, 0.5)
-                        ck.Size           = UDim2.new(0, 16, 0, 16)
-                        ck.Position       = UDim2.new(1, 0, 0.5, 0)
-                        ck.Text           = selMap[opt] and "✓" or ""
-                        ck.TextColor3     = T.Accent
-                        ck.Font           = Enum.Font.GothamBold
-                        ck.TextSize       = 12
-                        ck.TextXAlignment = Enum.TextXAlignment.Center
-                        ck.TextYAlignment = Enum.TextYAlignment.Center
-                        ck.ZIndex         = 23
-                        ck.Parent         = ob
-                        Reg(ck, "TextColor3", "Accent")
-
-                        local obScale = Instance.new("UIScale")
-                        obScale.Scale  = 1
-                        obScale.Parent = ob
-
-                        ob.MouseButton1Down:Connect(function()
-                            Snap(ob, {BackgroundColor3 = T.PressHL}, 0.06)
-                            ob.BackgroundTransparency = 0
-                            Snap(obScale, {Scale = 0.97}, 0.08)
-                        end)
-                        ob.MouseButton1Up:Connect(function()
-                            Tween(ob, {BackgroundColor3 = T.SectionBG}, 0.24, Enum.EasingStyle.Quint)
-                            task.delay(0.24, function() ob.BackgroundTransparency = 1 end)
-                            Spring(obScale, {Scale = 1}, 0.30)
-                        end)
-
-                        ob.MouseButton1Click:Connect(function()
-                            if multi then
-                                selMap[opt] = not selMap[opt]
-                                ck.Text = selMap[opt] and "✓" or ""
+                        local Ob=Instance.new("TextButton") Ob.BackgroundTransparency=1
+                        Ob.Size=UDim2.new(1,0,0,38) Ob.Text="" Ob.ZIndex=22
+                        Ob.LayoutOrder=I*10 Ob.Parent=Panel table.insert(OptBtns,Ob)
+                        Pad(Ob,0,12,0,12)
+                        local ObSc=Instance.new("UIScale") ObSc.Scale=1 ObSc.Parent=Ob
+                        local Ol=Instance.new("TextLabel") Ol.Name="OptionLabel"
+                        Ol.BackgroundTransparency=1 Ol.AnchorPoint=Vector2.new(0,.5)
+                        Ol.Size=UDim2.new(1,-22,0,14) Ol.Position=UDim2.new(0,0,.5,0)
+                        Ol.Text=Opt Ol.TextColor3=T.Text Ol.Font=Enum.Font.Gotham Ol.TextSize=12
+                        Ol.TextXAlignment=Enum.TextXAlignment.Left Ol.TextYAlignment=Enum.TextYAlignment.Center
+                        Ol.ZIndex=23 Ol.Parent=Ob Reg(Ol,"TextColor3","Text")
+                        local Ck=Instance.new("TextLabel") Ck.Name="Checkmark"
+                        Ck.BackgroundTransparency=1 Ck.AnchorPoint=Vector2.new(1,.5)
+                        Ck.Size=UDim2.new(0,18,0,14) Ck.Position=UDim2.new(1,0,.5,0)
+                        Ck.Text=SelMap[Opt] and "✓" or "" Ck.TextColor3=T.Accent
+                        Ck.Font=Enum.Font.GothamBold Ck.TextSize=12
+                        Ck.TextXAlignment=Enum.TextXAlignment.Center Ck.TextYAlignment=Enum.TextYAlignment.Center
+                        Ck.ZIndex=23 Ck.Parent=Ob Reg(Ck,"TextColor3","Accent")
+                        Ob.MouseButton1Down:Connect(function() TwL(Ob,{BackgroundColor3=T.PressHL},.06) Ob.BackgroundTransparency=0 TwL(ObSc,{Scale=.96},.07) end)
+                        Ob.MouseButton1Up:Connect(function() Tw(Ob,{BackgroundColor3=T.SectionBG},.24) task.delay(.24,function() Ob.BackgroundTransparency=1 end) TwB(ObSc,{Scale=1},.32) end)
+                        Ob.MouseButton1Click:Connect(function()
+                            if Multi then SelMap[Opt]=not SelMap[Opt] Ck.Text=SelMap[Opt] and "✓" or ""
                             else
-                                for _, o2 in ipairs(newOpts) do selMap[o2] = false end
-                                selMap[opt] = true
-                                for _, b2 in ipairs(optBtns) do
-                                    if b2:IsA("TextButton") then
-                                        local ckLbl = b2:FindFirstChild("Checkmark")
-                                        local olLbl = b2:FindFirstChild("OptionLabel")
-                                        if ckLbl and olLbl then
-                                            ckLbl.Text = selMap[olLbl.Text] and "✓" or ""
-                                        end
+                                for _,O2 in ipairs(NewOpts) do SelMap[O2]=false end SelMap[Opt]=true
+                                for _,B2 in ipairs(OptBtns) do
+                                    if B2:IsA("TextButton") then
+                                        local CkL=B2:FindFirstChild("Checkmark") local OlL=B2:FindFirstChild("OptionLabel")
+                                        if CkL and OlL then CkL.Text=SelMap[OlL.Text] and "✓" or "" end
                                     end
                                 end
                             end
-                            selLbl.Text = SelText()
-                            local result = {}
-                            for k, v in pairs(selMap) do if v then result[#result+1] = k end end
-                            cb(result)
-                            if not multi then
-                                isOpen = false
-                                Tween(panel, {Size = UDim2.new(1, 0, 0, 0)}, 0.24, Enum.EasingStyle.Quint)
-                                task.delay(0.25, function() panel.Visible = false end)
-                                Snap(chevron, {Rotation = 0}, 0.20)
+                            SelLbl.Text=SelTxt()
+                            local Res={} for K,V in pairs(SelMap) do if V then Res[#Res+1]=K end end Cb(Res)
+                            if not Multi then
+                                IsOpen=false Tw(Panel,{Size=UDim2.new(1,0,0,0)},.22,Enum.EasingStyle.Quint)
+                                task.delay(.23,function() Panel.Visible=false end)
+                                Tw(Chev,{Rotation=0},.18)
                             end
                         end)
                     end
-
-                    panelH = math.min(#newOpts * 37, 157)
-                    return panelH
+                    PanelH=math.min(#NewOpts*38,180) return PanelH
                 end
-
-                RebuildOptions(curOpts)
-
-                local hit = Instance.new("TextButton")
-                hit.BackgroundTransparency = 1
-                hit.Size   = UDim2.new(1, 0, 1, 0)
-                hit.Text   = ""
-                hit.ZIndex = 16
-                hit.Parent = row
-
-                hit.MouseButton1Down:Connect(function()
-                    Snap(row, {BackgroundColor3 = T.PressHL}, 0.06)
-                    row.BackgroundTransparency = 0
-                end)
-                hit.MouseButton1Up:Connect(function()
-                    Tween(row, {BackgroundColor3 = T.SectionBG}, 0.24, Enum.EasingStyle.Quint)
-                    task.delay(0.24, function() row.BackgroundTransparency = 1 end)
-                end)
-
-                hit.MouseButton1Click:Connect(function()
-                    isOpen = not isOpen
-                    if isOpen then
-                        panel.Visible = true
-                        panel.Size    = UDim2.new(1, 0, 0, 0)
-                        Spring(panel, {Size = UDim2.new(1, 0, 0, panelH)}, 0.40)
-                        Snap(chevron, {Rotation = 90}, 0.22)
+                Rebuild(CurOpts)
+                local Hit=Instance.new("TextButton") Hit.BackgroundTransparency=1
+                Hit.Size=UDim2.new(1,0,1,0) Hit.Text="" Hit.ZIndex=16 Hit.Parent=Row
+                Hit.MouseButton1Down:Connect(function() RowPress(Row) end)
+                Hit.MouseButton1Up:Connect(function() RowRelease(Row) end)
+                Hit.MouseButton1Click:Connect(function()
+                    IsOpen=not IsOpen
+                    if IsOpen then
+                        Panel.Visible=true Panel.Size=UDim2.new(1,0,0,0)
+                        TwB(Panel,{Size=UDim2.new(1,0,0,PanelH)},.36)
+                        Tw(Chev,{Rotation=90},.20)
                     else
-                        Tween(panel, {Size = UDim2.new(1, 0, 0, 0)}, 0.24, Enum.EasingStyle.Quint)
-                        task.delay(0.25, function() panel.Visible = false end)
-                        Snap(chevron, {Rotation = 0}, 0.20)
+                        Tw(Panel,{Size=UDim2.new(1,0,0,0)},.22,Enum.EasingStyle.Quint)
+                        task.delay(.23,function() Panel.Visible=false end)
+                        Tw(Chev,{Rotation=0},.18)
                     end
                 end)
-
-                local obj = {}
-                obj.Name    = { Set = function(_, n) ttlLbl.Text = n end }
-                obj.Options = {
-                    Set = function(_, newOpts)
-                        curOpts = newOpts
-                        selMap  = {}
-                        if not multi and #newOpts > 0 then selMap[newOpts[1]] = true end
-                        RebuildOptions(newOpts)
-                        selLbl.Text = SelText()
-                    end
-                }
-                obj.Value = {
-                    Set = function(_, v)
-                        selMap = {}
-                        if type(v) == "table" then
-                            for _, s in ipairs(v) do selMap[s] = true end
-                        elseif type(v) == "string" then
-                            selMap[v] = true
-                        end
-                        selLbl.Text = SelText()
-                        RebuildOptions(curOpts)
-                    end
-                }
-                return obj
+                local Obj={} Obj.Name={Set=function(_,N) TtlLbl.Text=N end}
+                Obj.Options={Set=function(_,NOs) CurOpts=NOs SelMap={} if not Multi and #NOs>0 then SelMap[NOs[1]]=true end Rebuild(NOs) SelLbl.Text=SelTxt() end}
+                Obj.Value={Set=function(_,V) SelMap={} if type(V)=="table" then for _,S in ipairs(V) do SelMap[S]=true end elseif type(V)=="string" then SelMap[V]=true end SelLbl.Text=SelTxt() Rebuild(CurOpts) end}
+                return Obj
             end
 
-            function SecObj:CreateSlider(cfg)
-                cfg = cfg or {}
-                local ttl = cfg.Title     or "Slider"
-                local rng = cfg.Range     or {0, 100}
-                local mn  = rng[1] or 0
-                local mx  = rng[2] or 100
-                local def = math.clamp(cfg.Default or mn, mn, mx)
-                local inc = cfg.Increment or 1
-                local suf = cfg.Suffix    or ""
-                local cb  = cfg.Callback  or function() end
-                local cur = def
-
-                local row = MakeRow(53)
-
-                local ttlLbl = Instance.new("TextLabel")
-                ttlLbl.BackgroundTransparency = 1
-                ttlLbl.AnchorPoint    = Vector2.new(0, 0)
-                ttlLbl.Size           = UDim2.new(0.60, 0, 0, 18)
-                ttlLbl.Position       = UDim2.new(0, 0, 0, 8)
-                ttlLbl.Text           = ttl
-                ttlLbl.TextColor3     = T.Text
-                ttlLbl.Font           = Enum.Font.Gotham
-                ttlLbl.TextSize       = 13
-                ttlLbl.TextXAlignment = Enum.TextXAlignment.Left
-                ttlLbl.TextYAlignment = Enum.TextYAlignment.Center
-                ttlLbl.ZIndex         = 15
-                ttlLbl.Parent         = row
-                Reg(ttlLbl, "TextColor3", "Text")
-
-                local valLbl = Instance.new("TextLabel")
-                valLbl.BackgroundTransparency = 1
-                valLbl.AnchorPoint    = Vector2.new(1, 0)
-                valLbl.Size           = UDim2.new(0.40, 0, 0, 18)
-                valLbl.Position       = UDim2.new(1, 0, 0, 8)
-                valLbl.Text           = tostring(cur) .. suf
-                valLbl.TextColor3     = T.Accent
-                valLbl.Font           = Enum.Font.GothamMedium
-                valLbl.TextSize       = 12
-                valLbl.TextXAlignment = Enum.TextXAlignment.Right
-                valLbl.TextYAlignment = Enum.TextYAlignment.Center
-                valLbl.ZIndex         = 15
-                valLbl.Parent         = row
-                Reg(valLbl, "TextColor3", "Accent")
-
-                local trackBg = Instance.new("Frame")
-                trackBg.BackgroundColor3 = T.SliderTrack
-                trackBg.BorderSizePixel  = 0
-                trackBg.AnchorPoint      = Vector2.new(0, 1)
-                trackBg.Size             = UDim2.new(1, 0, 0, 4)
-                trackBg.Position         = UDim2.new(0, 0, 1, -10)
-                trackBg.ZIndex           = 15
-                trackBg.Parent           = row
-                Corner(trackBg, 3)
-                Reg(trackBg, "BackgroundColor3", "SliderTrack")
-
-                local initPct = (cur - mn) / math.max(mx - mn, 0.0001)
-
-                local trackFill = Instance.new("Frame")
-                trackFill.BackgroundColor3 = T.SliderFill
-                trackFill.BorderSizePixel  = 0
-                trackFill.Size             = UDim2.new(initPct, 0, 1, 0)
-                trackFill.ZIndex           = 16
-                trackFill.Parent           = trackBg
-                Corner(trackFill, 3)
-                Reg(trackFill, "BackgroundColor3", "SliderFill")
-
-                local thumb = Instance.new("Frame")
-                thumb.BackgroundColor3 = T.White
-                thumb.BorderSizePixel  = 0
-                thumb.AnchorPoint      = Vector2.new(0.5, 0.5)
-                thumb.Size             = UDim2.new(0, 18, 0, 18)
-                thumb.Position         = UDim2.new(initPct, 0, 0.5, 0)
-                thumb.ZIndex           = 17
-                thumb.Parent           = trackBg
-                Corner(thumb, 9)
-                Reg(thumb, "BackgroundColor3", "White")
-
-                local sThumbStroke = Instance.new("UIStroke")
-                sThumbStroke.Color        = Color3.fromRGB(0, 0, 0)
-                sThumbStroke.Thickness    = 0.5
-                sThumbStroke.Transparency = 0.82
-                sThumbStroke.Parent       = thumb
-
-                local sliding = false
-
-                local function Calc(pos)
-                    local ab  = trackBg.AbsolutePosition
-                    local sz  = trackBg.AbsoluteSize
-                    local pct = math.clamp((pos.X - ab.X) / sz.X, 0, 1)
-                    local snp = math.round((mn + pct * (mx - mn)) / inc) * inc
-                    return math.clamp(snp, mn, mx)
+            function SecObj:CreateSlider(Cfg2)
+                Cfg2=Cfg2 or {}
+                local Ttl=Cfg2.Title or "Slider"
+                local Rng=Cfg2.Range or {0,100}
+                local Mn=Rng[1] or 0 local Mx=Rng[2] or 100
+                local Def=math.clamp(Cfg2.Default or Mn,Mn,Mx)
+                local Inc=Cfg2.Increment or 1
+                local Suf=Cfg2.Suffix or ""
+                local Cb=Cfg2.Callback or function() end
+                local Cur=Def
+                local Row=MkRow(54)
+                local TtlLbl=Instance.new("TextLabel") TtlLbl.BackgroundTransparency=1
+                TtlLbl.AnchorPoint=Vector2.new(0,0) TtlLbl.Size=UDim2.new(.6,0,0,16)
+                TtlLbl.Position=UDim2.new(0,0,0,8) TtlLbl.Text=Ttl
+                TtlLbl.TextColor3=T.Text TtlLbl.Font=Enum.Font.Gotham TtlLbl.TextSize=12
+                TtlLbl.TextXAlignment=Enum.TextXAlignment.Left TtlLbl.TextYAlignment=Enum.TextYAlignment.Center
+                TtlLbl.ZIndex=15 TtlLbl.Parent=Row Reg(TtlLbl,"TextColor3","Text")
+                local ValLbl=Instance.new("TextLabel") ValLbl.BackgroundTransparency=1
+                ValLbl.AnchorPoint=Vector2.new(1,0) ValLbl.Size=UDim2.new(.4,0,0,16)
+                ValLbl.Position=UDim2.new(1,0,0,8) ValLbl.Text=tostring(Cur)..Suf
+                ValLbl.TextColor3=T.Accent ValLbl.Font=Enum.Font.GothamMedium ValLbl.TextSize=12
+                ValLbl.TextXAlignment=Enum.TextXAlignment.Right ValLbl.TextYAlignment=Enum.TextYAlignment.Center
+                ValLbl.ZIndex=15 ValLbl.Parent=Row Reg(ValLbl,"TextColor3","Accent")
+                local TBg=Instance.new("Frame") TBg.BackgroundColor3=T.SliderTrack
+                TBg.BorderSizePixel=0 TBg.AnchorPoint=Vector2.new(0,1)
+                TBg.Size=UDim2.new(1,0,0,4) TBg.Position=UDim2.new(0,0,1,-10)
+                TBg.ZIndex=15 TBg.Parent=Row Corner(TBg,2) Reg(TBg,"BackgroundColor3","SliderTrack")
+                local InitPct=(Cur-Mn)/math.max(Mx-Mn,.0001)
+                local TFill=Instance.new("Frame") TFill.BackgroundColor3=T.SliderFill
+                TFill.BorderSizePixel=0 TFill.Size=UDim2.new(InitPct,0,1,0)
+                TFill.ZIndex=16 TFill.Parent=TBg Corner(TFill,2) Reg(TFill,"BackgroundColor3","SliderFill")
+                local TGrad=Instance.new("UIGradient")
+                TGrad.Color=ColorSequence.new{ColorSequenceKeypoint.new(0,Color3.fromRGB(255,255,255)),ColorSequenceKeypoint.new(1,Color3.fromRGB(180,180,255))}
+                TGrad.Transparency=NumberSequence.new{NumberSequenceKeypoint.new(0,.3),NumberSequenceKeypoint.new(1,0)}
+                TGrad.Parent=TFill
+                local ThumbSc=Instance.new("UIScale")
+                local Thumb=Instance.new("Frame") Thumb.BackgroundColor3=T.White
+                Thumb.BorderSizePixel=0 Thumb.AnchorPoint=Vector2.new(.5,.5)
+                Thumb.Size=UDim2.new(0,14,0,14) Thumb.Position=UDim2.new(InitPct,0,.5,0)
+                Thumb.ZIndex=17 Thumb.Parent=TBg Corner(Thumb,7) Reg(Thumb,"BackgroundColor3","White")
+                ThumbSc.Scale=1 ThumbSc.Parent=Thumb
+                local ThSt=Stroke(Thumb,T.Accent,1.5) Reg(ThSt,"Color","Accent")
+                local Sliding=false
+                local function Calc(Pos)
+                    local Ab=TBg.AbsolutePosition local Sz=TBg.AbsoluteSize
+                    local Pct=math.clamp((Pos.X-Ab.X)/Sz.X,0,1)
+                    return math.clamp(math.round((Mn+Pct*(Mx-Mn))/Inc)*Inc,Mn,Mx)
                 end
-
-                local function Apply(v, anim)
-                    cur = v
-                    local pct = (v - mn) / math.max(mx - mn, 0.0001)
-                    if anim then
-                        Snap(trackFill, {Size = UDim2.new(pct, 0, 1, 0)}, 0.14)
-                        Snap(thumb, {Position = UDim2.new(pct, 0, 0.5, 0)}, 0.14)
-                    else
-                        trackFill.Size  = UDim2.new(pct, 0, 1, 0)
-                        thumb.Position  = UDim2.new(pct, 0, 0.5, 0)
-                    end
-                    valLbl.Text = tostring(v) .. suf
+                local function Apply(V,Anim)
+                    Cur=V local Pct=(V-Mn)/math.max(Mx-Mn,.0001)
+                    if Anim then Tw(TFill,{Size=UDim2.new(Pct,0,1,0)},.12) Tw(Thumb,{Position=UDim2.new(Pct,0,.5,0)},.12)
+                    else TFill.Size=UDim2.new(Pct,0,1,0) Thumb.Position=UDim2.new(Pct,0,.5,0) end
+                    ValLbl.Text=tostring(V)..Suf
                 end
-              
-
-                local hit = Instance.new("TextButton")
-                hit.BackgroundTransparency = 1
-                hit.Size   = UDim2.new(1, 0, 1, 0)
-                hit.Text   = ""
-                hit.ZIndex = 18
-                hit.Parent = row
-
-                hit.InputBegan:Connect(function(inp)
-                    if inp.UserInputType == Enum.UserInputType.MouseButton1
-                    or inp.UserInputType == Enum.UserInputType.Touch then
-                        sliding = true
-                        local v = Calc(inp.Position)
-                        Apply(v, false)
-                        cb(v)
-                        local pct = (v - mn) / math.max(mx - mn, 0.0001)
-                        Spring(thumb, {
-                            Size     = UDim2.new(0, 22, 0, 22),
-                            Position = UDim2.new(pct, 0, 0.5, 0)
-                        }, 0.30)
+                local Hit=Instance.new("TextButton") Hit.BackgroundTransparency=1
+                Hit.Size=UDim2.new(1,0,1,0) Hit.Text="" Hit.ZIndex=18 Hit.Parent=Row
+                Hit.InputBegan:Connect(function(Inp)
+                    if Inp.UserInputType==Enum.UserInputType.MouseButton1 or Inp.UserInputType==Enum.UserInputType.Touch then
+                        Sliding=true local V=Calc(Inp.Position) Apply(V,false) Cb(V)
+                        TwB(ThumbSc,{Scale=1.5},.28)
                     end
                 end)
-
-                UserInputService.InputChanged:Connect(function(inp)
-                    if not sliding then return end
-                    if inp.UserInputType ~= Enum.UserInputType.MouseMovement
-                    and inp.UserInputType ~= Enum.UserInputType.Touch then return end
-                    local v = Calc(inp.Position)
-                    Apply(v, false)
-                    local pct = (v - mn) / math.max(mx - mn, 0.0001)
-                    thumb.Position = UDim2.new(pct, 0, 0.5, 0)
-                    cb(v)
+                UserInputService.InputChanged:Connect(function(Inp)
+                    if not Sliding then return end
+                    if Inp.UserInputType~=Enum.UserInputType.MouseMovement and Inp.UserInputType~=Enum.UserInputType.Touch then return end
+                    local V=Calc(Inp.Position) Apply(V,false)
+                    Thumb.Position=UDim2.new((V-Mn)/math.max(Mx-Mn,.0001),0,.5,0) Cb(V)
                 end)
-
-                UserInputService.InputEnded:Connect(function(inp)
-                    if not sliding then return end
-                    if inp.UserInputType == Enum.UserInputType.MouseButton1
-                    or inp.UserInputType == Enum.UserInputType.Touch then
-                        sliding = false
-                        local pct = (cur - mn) / math.max(mx - mn, 0.0001)
-                        Spring(thumb, {
-                            Size     = UDim2.new(0, 18, 0, 18),
-                            Position = UDim2.new(pct, 0, 0.5, 0)
-                        }, 0.36)
+                UserInputService.InputEnded:Connect(function(Inp)
+                    if not Sliding then return end
+                    if Inp.UserInputType==Enum.UserInputType.MouseButton1 or Inp.UserInputType==Enum.UserInputType.Touch then
+                        Sliding=false TwB(ThumbSc,{Scale=1},.36)
                     end
                 end)
-
-                local obj = {}
-                obj.Value = { Set = function(_, v) Apply(math.clamp(v, mn, mx), true); cb(cur) end }
-                obj.Name  = { Set = function(_, n) ttlLbl.Text = n end }
-                return obj
+                local Obj={} Obj.Value={Set=function(_,V) Apply(math.clamp(V,Mn,Mx),true) Cb(Cur) end}
+                Obj.Name={Set=function(_,N) TtlLbl.Text=N end}
+                return Obj
             end
 
-            function SecObj:CreateLabel(content)
-                content = content or ""
-                local row = MakeRow(35)
-
-                local lbl = Instance.new("TextLabel")
-                lbl.BackgroundTransparency = 1
-                lbl.AnchorPoint    = Vector2.new(0, 0.5)
-                lbl.Size           = UDim2.new(1, 0, 0, 16)
-                lbl.Position       = UDim2.new(0, 0, 0.5, 0)
-                lbl.Text           = content
-                lbl.TextColor3     = T.SubText
-                lbl.Font           = Enum.Font.Gotham
-                lbl.TextSize       = 12
-                lbl.TextXAlignment = Enum.TextXAlignment.Left
-                lbl.TextYAlignment = Enum.TextYAlignment.Center
-                lbl.ZIndex         = 15
-                lbl.Parent         = row
-                Reg(lbl, "TextColor3", "SubText")
-
-                local obj = {}
-                obj.Value = { Set = function(_, v) lbl.Text = v end }
-                return obj
+            function SecObj:CreateLabel(Content)
+                Content=Content or ""
+                local Row=MkRow(32)
+                local Lbl=Instance.new("TextLabel") Lbl.BackgroundTransparency=1
+                Lbl.AnchorPoint=Vector2.new(0,.5) Lbl.Size=UDim2.new(1,0,0,14)
+                Lbl.Position=UDim2.new(0,0,.5,0) Lbl.Text=Content
+                Lbl.TextColor3=T.SubText Lbl.Font=Enum.Font.Gotham Lbl.TextSize=11
+                Lbl.TextXAlignment=Enum.TextXAlignment.Left Lbl.TextYAlignment=Enum.TextYAlignment.Center
+                Lbl.ZIndex=15 Lbl.Parent=Row Reg(Lbl,"TextColor3","SubText")
+                local Obj={} Obj.Value={Set=function(_,V) Lbl.Text=V end}
+                return Obj
             end
 
-            function SecObj:CreateParagraph(cfg)
-                cfg = cfg or {}
-                local ptl = cfg.Title   or ""
-                local pct = cfg.Content or ""
-
-                SecObj._rowN = SecObj._rowN + 1
-                local n = SecObj._rowN
-
-                if n > 1 then
-                    local sepW = Instance.new("Frame")
-                    sepW.BackgroundTransparency = 1
-                    sepW.BorderSizePixel        = 0
-                    sepW.Size        = UDim2.new(1, 0, 0, 1)
-                    sepW.ZIndex      = 15
-                    sepW.LayoutOrder = n * 10 - 5
-                    sepW.Parent      = Card
-
-                    local sepLine = Instance.new("Frame")
-                    sepLine.BackgroundColor3 = T.Separator
-                    sepLine.BorderSizePixel  = 0
-                    sepLine.Size     = UDim2.new(1, -16, 1, 0)
-                    sepLine.Position = UDim2.new(0, 16, 0, 0)
-                    sepLine.ZIndex   = 15
-                    sepLine.Parent   = sepW
-                    Reg(sepLine, "BackgroundColor3", "Separator")
+            function SecObj:CreateParagraph(Cfg2)
+                Cfg2=Cfg2 or {}
+                local Ptl=Cfg2.Title or "" local Pct=Cfg2.Content or ""
+                SecObj._rowN=SecObj._rowN+1 local N=SecObj._rowN
+                if N>1 then MkSep(N) end
+                local Fr=Instance.new("Frame") Fr.BackgroundTransparency=1
+                Fr.Size=UDim2.new(1,0,0,0) Fr.AutomaticSize=Enum.AutomaticSize.Y
+                Fr.ZIndex=14 Fr.LayoutOrder=N*10 Fr.Parent=Card
+                Pad(Fr,8,12,8,12)
+                local FL=Instance.new("UIListLayout") FL.FillDirection=Enum.FillDirection.Vertical
+                FL.SortOrder=Enum.SortOrder.LayoutOrder FL.Padding=UDim.new(0,4) FL.Parent=Fr
+                local TLbl=nil
+                if Ptl~="" then
+                    TLbl=Instance.new("TextLabel") TLbl.BackgroundTransparency=1
+                    TLbl.Size=UDim2.new(1,0,0,0) TLbl.AutomaticSize=Enum.AutomaticSize.Y
+                    TLbl.Text=Ptl TLbl.TextColor3=T.Text TLbl.Font=Enum.Font.GothamMedium TLbl.TextSize=12
+                    TLbl.TextWrapped=true TLbl.TextXAlignment=Enum.TextXAlignment.Left
+                    TLbl.LayoutOrder=1 TLbl.ZIndex=15 TLbl.Parent=Fr
+                    Reg(TLbl,"TextColor3","Text")
                 end
-
-                local frame = Instance.new("Frame")
-                frame.BackgroundTransparency = 1
-                frame.Size          = UDim2.new(1, 0, 0, 0)
-                frame.AutomaticSize = Enum.AutomaticSize.Y
-                frame.ZIndex        = 14
-                frame.LayoutOrder   = n * 10
-                frame.Parent        = Card
-                Pad(frame, 8, 13, 8, 13)
-
-                local flay = Instance.new("UIListLayout")
-                flay.FillDirection = Enum.FillDirection.Vertical
-                flay.SortOrder     = Enum.SortOrder.LayoutOrder
-                flay.Padding       = UDim.new(0, 4)
-                flay.Parent        = frame
-
-                local titleLbl = nil
-                if ptl ~= "" then
-                    titleLbl = Instance.new("TextLabel")
-                    titleLbl.BackgroundTransparency = 1
-                    titleLbl.Size           = UDim2.new(1, 0, 0, 0)
-                    titleLbl.AutomaticSize  = Enum.AutomaticSize.Y
-                    titleLbl.Text           = ptl
-                    titleLbl.TextColor3     = T.Text
-                    titleLbl.Font           = Enum.Font.GothamMedium
-                    titleLbl.TextSize       = 12
-                    titleLbl.TextWrapped    = true
-                    titleLbl.TextXAlignment = Enum.TextXAlignment.Left
-                    titleLbl.LayoutOrder    = 1
-                    titleLbl.ZIndex         = 15
-                    titleLbl.Parent         = frame
-                    Reg(titleLbl, "TextColor3", "Text")
-                end
-
-                local contentLbl = Instance.new("TextLabel")
-                contentLbl.BackgroundTransparency = 1
-                contentLbl.Size           = UDim2.new(1, 0, 0, 0)
-                contentLbl.AutomaticSize  = Enum.AutomaticSize.Y
-                contentLbl.Text           = pct
-                contentLbl.TextColor3     = T.SubText
-                contentLbl.Font           = Enum.Font.Gotham
-                contentLbl.TextSize       = 11
-                contentLbl.TextWrapped    = true
-                contentLbl.TextXAlignment = Enum.TextXAlignment.Left
-                contentLbl.LayoutOrder    = 2
-                contentLbl.ZIndex         = 15
-                contentLbl.Parent         = frame
-                Reg(contentLbl, "TextColor3", "SubText")
-
-                local obj = {}
-                obj.Title   = { Set = function(_, v) if titleLbl then titleLbl.Text = v end end }
-                obj.Content = { Set = function(_, v) contentLbl.Text = v end }
-                return obj
+                local CLbl=Instance.new("TextLabel") CLbl.BackgroundTransparency=1
+                CLbl.Size=UDim2.new(1,0,0,0) CLbl.AutomaticSize=Enum.AutomaticSize.Y
+                CLbl.Text=Pct CLbl.TextColor3=T.SubText CLbl.Font=Enum.Font.Gotham CLbl.TextSize=10
+                CLbl.TextWrapped=true CLbl.TextXAlignment=Enum.TextXAlignment.Left
+                CLbl.LayoutOrder=2 CLbl.ZIndex=15 CLbl.Parent=Fr
+                Reg(CLbl,"TextColor3","SubText")
+                local Obj={} Obj.Title={Set=function(_,V) if TLbl then TLbl.Text=V end end}
+                Obj.Content={Set=function(_,V) CLbl.Text=V end}
+                return Obj
             end
 
             return SecObj
         end
-
         return TabObj
     end
-
     return WindowObj
 end
 
