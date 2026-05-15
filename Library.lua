@@ -345,9 +345,9 @@ function Library:CreateWindow(Cfg)
     local ImgId = ButtonId and tostring(ButtonId) or "85798284091961"
     local ShowBtn = Instance.new("ImageButton")
     ShowBtn.Image              = "rbxassetid://" .. ImgId
-    ShowBtn.ImageTransparency  = 1
+    ShowBtn.ImageTransparency  = 0
     ShowBtn.BackgroundColor3   = T.Sidebar
-    ShowBtn.BackgroundTransparency = 0
+    ShowBtn.BackgroundTransparency = 1
     ShowBtn.Size               = UDim2.new(0, 42, 0, 42)
     ShowBtn.Position           = UDim2.new(0, 14, 0, 14)
     ShowBtn.ZIndex             = 100
@@ -392,8 +392,8 @@ function Library:CreateWindow(Cfg)
         TweenService:Create(Win,TweenInfo.new(.32,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{BackgroundTransparency=1,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+32)}):Play()
         task.delay(.34,function()
             Win.Visible=false Win.BackgroundTransparency=0 Win.Position=wp WinScale.Scale=1
-            ShowBtn.Visible=true ShowBtn.ImageTransparency=1 ShowBtn.BackgroundTransparency=1 ShowBtnScale.Scale=.60
-            TweenService:Create(ShowBtn,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=0,BackgroundTransparency=0}):Play()
+            ShowBtn.Visible=true ShowBtn.ImageTransparency=0 ShowBtn.BackgroundTransparency=1 ShowBtnScale.Scale=.60
+            TweenService:Create(ShowBtn,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=q,BackgroundTransparency=0}):Play()
             TweenService:Create(ShowBtnScale,TweenInfo.new(.50,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
         end)
     end)
