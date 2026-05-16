@@ -6,6 +6,7 @@ local UserInputService = game:GetService("UserInputService")
 local RunService       = game:GetService("RunService")
 
 local Themes = {
+    -- ── Original themes ─────────────────────────────────────────────
     Onyx = {
         BG          = Color3.fromRGB(16,  16,  22),
         Sidebar     = Color3.fromRGB(22,  22,  30),
@@ -121,13 +122,198 @@ local Themes = {
         Handle      = Color3.fromRGB(224, 186, 208),
         DropHL      = Color3.fromRGB(250, 236, 246),
     },
+    -- ── New themes ───────────────────────────────────────────────────
+    Midnight = {
+        BG          = Color3.fromRGB(8,   10,  20),
+        Sidebar     = Color3.fromRGB(12,  15,  28),
+        HeaderBG    = Color3.fromRGB(12,  15,  28),
+        SectionBG   = Color3.fromRGB(18,  22,  38),
+        SecTitle    = Color3.fromRGB(70,  95, 160),
+        Text        = Color3.fromRGB(215, 225, 255),
+        SubText     = Color3.fromRGB(70,  90, 148),
+        Separator   = Color3.fromRGB(28,  36,  62),
+        Accent      = Color3.fromRGB(88,  168, 255),
+        AccentDark  = Color3.fromRGB(58,  128, 220),
+        ToggleOn    = Color3.fromRGB(88,  168, 255),
+        ToggleOff   = Color3.fromRGB(28,  36,  62),
+        SliderTrack = Color3.fromRGB(28,  36,  62),
+        SliderFill  = Color3.fromRGB(88,  168, 255),
+        White       = Color3.fromRGB(215, 225, 255),
+        PressHL     = Color3.fromRGB(22,  28,  50),
+        TabActive   = Color3.fromRGB(88,  168, 255),
+        TabInactive = Color3.fromRGB(70,  90,  148),
+        TabActiveBG = Color3.fromRGB(20,  28,  54),
+        Handle      = Color3.fromRGB(44,  56,  100),
+        DropHL      = Color3.fromRGB(18,  24,  44),
+    },
+    Forest = {
+        BG          = Color3.fromRGB(8,   14,  10),
+        Sidebar     = Color3.fromRGB(12,  20,  14),
+        HeaderBG    = Color3.fromRGB(12,  20,  14),
+        SectionBG   = Color3.fromRGB(16,  28,  18),
+        SecTitle    = Color3.fromRGB(60,  120,  72),
+        Text        = Color3.fromRGB(210, 240, 218),
+        SubText     = Color3.fromRGB(64,  118,  76),
+        Separator   = Color3.fromRGB(26,  48,  30),
+        Accent      = Color3.fromRGB(46,  204,  96),
+        AccentDark  = Color3.fromRGB(28,  170,  72),
+        ToggleOn    = Color3.fromRGB(46,  204,  96),
+        ToggleOff   = Color3.fromRGB(26,  48,  30),
+        SliderTrack = Color3.fromRGB(26,  48,  30),
+        SliderFill  = Color3.fromRGB(46,  204,  96),
+        White       = Color3.fromRGB(210, 240, 218),
+        PressHL     = Color3.fromRGB(18,  38,  22),
+        TabActive   = Color3.fromRGB(46,  204,  96),
+        TabInactive = Color3.fromRGB(64,  118,  76),
+        TabActiveBG = Color3.fromRGB(14,  38,  20),
+        Handle      = Color3.fromRGB(38,  80,  46),
+        DropHL      = Color3.fromRGB(12,  30,  16),
+    },
+    Crimson = {
+        BG          = Color3.fromRGB(16,   8,  10),
+        Sidebar     = Color3.fromRGB(22,  12,  14),
+        HeaderBG    = Color3.fromRGB(22,  12,  14),
+        SectionBG   = Color3.fromRGB(30,  16,  18),
+        SecTitle    = Color3.fromRGB(140,  60,  70),
+        Text        = Color3.fromRGB(248, 220, 222),
+        SubText     = Color3.fromRGB(140,  76,  84),
+        Separator   = Color3.fromRGB(52,  24,  28),
+        Accent      = Color3.fromRGB(230,  50,  72),
+        AccentDark  = Color3.fromRGB(190,  28,  50),
+        ToggleOn    = Color3.fromRGB(230,  50,  72),
+        ToggleOff   = Color3.fromRGB(52,  24,  28),
+        SliderTrack = Color3.fromRGB(52,  24,  28),
+        SliderFill  = Color3.fromRGB(230,  50,  72),
+        White       = Color3.fromRGB(248, 220, 222),
+        PressHL     = Color3.fromRGB(38,  18,  20),
+        TabActive   = Color3.fromRGB(230,  50,  72),
+        TabInactive = Color3.fromRGB(140,  76,  84),
+        TabActiveBG = Color3.fromRGB(34,  14,  18),
+        Handle      = Color3.fromRGB(78,  34,  40),
+        DropHL      = Color3.fromRGB(26,  12,  14),
+    },
+    Slate = {
+        BG          = Color3.fromRGB(18,  20,  26),
+        Sidebar     = Color3.fromRGB(24,  26,  34),
+        HeaderBG    = Color3.fromRGB(24,  26,  34),
+        SectionBG   = Color3.fromRGB(30,  32,  42),
+        SecTitle    = Color3.fromRGB(96,  106, 148),
+        Text        = Color3.fromRGB(218, 222, 240),
+        SubText     = Color3.fromRGB(98,  108, 150),
+        Separator   = Color3.fromRGB(44,  48,  66),
+        Accent      = Color3.fromRGB(120, 152, 220),
+        AccentDark  = Color3.fromRGB(88,  118, 188),
+        ToggleOn    = Color3.fromRGB(120, 152, 220),
+        ToggleOff   = Color3.fromRGB(44,  48,  66),
+        SliderTrack = Color3.fromRGB(44,  48,  66),
+        SliderFill  = Color3.fromRGB(120, 152, 220),
+        White       = Color3.fromRGB(218, 222, 240),
+        PressHL     = Color3.fromRGB(34,  38,  52),
+        TabActive   = Color3.fromRGB(120, 152, 220),
+        TabInactive = Color3.fromRGB(98,  108, 150),
+        TabActiveBG = Color3.fromRGB(32,  36,  52),
+        Handle      = Color3.fromRGB(60,  66,  96),
+        DropHL      = Color3.fromRGB(26,  30,  42),
+    },
+    Cyber = {
+        BG          = Color3.fromRGB(6,   10,   8),
+        Sidebar     = Color3.fromRGB(9,   14,  11),
+        HeaderBG    = Color3.fromRGB(9,   14,  11),
+        SectionBG   = Color3.fromRGB(12,  20,  15),
+        SecTitle    = Color3.fromRGB(30,  140,  72),
+        Text        = Color3.fromRGB(200, 255, 218),
+        SubText     = Color3.fromRGB(38,  130,  68),
+        Separator   = Color3.fromRGB(18,  40,  26),
+        Accent      = Color3.fromRGB(0,   230, 100),
+        AccentDark  = Color3.fromRGB(0,   185,  76),
+        ToggleOn    = Color3.fromRGB(0,   230, 100),
+        ToggleOff   = Color3.fromRGB(18,  40,  26),
+        SliderTrack = Color3.fromRGB(18,  40,  26),
+        SliderFill  = Color3.fromRGB(0,   230, 100),
+        White       = Color3.fromRGB(200, 255, 218),
+        PressHL     = Color3.fromRGB(12,  28,  18),
+        TabActive   = Color3.fromRGB(0,   230, 100),
+        TabInactive = Color3.fromRGB(38,  130,  68),
+        TabActiveBG = Color3.fromRGB(8,   28,  16),
+        Handle      = Color3.fromRGB(22,  68,  38),
+        DropHL      = Color3.fromRGB(8,   22,  13),
+    },
+    Aqua = {
+        BG          = Color3.fromRGB(8,   16,  20),
+        Sidebar     = Color3.fromRGB(10,  22,  28),
+        HeaderBG    = Color3.fromRGB(10,  22,  28),
+        SectionBG   = Color3.fromRGB(14,  30,  38),
+        SecTitle    = Color3.fromRGB(40,  120, 148),
+        Text        = Color3.fromRGB(200, 240, 250),
+        SubText     = Color3.fromRGB(44,  122, 148),
+        Separator   = Color3.fromRGB(20,  48,  62),
+        Accent      = Color3.fromRGB(0,   210, 230),
+        AccentDark  = Color3.fromRGB(0,   165, 185),
+        ToggleOn    = Color3.fromRGB(0,   210, 230),
+        ToggleOff   = Color3.fromRGB(20,  48,  62),
+        SliderTrack = Color3.fromRGB(20,  48,  62),
+        SliderFill  = Color3.fromRGB(0,   210, 230),
+        White       = Color3.fromRGB(200, 240, 250),
+        PressHL     = Color3.fromRGB(12,  34,  46),
+        TabActive   = Color3.fromRGB(0,   210, 230),
+        TabInactive = Color3.fromRGB(44,  122, 148),
+        TabActiveBG = Color3.fromRGB(10,  34,  48),
+        Handle      = Color3.fromRGB(24,  74,  98),
+        DropHL      = Color3.fromRGB(8,   26,  36),
+    },
+    Gold = {
+        BG          = Color3.fromRGB(14,  11,   7),
+        Sidebar     = Color3.fromRGB(20,  16,  10),
+        HeaderBG    = Color3.fromRGB(20,  16,  10),
+        SectionBG   = Color3.fromRGB(26,  21,  13),
+        SecTitle    = Color3.fromRGB(148, 116,  48),
+        Text        = Color3.fromRGB(255, 240, 200),
+        SubText     = Color3.fromRGB(150, 118,  52),
+        Separator   = Color3.fromRGB(46,  36,  18),
+        Accent      = Color3.fromRGB(220, 178,  40),
+        AccentDark  = Color3.fromRGB(180, 140,  20),
+        ToggleOn    = Color3.fromRGB(220, 178,  40),
+        ToggleOff   = Color3.fromRGB(46,  36,  18),
+        SliderTrack = Color3.fromRGB(46,  36,  18),
+        SliderFill  = Color3.fromRGB(220, 178,  40),
+        White       = Color3.fromRGB(255, 240, 200),
+        PressHL     = Color3.fromRGB(34,  26,  12),
+        TabActive   = Color3.fromRGB(220, 178,  40),
+        TabInactive = Color3.fromRGB(150, 118,  52),
+        TabActiveBG = Color3.fromRGB(28,  22,  10),
+        Handle      = Color3.fromRGB(70,  54,  22),
+        DropHL      = Color3.fromRGB(22,  17,   8),
+    },
+    Cocoa = {
+        BG          = Color3.fromRGB(20,  14,  11),
+        Sidebar     = Color3.fromRGB(28,  19,  15),
+        HeaderBG    = Color3.fromRGB(28,  19,  15),
+        SectionBG   = Color3.fromRGB(36,  24,  18),
+        SecTitle    = Color3.fromRGB(148,  92,  60),
+        Text        = Color3.fromRGB(248, 228, 210),
+        SubText     = Color3.fromRGB(148,  96,  68),
+        Separator   = Color3.fromRGB(56,  36,  26),
+        Accent      = Color3.fromRGB(210, 128,  70),
+        AccentDark  = Color3.fromRGB(170,  96,  44),
+        ToggleOn    = Color3.fromRGB(210, 128,  70),
+        ToggleOff   = Color3.fromRGB(56,  36,  26),
+        SliderTrack = Color3.fromRGB(56,  36,  26),
+        SliderFill  = Color3.fromRGB(210, 128,  70),
+        White       = Color3.fromRGB(248, 228, 210),
+        PressHL     = Color3.fromRGB(42,  26,  18),
+        TabActive   = Color3.fromRGB(210, 128,  70),
+        TabInactive = Color3.fromRGB(148,  96,  68),
+        TabActiveBG = Color3.fromRGB(36,  24,  16),
+        Handle      = Color3.fromRGB(80,  50,  34),
+        DropHL      = Color3.fromRGB(28,  18,  12),
+    },
 }
 
 local T = Themes.Onyx
 
 
-local function Tw(o,p,t,s,d) TweenService:Create(o,TweenInfo.new(t or .24,s or Enum.EasingStyle.Quint,d or Enum.EasingDirection.Out),p):Play() end
-local function TwB(o,p,t) TweenService:Create(o,TweenInfo.new(t or .38,Enum.EasingStyle.Back,Enum.EasingDirection.Out),p):Play() end
+local function Tw(o,p,t,s,d) TweenService:Create(o,TweenInfo.new(t or .26,s or Enum.EasingStyle.Quint,d or Enum.EasingDirection.Out),p):Play() end
+local function TwB(o,p,t) TweenService:Create(o,TweenInfo.new(t or .40,Enum.EasingStyle.Back,Enum.EasingDirection.Out),p):Play() end
 local function TwL(o,p,t) TweenService:Create(o,TweenInfo.new(t or .14,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),p):Play() end
 
 local function Corner(p,r) local c=Instance.new("UICorner") c.CornerRadius=UDim.new(0,r or 8) c.Parent=p return c end
@@ -294,9 +480,10 @@ function Library:CreateWindow(Cfg)
     Corner(SideAccentBar,1)
     Reg(SideAccentBar,"BackgroundColor3","Accent")
 
+    -- SideBottom is now 48px tall: separator + taller close button
     local TabListScroll=Instance.new("ScrollingFrame")
     TabListScroll.BackgroundTransparency=1 TabListScroll.BorderSizePixel=0
-    TabListScroll.Size=UDim2.new(1,0,1,-(HEADER_H+72)) TabListScroll.Position=UDim2.new(0,0,0,HEADER_H)
+    TabListScroll.Size=UDim2.new(1,0,1,-(HEADER_H+48)) TabListScroll.Position=UDim2.new(0,0,0,HEADER_H)
     TabListScroll.CanvasSize=UDim2.new(0,0,0,0) TabListScroll.ScrollBarThickness=0
     TabListScroll.ScrollingDirection=Enum.ScrollingDirection.Y
     TabListScroll.ZIndex=13 TabListScroll.Parent=Sidebar
@@ -313,93 +500,34 @@ function Library:CreateWindow(Cfg)
     end)
 
     local SideBottom=Instance.new("Frame") SideBottom.BackgroundTransparency=1
-    SideBottom.Size=UDim2.new(1,0,0,72) SideBottom.AnchorPoint=Vector2.new(0,1)
+    SideBottom.Size=UDim2.new(1,0,0,48) SideBottom.AnchorPoint=Vector2.new(0,1)
     SideBottom.Position=UDim2.new(0,0,1,0) SideBottom.ZIndex=13 SideBottom.Parent=Sidebar
     Pad(SideBottom,0,8,8,8)
 
-    -- ── Theme picker: a row of colour dots ──
-    local ThemeRow=Instance.new("Frame") ThemeRow.BackgroundTransparency=1
-    ThemeRow.BorderSizePixel=0 ThemeRow.Size=UDim2.new(1,0,0,28)
-    ThemeRow.Position=UDim2.new(0,0,0,0) ThemeRow.ZIndex=14 ThemeRow.Parent=SideBottom
-
-    local ThemeRowLayout=Instance.new("UIListLayout")
-    ThemeRowLayout.FillDirection=Enum.FillDirection.Horizontal
-    ThemeRowLayout.HorizontalAlignment=Enum.HorizontalAlignment.Center
-    ThemeRowLayout.VerticalAlignment=Enum.VerticalAlignment.Center
-    ThemeRowLayout.Padding=UDim.new(0,5) ThemeRowLayout.Parent=ThemeRow
-
-    local ThemeDotSize=14
-    local ThemeAccents={
-        Onyx    = Color3.fromRGB(0,   152, 255),
-        Phantom = Color3.fromRGB(162, 102, 255),
-        Arctic  = Color3.fromRGB(0,   112, 230),
-        Ember   = Color3.fromRGB(255, 138,  24),
-        Rose    = Color3.fromRGB(220,  56, 108),
-    }
-    local ThemeOrder={"Onyx","Phantom","Arctic","Ember","Rose"}
-    local ActiveDot=nil
-
-    for _,Name in ipairs(ThemeOrder) do
-        local Dot=Instance.new("TextButton") Dot.BackgroundColor3=ThemeAccents[Name]
-        Dot.BorderSizePixel=0 Dot.Size=UDim2.new(0,ThemeDotSize,0,ThemeDotSize)
-        Dot.Text="" Dot.ZIndex=15 Dot.Parent=ThemeRow
-        Corner(Dot,7)
-        local DotScale=Instance.new("UIScale") DotScale.Scale=1 DotScale.Parent=Dot
-        local DotRing=Stroke(Dot,Color3.fromRGB(255,255,255),1.5) DotRing.Transparency=1
-        -- mark current theme
-        if Name==(ThemeName or "Onyx") then
-            ActiveDot=Dot DotRing.Transparency=0 TwB(DotScale,{Scale=1.22},.30)
-        end
-        Dot.MouseButton1Down:Connect(function() TwL(DotScale,{Scale=.84},.07) end)
-        Dot.MouseButton1Up:Connect(function() TwB(DotScale,{Scale=ActiveDot==Dot and 1.22 or 1},.30) end)
-        Dot.MouseButton1Click:Connect(function()
-            if ActiveDot then
-                local OldRing=ActiveDot:FindFirstChildOfClass("UIStroke")
-                if OldRing then Tw(OldRing,{Transparency=1},.18) end
-                local OldSc=ActiveDot:FindFirstChildOfClass("UIScale")
-                if OldSc then TwB(OldSc,{Scale=1},.28) end
-            end
-            ActiveDot=Dot
-            DotRing.Transparency=1
-            Tw(DotRing,{Transparency=0},.18)
-            TwB(DotScale,{Scale=1.22},.36)
-            -- apply theme via WindowObj:SetTheme
-            T=Themes[Name] or Themes.Onyx
-            local Live={}
-            for _,N in ipairs(Nodes) do
-                if N.fn then N.fn() Live[#Live+1]=N
-                elseif N.o and N.o.Parent then
-                    local v=T[N.k] if v then Tw(N.o,{[N.p]=v},.26) end
-                    Live[#Live+1]=N
-                end
-            end
-            Nodes=Live
-        end)
-    end
-
-    local ThemeSep=Instance.new("Frame") ThemeSep.BackgroundColor3=T.Separator
-    ThemeSep.BorderSizePixel=0 ThemeSep.Size=UDim2.new(1,0,0,1)
-    ThemeSep.Position=UDim2.new(0,0,0,30) ThemeSep.ZIndex=14 ThemeSep.Parent=SideBottom
-    Reg(ThemeSep,"BackgroundColor3","Separator")
+    -- Simple separator above close button
+    local BottomSep=Instance.new("Frame") BottomSep.BackgroundColor3=T.Separator
+    BottomSep.BorderSizePixel=0 BottomSep.Size=UDim2.new(1,0,0,1)
+    BottomSep.Position=UDim2.new(0,0,0,0) BottomSep.ZIndex=14 BottomSep.Parent=SideBottom
+    Reg(BottomSep,"BackgroundColor3","Separator")
 
     local CloseBtn=Instance.new("TextButton") CloseBtn.BackgroundColor3=T.SectionBG
-    CloseBtn.BorderSizePixel=0 CloseBtn.Size=UDim2.new(1,0,0,22)
-    CloseBtn.Position=UDim2.new(0,0,0,34) CloseBtn.Text=""
+    CloseBtn.BorderSizePixel=0 CloseBtn.Size=UDim2.new(1,0,0,30)
+    CloseBtn.Position=UDim2.new(0,0,0,6) CloseBtn.Text=""
     CloseBtn.ZIndex=14 CloseBtn.Parent=SideBottom
-    Corner(CloseBtn,7)
+    Corner(CloseBtn,8)
     Reg(CloseBtn,"BackgroundColor3","SectionBG")
     local CloseBtnStroke=Stroke(CloseBtn,T.Separator,1)
     Reg(CloseBtnStroke,"Color","Separator")
     local CloseBtnLbl=Instance.new("TextLabel") CloseBtnLbl.BackgroundTransparency=1
     CloseBtnLbl.Size=UDim2.new(1,0,1,0) CloseBtnLbl.Text="✕  Close"
-    CloseBtnLbl.TextColor3=T.SubText CloseBtnLbl.Font=Enum.Font.GothamMedium
-    CloseBtnLbl.TextSize=9 CloseBtnLbl.ZIndex=15 CloseBtnLbl.Parent=CloseBtn
+    CloseBtnLbl.TextColor3=T.SubText CloseBtnLbl.Font=Enum.Font.GothamBold
+    CloseBtnLbl.TextSize=10 CloseBtnLbl.ZIndex=15 CloseBtnLbl.Parent=CloseBtn
     Reg(CloseBtnLbl,"TextColor3","SubText")
     local CloseBtnScale=Instance.new("UIScale") CloseBtnScale.Scale=1 CloseBtnScale.Parent=CloseBtn
-    CloseBtn.MouseEnter:Connect(function() Tw(CloseBtnLbl,{TextColor3=T.Text},.14) end)
-    CloseBtn.MouseLeave:Connect(function() Tw(CloseBtnLbl,{TextColor3=T.SubText},.20) end)
-    CloseBtn.MouseButton1Down:Connect(function() TwL(CloseBtnScale,{Scale=.94},.07) end)
-    CloseBtn.MouseButton1Up:Connect(function() TwB(CloseBtnScale,{Scale=1},.36) end)
+    CloseBtn.MouseEnter:Connect(function() Tw(CloseBtnLbl,{TextColor3=T.Text},.18) end)
+    CloseBtn.MouseLeave:Connect(function() Tw(CloseBtnLbl,{TextColor3=T.SubText},.24) end)
+    CloseBtn.MouseButton1Down:Connect(function() TwL(CloseBtnScale,{Scale=.93},.08) end)
+    CloseBtn.MouseButton1Up:Connect(function() TwB(CloseBtnScale,{Scale=1},.40) end)
 
     local MainArea=Instance.new("Frame") MainArea.BackgroundTransparency=1
     MainArea.Size=UDim2.new(1,-SIDEBAR_W,1,0) MainArea.Position=UDim2.new(0,SIDEBAR_W,0,0)
@@ -415,7 +543,7 @@ function Library:CreateWindow(Cfg)
     TabFadeOverlay.Parent=ContentArea
     Reg(TabFadeOverlay,"BackgroundColor3","BG")
 
-    -- Overlay that slides in during close to mask children cleanly
+    -- Overlay that fades in during close to mask children cleanly
     local CloseOverlay = Instance.new("Frame")
     CloseOverlay.BackgroundColor3        = T.BG
     CloseOverlay.BackgroundTransparency  = 1
@@ -433,14 +561,12 @@ function Library:CreateWindow(Cfg)
     ShowBtn.BackgroundColor3       = T.Sidebar
     ShowBtn.BackgroundTransparency = 1
     ShowBtn.Size                   = UDim2.new(0, 48, 0, 48)
-    -- ── top-center, mobile+PC friendly ──
     ShowBtn.AnchorPoint            = Vector2.new(0.5, 0)
     ShowBtn.Position               = UDim2.new(0.5, 0, 0, 14)
     ShowBtn.ZIndex                 = 100
     ShowBtn.Visible                = false
     ShowBtn.Parent                 = Gui
     Corner(ShowBtn, 14)
-    -- Accent-coloured ring stroke instead of separator grey
     local ShowBtnStroke = Stroke(ShowBtn, T.Accent, 1.8)
     Reg(ShowBtnStroke, "Color", "Accent")
     Reg(ShowBtn, "BackgroundColor3", "Sidebar")
@@ -451,8 +577,8 @@ function Library:CreateWindow(Cfg)
         TweenService:Create(ShowBtn,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=.3}):Play()
     end)
     ShowBtn.MouseButton1Up:Connect(function()
-        TweenService:Create(ShowBtnScale,TweenInfo.new(.44,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
-        TweenService:Create(ShowBtn,TweenInfo.new(.22,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
+        TweenService:Create(ShowBtnScale,TweenInfo.new(.48,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        TweenService:Create(ShowBtn,TweenInfo.new(.26,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
     end)
 
     local isDragging=false local dragStart=nil local startWinPos=nil
@@ -474,64 +600,69 @@ function Library:CreateWindow(Cfg)
         end
     end)
 
+    -- ── Close: smooth fade-shrink-slide out, then ShowBtn springs in ──
     CloseBtn.MouseButton1Click:Connect(function()
         local wp = Win.Position
-        Tw(CloseOverlay, {BackgroundTransparency=0}, .18, Enum.EasingStyle.Quint)
-        TweenService:Create(WinScale, TweenInfo.new(.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.80}):Play()
-        TweenService:Create(Win, TweenInfo.new(.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
-            {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset-22)}):Play()
-        task.delay(.42, function()
-            Win.Visible       = false
+        Tw(CloseOverlay, {BackgroundTransparency=0}, .22, Enum.EasingStyle.Quint)
+        TweenService:Create(WinScale, TweenInfo.new(.50, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.86}):Play()
+        TweenService:Create(Win, TweenInfo.new(.50, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+            {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset-14)}):Play()
+        task.delay(.56, function()
+            Win.Visible                  = false
             CloseOverlay.BackgroundTransparency = 1
-            Win.Position      = wp
-            WinScale.Scale    = 1
+            Win.Position                 = wp
+            WinScale.Scale               = 1
             ShowBtn.Visible              = true
             ShowBtn.ImageTransparency    = 1
             ShowBtn.BackgroundTransparency = 1
-            ShowBtnScale.Scale           = 0.46
-            TweenService:Create(ShowBtn,      TweenInfo.new(.36, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+            ShowBtnScale.Scale           = 0.50
+            TweenService:Create(ShowBtn, TweenInfo.new(.44, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
                 {ImageTransparency=0, BackgroundTransparency=0}):Play()
-            TweenService:Create(ShowBtnScale, TweenInfo.new(.60, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+            TweenService:Create(ShowBtnScale, TweenInfo.new(.74, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
                 {Scale=1}):Play()
         end)
     end)
 
+    -- ── Reopen: ShowBtn fades out, window glides smoothly back in ──
     ShowBtn.MouseButton1Click:Connect(function()
-        TweenService:Create(ShowBtnScale, TweenInfo.new(.14, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.70}):Play()
-        TweenService:Create(ShowBtn,      TweenInfo.new(.20, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+        TweenService:Create(ShowBtnScale, TweenInfo.new(.18, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.72}):Play()
+        TweenService:Create(ShowBtn, TweenInfo.new(.26, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
             {ImageTransparency=1, BackgroundTransparency=1}):Play()
-        task.delay(.22, function()
+        task.delay(.28, function()
             ShowBtn.Visible    = false
             ShowBtnScale.Scale = 1
             local wp = Win.Position
             Win.Visible        = true
-            Win.Position       = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset+46)
-            WinScale.Scale     = .78
-            TweenService:Create(Win,       TweenInfo.new(.54, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+            Win.Position       = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset+32)
+            WinScale.Scale     = .82
+            TweenService:Create(Win, TweenInfo.new(.64, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
                 {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset)}):Play()
-            TweenService:Create(WinScale,  TweenInfo.new(.64, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+            TweenService:Create(WinScale, TweenInfo.new(.80, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
                 {Scale=1}):Play()
         end)
     end)
 
+    -- ── Initial open after loading screen ──
     task.spawn(function()
         task.wait(2.4)
         barConn:Disconnect()
-        Tw(LoadBG,{BackgroundTransparency=1},.36,Enum.EasingStyle.Quint)
+        Tw(LoadBG,{BackgroundTransparency=1},.42,Enum.EasingStyle.Quint)
         for _,d in ipairs(LoadBG:GetDescendants()) do
             if d:IsA("GuiObject") then
                 local tp={BackgroundTransparency=1}
                 if d:IsA("TextLabel") then tp.TextTransparency=1 end
                 if d:IsA("ImageLabel") then tp.ImageTransparency=1 end
-                Tw(d,tp,.28,Enum.EasingStyle.Quint)
+                Tw(d,tp,.32,Enum.EasingStyle.Quint)
             end
         end
-        task.wait(.40) LoadBG:Destroy()
+        task.wait(.48) LoadBG:Destroy()
         local nw,nh=GetWinSize()
-        Win.Visible=true Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+54) WinScale.Scale=.76
-        TweenService:Create(Win,TweenInfo.new(.58,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
+        Win.Visible=true
+        Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+32)
+        WinScale.Scale=.82
+        TweenService:Create(Win, TweenInfo.new(.72, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
             {Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)}):Play()
-        TweenService:Create(WinScale,TweenInfo.new(.68,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        TweenService:Create(WinScale, TweenInfo.new(.88, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale=1}):Play()
     end)
 
     local WindowObj={}
@@ -541,13 +672,13 @@ function Library:CreateWindow(Cfg)
     local function DeactivateAllTabs()
         for _,td in ipairs(Tabs) do
             td.content.Visible=false
-            Tw(td.label,{TextColor3=T.TabInactive},.18)
-            Tw(td.pill,{BackgroundTransparency=1,Size=UDim2.new(0,3,0,20)},.22,Enum.EasingStyle.Quint)
-            Tw(td.pillColor,{BackgroundColor3=T.TabActiveBG},.18)
+            Tw(td.label,{TextColor3=T.TabInactive},.20)
+            Tw(td.pill,{BackgroundTransparency=1,Size=UDim2.new(0,3,0,18)},.24,Enum.EasingStyle.Quint)
+            Tw(td.pillColor,{BackgroundColor3=T.TabActiveBG},.20)
             td.pillColor.BackgroundTransparency=1
             if td.icon then
                 local pr=td.icon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                Tw(td.icon,{[pr]=T.TabInactive},.18)
+                Tw(td.icon,{[pr]=T.TabInactive},.20)
             end
         end
     end
@@ -558,7 +689,7 @@ function Library:CreateWindow(Cfg)
         for _,N in ipairs(Nodes) do
             if N.fn then N.fn() Live[#Live+1]=N
             elseif N.o and N.o.Parent then
-                local v=T[N.k] if v then Tw(N.o,{[N.p]=v},.26) end
+                local v=T[N.k] if v then Tw(N.o,{[N.p]=v},.28) end
                 Live[#Live+1]=N
             end
         end
@@ -566,10 +697,10 @@ function Library:CreateWindow(Cfg)
         for _,td in ipairs(Tabs) do
             local isActive=td.content.Visible
             local col=isActive and T.TabActive or T.TabInactive
-            Tw(td.label,{TextColor3=col},.26)
+            Tw(td.label,{TextColor3=col},.28)
             if td.icon then
                 local pr=td.icon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                Tw(td.icon,{[pr]=col},.26)
+                Tw(td.icon,{[pr]=col},.28)
             end
         end
     end
@@ -593,7 +724,7 @@ function Library:CreateWindow(Cfg)
 
         local Pill=Instance.new("Frame") Pill.BackgroundColor3=T.TabActive
         Pill.BorderSizePixel=0 Pill.AnchorPoint=Vector2.new(0,.5)
-        Pill.Size=UDim2.new(0,2,0,16) Pill.Position=UDim2.new(0,0,.5,0)
+        Pill.Size=UDim2.new(0,3,0,18) Pill.Position=UDim2.new(0,0,.5,0)
         Pill.BackgroundTransparency=1 Pill.ZIndex=15 Pill.Parent=TabBtn
         Corner(Pill,2)
         Reg(Pill,"BackgroundColor3","TabActive")
@@ -649,18 +780,18 @@ function Library:CreateWindow(Cfg)
         local function ActivateThis()
             DeactivateAllTabs()
             TabFadeOverlay.BackgroundTransparency=.55 TabFadeOverlay.ZIndex=50
-            TweenService:Create(TabFadeOverlay,TweenInfo.new(.42,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=1}):Play()
+            TweenService:Create(TabFadeOverlay,TweenInfo.new(.48,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=1}):Play()
             TabFrame.Visible=true
             TabFrame.Position=UDim2.new(.05,0,0,0)
-            TweenService:Create(TabFrame,TweenInfo.new(.34,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Position=UDim2.new(0,0,0,0)}):Play()
-            TweenService:Create(TabLbl,TweenInfo.new(.20,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{TextColor3=T.TabActive}):Play()
+            TweenService:Create(TabFrame,TweenInfo.new(.40,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Position=UDim2.new(0,0,0,0)}):Play()
+            TweenService:Create(TabLbl,TweenInfo.new(.22,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{TextColor3=T.TabActive}):Play()
             PillBG.BackgroundTransparency=1
-            TweenService:Create(PillBG,TweenInfo.new(.28,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
-            Pill.BackgroundTransparency=1 Pill.Size=UDim2.new(0,2,0,8)
-            TweenService:Create(Pill,TweenInfo.new(.52,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{BackgroundTransparency=0,Size=UDim2.new(0,2,0,16)}):Play()
+            TweenService:Create(PillBG,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
+            Pill.BackgroundTransparency=1 Pill.Size=UDim2.new(0,3,0,8)
+            TweenService:Create(Pill,TweenInfo.new(.56,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{BackgroundTransparency=0,Size=UDim2.new(0,3,0,18)}):Play()
             if TabIcon then
                 local pr=TabIcon:IsA("ImageLabel") and "ImageColor3" or "TextColor3"
-                TweenService:Create(TabIcon,TweenInfo.new(.20,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{[pr]=T.TabActive}):Play()
+                TweenService:Create(TabIcon,TweenInfo.new(.22,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{[pr]=T.TabActive}):Play()
             end
         end
 
@@ -669,8 +800,8 @@ function Library:CreateWindow(Cfg)
             Tw(PillBG,{BackgroundTransparency=.5},.08)
         end)
         TabBtn.MouseButton1Up:Connect(function()
-            if TabFrame.Visible then Tw(PillBG,{BackgroundTransparency=0},.16)
-            else Tw(PillBG,{BackgroundTransparency=1},.16) end
+            if TabFrame.Visible then Tw(PillBG,{BackgroundTransparency=0},.18)
+            else Tw(PillBG,{BackgroundTransparency=1},.18) end
         end)
         if Idx==1 then ActivateThis() end
 
@@ -714,11 +845,11 @@ function Library:CreateWindow(Cfg)
             local CardStroke=Stroke(Card,T.Separator,.6)
             Reg(CardStroke,"Color","Separator")
 
-            local CEntryScale=Instance.new("UIScale") CEntryScale.Scale=.86 CEntryScale.Parent=Card
+            local CEntryScale=Instance.new("UIScale") CEntryScale.Scale=.88 CEntryScale.Parent=Card
             Card.BackgroundTransparency=1
             task.delay((SecCnt-1)*.06,function()
-                TweenService:Create(Card,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
-                TweenService:Create(CEntryScale,TweenInfo.new(.52,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+                TweenService:Create(Card,TweenInfo.new(.34,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0}):Play()
+                TweenService:Create(CEntryScale,TweenInfo.new(.58,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
             end)
 
             local CL=Instance.new("UIListLayout") CL.FillDirection=Enum.FillDirection.Vertical
@@ -751,7 +882,7 @@ function Library:CreateWindow(Cfg)
             end
 
             local function RowPress(Row) Tw(Row,{BackgroundColor3=T.PressHL},.06) Row.BackgroundTransparency=0 end
-            local function RowRelease(Row) Tw(Row,{BackgroundColor3=T.SectionBG},.26,Enum.EasingStyle.Quint) task.delay(.26,function() Row.BackgroundTransparency=1 end) end
+            local function RowRelease(Row) Tw(Row,{BackgroundColor3=T.SectionBG},.28,Enum.EasingStyle.Quint) task.delay(.28,function() Row.BackgroundTransparency=1 end) end
 
             function SecObj:CreateToggle(Cfg2)
                 Cfg2=Cfg2 or {}
@@ -788,17 +919,17 @@ function Library:CreateWindow(Cfg)
                     local Tgt=V and UDim2.new(0,14,.5,0) or UDim2.new(0,2,.5,0)
                     local Col=V and T.ToggleOn or T.ToggleOff
                     if Anim then
-                        TweenService:Create(Track,TweenInfo.new(.24,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundColor3=Col}):Play()
+                        TweenService:Create(Track,TweenInfo.new(.26,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundColor3=Col}):Play()
                         TweenService:Create(Thumb,TweenInfo.new(.08,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Size=UDim2.new(0,18,0,14)}):Play()
                         task.delay(.08,function()
-                            TweenService:Create(Thumb,TweenInfo.new(.44,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Position=Tgt,Size=UDim2.new(0,14,0,14)}):Play()
+                            TweenService:Create(Thumb,TweenInfo.new(.46,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Position=Tgt,Size=UDim2.new(0,14,0,14)}):Play()
                         end)
                     else
                         Track.BackgroundColor3=Col Thumb.Position=Tgt Thumb.Size=UDim2.new(0,14,0,14)
                     end
-                    task.delay(.46,function() Busy=false end)
+                    task.delay(.48,function() Busy=false end)
                 end
-                RegFn(function() Tw(Track,{BackgroundColor3=State and T.ToggleOn or T.ToggleOff},.22) end)
+                RegFn(function() Tw(Track,{BackgroundColor3=State and T.ToggleOn or T.ToggleOff},.24) end)
 
                 local Hit=Instance.new("TextButton") Hit.BackgroundTransparency=1
                 Hit.Size=UDim2.new(1,0,1,0) Hit.Text="" Hit.ZIndex=17 Hit.Parent=Row
@@ -829,7 +960,7 @@ function Library:CreateWindow(Cfg)
                 local Hit=Instance.new("TextButton") Hit.BackgroundTransparency=1
                 Hit.Size=UDim2.new(1,0,1,0) Hit.Text="" Hit.ZIndex=16 Hit.Parent=Row
                 Hit.MouseButton1Down:Connect(function() RowPress(Row) Tw(Lbl,{TextColor3=T.AccentDark},.07) Tw(RowScale,{Scale=.94},.10,Enum.EasingStyle.Quint) end)
-                Hit.MouseButton1Up:Connect(function() RowRelease(Row) Tw(Lbl,{TextColor3=T.Accent},.22) Tw(RowScale,{Scale=1},.34,Enum.EasingStyle.Quint) end)
+                Hit.MouseButton1Up:Connect(function() RowRelease(Row) Tw(Lbl,{TextColor3=T.Accent},.24) Tw(RowScale,{Scale=1},.36,Enum.EasingStyle.Quint) end)
                 Hit.MouseButton1Click:Connect(Cb)
 
                 local Obj={} Obj.Name={Set=function(_,N) Lbl.Text=N end}
@@ -911,7 +1042,7 @@ function Library:CreateWindow(Cfg)
                         Ck.TextXAlignment=Enum.TextXAlignment.Center Ck.TextYAlignment=Enum.TextYAlignment.Center
                         Ck.ZIndex=23 Ck.Parent=Ob Reg(Ck,"TextColor3","Accent")
                         Ob.MouseButton1Down:Connect(function() TwL(Ob,{BackgroundColor3=T.PressHL},.06) Ob.BackgroundTransparency=0 TwL(ObSc,{Scale=.96},.07) end)
-                        Ob.MouseButton1Up:Connect(function() Tw(Ob,{BackgroundColor3=T.SectionBG},.24) task.delay(.24,function() Ob.BackgroundTransparency=1 end) TwB(ObSc,{Scale=1},.32) end)
+                        Ob.MouseButton1Up:Connect(function() Tw(Ob,{BackgroundColor3=T.SectionBG},.26) task.delay(.26,function() Ob.BackgroundTransparency=1 end) TwB(ObSc,{Scale=1},.34) end)
                         Ob.MouseButton1Click:Connect(function()
                             if Multi then SelMap[Opt]=not SelMap[Opt] Ck.Text=SelMap[Opt] and "✓" or ""
                             else
@@ -926,9 +1057,9 @@ function Library:CreateWindow(Cfg)
                             SelLbl.Text=SelTxt()
                             local Res={} for K,V in pairs(SelMap) do if V then Res[#Res+1]=K end end Cb(Res)
                             if not Multi then
-                                IsOpen=false Tw(Panel,{Size=UDim2.new(1,0,0,0)},.22,Enum.EasingStyle.Quint)
-                                task.delay(.23,function() Panel.Visible=false end)
-                                Tw(Chev,{Rotation=0},.18)
+                                IsOpen=false Tw(Panel,{Size=UDim2.new(1,0,0,0)},.24,Enum.EasingStyle.Quint)
+                                task.delay(.25,function() Panel.Visible=false end)
+                                Tw(Chev,{Rotation=0},.20)
                             end
                         end)
                     end
@@ -943,12 +1074,12 @@ function Library:CreateWindow(Cfg)
                     IsOpen=not IsOpen
                     if IsOpen then
                         Panel.Visible=true Panel.Size=UDim2.new(1,0,0,0)
-                        Tw(Panel,{Size=UDim2.new(1,0,0,PanelH)},.32,Enum.EasingStyle.Quint)
-                        Tw(Chev,{Rotation=90},.20)
+                        Tw(Panel,{Size=UDim2.new(1,0,0,PanelH)},.34,Enum.EasingStyle.Quint)
+                        Tw(Chev,{Rotation=90},.22)
                     else
-                        Tw(Panel,{Size=UDim2.new(1,0,0,0)},.22,Enum.EasingStyle.Quint)
-                        task.delay(.23,function() Panel.Visible=false end)
-                        Tw(Chev,{Rotation=0},.18)
+                        Tw(Panel,{Size=UDim2.new(1,0,0,0)},.24,Enum.EasingStyle.Quint)
+                        task.delay(.25,function() Panel.Visible=false end)
+                        Tw(Chev,{Rotation=0},.20)
                     end
                 end)
                 local Obj={} Obj.Name={Set=function(_,N) TtlLbl.Text=N end}
@@ -1007,7 +1138,7 @@ function Library:CreateWindow(Cfg)
                 end
                 local function Apply(V,Anim)
                     Cur=V local Pct=(V-Mn)/math.max(Mx-Mn,.0001)
-                    if Anim then Tw(TFill,{Size=UDim2.new(Pct,0,1,0)},.12) Tw(Thumb,{Position=UDim2.new(Pct,0,.5,0)},.12)
+                    if Anim then Tw(TFill,{Size=UDim2.new(Pct,0,1,0)},.14) Tw(Thumb,{Position=UDim2.new(Pct,0,.5,0)},.14)
                     else TFill.Size=UDim2.new(Pct,0,1,0) Thumb.Position=UDim2.new(Pct,0,.5,0) end
                     ValLbl.Text=tostring(V)..Suf
                 end
@@ -1016,7 +1147,7 @@ function Library:CreateWindow(Cfg)
                 Hit.InputBegan:Connect(function(Inp)
                     if Inp.UserInputType==Enum.UserInputType.MouseButton1 or Inp.UserInputType==Enum.UserInputType.Touch then
                         Sliding=true local V=Calc(Inp.Position) Apply(V,false) Cb(V)
-                        Tw(ThumbSc,{Scale=1.3},.22,Enum.EasingStyle.Quint)
+                        Tw(ThumbSc,{Scale=1.3},.24,Enum.EasingStyle.Quint)
                     end
                 end)
                 UserInputService.InputChanged:Connect(function(Inp)
@@ -1028,7 +1159,7 @@ function Library:CreateWindow(Cfg)
                 UserInputService.InputEnded:Connect(function(Inp)
                     if not Sliding then return end
                     if Inp.UserInputType==Enum.UserInputType.MouseButton1 or Inp.UserInputType==Enum.UserInputType.Touch then
-                        Sliding=false Tw(ThumbSc,{Scale=1},.28,Enum.EasingStyle.Quint)
+                        Sliding=false Tw(ThumbSc,{Scale=1},.32,Enum.EasingStyle.Quint)
                     end
                 end)
                 local Obj={} Obj.Value={Set=function(_,V) Apply(math.clamp(V,Mn,Mx),true) Cb(Cur) end}
