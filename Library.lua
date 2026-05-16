@@ -286,6 +286,14 @@ function Library:CreateWindow(Cfg)
     SideTabLine.Position=UDim2.new(0,8,0,HEADER_H-1) SideTabLine.ZIndex=13 SideTabLine.Parent=Sidebar
     Reg(SideTabLine,"BackgroundColor3","Separator")
 
+    -- Thin accent bar along the top edge of the sidebar
+    local SideAccentBar=Instance.new("Frame") SideAccentBar.BackgroundColor3=T.Accent
+    SideAccentBar.BorderSizePixel=0 SideAccentBar.Size=UDim2.new(0,28,0,2)
+    SideAccentBar.AnchorPoint=Vector2.new(0.5,0) SideAccentBar.Position=UDim2.new(0.5,0,0,0)
+    SideAccentBar.ZIndex=16 SideAccentBar.Parent=Sidebar
+    Corner(SideAccentBar,1)
+    Reg(SideAccentBar,"BackgroundColor3","Accent")
+
     local TabListScroll=Instance.new("ScrollingFrame")
     TabListScroll.BackgroundTransparency=1 TabListScroll.BorderSizePixel=0
     TabListScroll.Size=UDim2.new(1,0,1,-(HEADER_H+40)) TabListScroll.Position=UDim2.new(0,0,0,HEADER_H)
@@ -342,25 +350,107 @@ function Library:CreateWindow(Cfg)
     TabFadeOverlay.Parent=ContentArea
     Reg(TabFadeOverlay,"BackgroundColor3","BG")
 
+    -- Shadow frame sitting behind the main window
+    local WinShadow = Instance.new("Frame")
+    WinShadow.BackgroundColor3   = Color3.fromRGB(0,0,0)
+    WinShadow.BackgroundTransparency = 0.68
+    WinShadow.BorderSizePixel    = 0
+    WinShadow.Size               = UDim2.new(0, winW+20, 0, winH+24)
+    WinShadow.Position           = UDim2.new(0.5, -(winW+20)/2, 0.5, -(winH+24)/2+10)
+    WinShadow.ZIndex             = 9
+    WinShadow.Visible            = false
+    WinShadow.Parent             = Gui
+    Corner(WinShadow, 18)
+
+    -- Overlay that slides in during close to mask children cleanly
+    local CloseOverlay = Instance.new("Frame")
+    CloseOverlay.BackgroundColor3        = T.BG
+    CloseOverlay.BackgroundTransparency  = 1
+    CloseOverlay.BorderSizePixel         = 0
+    CloseOverlay.Size                    = UDim2.new(1,0,1,0)
+    CloseOverlay.ZIndex                  = 200
+    CloseOverlay.Parent                  = Win
+    Corner(CloseOverlay, 14)
+    Reg(CloseOverlay, "BackgroundColor3", "BG")
+
     local ImgId = ButtonId and tostring(ButtonId) or "85798284091961"
     local ShowBtn = Instance.new("ImageButton")
-    ShowBtn.Image              = "rbxassetid://" .. ImgId
-    ShowBtn.ImageTransparency  = 0
-    ShowBtn.BackgroundColor3   = T.Sidebar
+    ShowBtn.Image                  = "rbxassetid://" .. ImgId
+    ShowBtn.ImageTransparency      = 1
+    ShowBtn.BackgroundColor3       = T.Sidebar
     ShowBtn.BackgroundTransparency = 1
-    ShowBtn.Size               = UDim2.new(0, 42, 0, 42)
-    ShowBtn.Position           = UDim2.new(0, 14, 0, 14)
-    ShowBtn.ZIndex             = 100
-    ShowBtn.Visible            = false
-    ShowBtn.Parent             = Gui
-    Corner(ShowBtn, 12)
-    local ShowBtnStroke = Stroke(ShowBtn, T.Separator, 1.5)
-    Reg(ShowBtnStroke, "Color", "Separator")
+    ShowBtn.Size                   = UDim2.new(0, 48, 0, 48)
+    -- ── top-center, mobile+PC friendly ──
+    ShowBtn.AnchorPoint            = Vector2.new(0.5, 0)
+    ShowBtn.Position               = UDim2.new(0.5, 0, 0, 14)
+    ShowBtn.ZIndex                 = 100
+    ShowBtn.Visible                = false
+    ShowBtn.Parent                 = Gui
+    Corner(ShowBtn, 14)
+    -- Accent-coloured ring stroke instead of separator grey
+    local ShowBtnStroke = Stroke(ShowBtn, T.Accent, 1.8)
+    Reg(ShowBtnStroke, "Color", "Accent")
     Reg(ShowBtn, "BackgroundColor3", "Sidebar")
-    local ShowBtnScale=Instance.new("UIScale") ShowBtnScale.Scale=1 ShowBtnScale.Parent=ShowBtn
+    local ShowBtnScale = Instance.new("UIScale") ShowBtnScale.Scale=1 ShowBtnScale.Parent=ShowBtn
+
+    -- Soft glow ring behind the button (sits at ZIndex 98, behind the button)
+    local ShowBtnGlow = Instance.new("Frame")
+    ShowBtnGlow.BackgroundColor3        = T.Accent
+    ShowBtnGlow.BackgroundTransparency  = 1
+    ShowBtnGlow.BorderSizePixel         = 0
+    ShowBtnGlow.AnchorPoint             = Vector2.new(0.5, 0.5)
+    ShowBtnGlow.Size                    = UDim2.new(1, 22, 1, 22)
+    ShowBtnGlow.Position                = UDim2.new(0.5, 0, 0.5, 0)
+    ShowBtnGlow.ZIndex                  = 98
+    ShowBtnGlow.Parent                  = ShowBtn
+    Corner(ShowBtnGlow, 20)
+    Reg(ShowBtnGlow, "BackgroundColor3", "Accent")
+
+    -- Small label tag beneath the button ("MENU")
+    local ShowBtnTag = Instance.new("TextLabel")
+    ShowBtnTag.BackgroundColor3        = T.Sidebar
+    ShowBtnTag.BackgroundTransparency  = 0
+    ShowBtnTag.BorderSizePixel         = 0
+    ShowBtnTag.AnchorPoint             = Vector2.new(0.5, 0)
+    ShowBtnTag.Size                    = UDim2.new(0, 40, 0, 14)
+    ShowBtnTag.Position                = UDim2.new(0.5, 0, 0, 56)
+    ShowBtnTag.Text                    = "MENU"
+    ShowBtnTag.TextColor3              = T.SubText
+    ShowBtnTag.Font                    = Enum.Font.GothamBold
+    ShowBtnTag.TextSize                = 7
+    ShowBtnTag.TextTransparency        = 1
+    ShowBtnTag.ZIndex                  = 100
+    ShowBtnTag.Visible                 = false
+    ShowBtnTag.Parent                  = Gui
+    Corner(ShowBtnTag, 4)
+    Stroke(ShowBtnTag, T.Separator, 0.8)
+    Reg(ShowBtnTag, "BackgroundColor3", "Sidebar")
+    Reg(ShowBtnTag, "TextColor3",       "SubText")
+
+    -- Glow pulse controller
+    local GlowActive = false
+    local function StartGlow()
+        if GlowActive then return end
+        GlowActive = true
+        local function Pulse()
+            if not GlowActive or not ShowBtn.Visible then GlowActive=false ShowBtnGlow.BackgroundTransparency=1 return end
+            TweenService:Create(ShowBtnGlow, TweenInfo.new(1.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency=0.78}):Play()
+            task.delay(1.1, function()
+                if not GlowActive or not ShowBtn.Visible then GlowActive=false ShowBtnGlow.BackgroundTransparency=1 return end
+                TweenService:Create(ShowBtnGlow, TweenInfo.new(1.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency=0.50}):Play()
+                task.delay(1.1, Pulse)
+            end)
+        end
+        Pulse()
+    end
+    local function StopGlow()
+        GlowActive = false
+        TweenService:Create(ShowBtnGlow, TweenInfo.new(.18, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency=1}):Play()
+    end
+
     ShowBtn.MouseButton1Down:Connect(function()
-        TweenService:Create(ShowBtnScale,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Scale=.82}):Play()
-        TweenService:Create(ShowBtn,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=.4}):Play()
+        TweenService:Create(ShowBtnScale,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Scale=.84}):Play()
+        TweenService:Create(ShowBtn,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=.3}):Play()
     end)
     ShowBtn.MouseButton1Up:Connect(function()
         TweenService:Create(ShowBtnScale,TweenInfo.new(.44,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
@@ -387,28 +477,62 @@ function Library:CreateWindow(Cfg)
     end)
 
     CloseBtn.MouseButton1Click:Connect(function()
-        local wp=Win.Position
-        TweenService:Create(WinScale,TweenInfo.new(.32,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{Scale=.88}):Play()
-        TweenService:Create(Win,TweenInfo.new(.32,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{BackgroundTransparency=1,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+32)}):Play()
-        task.delay(.34,function()
-            Win.Visible=false Win.BackgroundTransparency=0 Win.Position=wp WinScale.Scale=1
-            ShowBtn.Visible=true ShowBtn.ImageTransparency=0 ShowBtn.BackgroundTransparency=1 ShowBtnScale.Scale=.60
-            TweenService:Create(ShowBtn,TweenInfo.new(.30,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{ImageTransparency=0,BackgroundTransparency=0}):Play()
-            TweenService:Create(ShowBtnScale,TweenInfo.new(.50,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        local wp = Win.Position
+        -- Fade in overlay FIRST so children disappear cleanly (no ghost effect)
+        Tw(CloseOverlay, {BackgroundTransparency=0}, .18, Enum.EasingStyle.Quint)
+        -- Scale down (slightly up-drift for a natural "dismissed" feel)
+        TweenService:Create(WinScale, TweenInfo.new(.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.80}):Play()
+        TweenService:Create(Win, TweenInfo.new(.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+            {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset-22)}):Play()
+        TweenService:Create(WinShadow, TweenInfo.new(.28, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+            {BackgroundTransparency=1}):Play()
+        task.delay(.42, function()
+            -- Reset window state silently
+            Win.Visible       = false
+            WinShadow.Visible = false
+            CloseOverlay.BackgroundTransparency = 1
+            Win.Position      = wp
+            WinScale.Scale    = 1
+            -- ── Reveal ShowBtn with proper fade-in ──
+            ShowBtn.Visible              = true
+            ShowBtn.ImageTransparency    = 1   -- start invisible, tween in
+            ShowBtn.BackgroundTransparency = 1
+            ShowBtnScale.Scale           = 0.46
+            ShowBtnTag.Visible           = true
+            ShowBtnTag.TextTransparency  = 1
+            TweenService:Create(ShowBtn,      TweenInfo.new(.36, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+                {ImageTransparency=0, BackgroundTransparency=0}):Play()
+            TweenService:Create(ShowBtnScale, TweenInfo.new(.60, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+                {Scale=1}):Play()
+            TweenService:Create(ShowBtnTag,   TweenInfo.new(.40, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+                {TextTransparency=0}):Play()
+            task.delay(.30, StartGlow)
         end)
     end)
 
     ShowBtn.MouseButton1Click:Connect(function()
-        TweenService:Create(ShowBtnScale,TweenInfo.new(.16,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{Scale=.74}):Play()
-        TweenService:Create(ShowBtn,TweenInfo.new(.20,Enum.EasingStyle.Quint,Enum.EasingDirection.In),{ImageTransparency=1,BackgroundTransparency=1}):Play()
-        task.delay(.22,function()
-            ShowBtn.Visible=false ShowBtnScale.Scale=1
-            local wp=Win.Position
-            Win.Visible=true Win.BackgroundTransparency=1
-            Win.Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset+40)
-            WinScale.Scale=.82
-            TweenService:Create(Win,TweenInfo.new(.52,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0,Position=UDim2.new(wp.X.Scale,wp.X.Offset,wp.Y.Scale,wp.Y.Offset)}):Play()
-            TweenService:Create(WinScale,TweenInfo.new(.60,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        StopGlow()
+        TweenService:Create(ShowBtnScale, TweenInfo.new(.14, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.70}):Play()
+        TweenService:Create(ShowBtn,      TweenInfo.new(.20, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+            {ImageTransparency=1, BackgroundTransparency=1}):Play()
+        TweenService:Create(ShowBtnTag,   TweenInfo.new(.14, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+            {TextTransparency=1}):Play()
+        task.delay(.22, function()
+            ShowBtn.Visible    = false
+            ShowBtnTag.Visible = false
+            ShowBtnScale.Scale = 1
+            local wp = Win.Position
+            Win.Visible        = true
+            WinShadow.Visible  = true
+            WinShadow.BackgroundTransparency = 1
+            Win.Position       = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset+46)
+            WinScale.Scale     = .78
+            TweenService:Create(Win,       TweenInfo.new(.54, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+                {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset)}):Play()
+            TweenService:Create(WinScale,  TweenInfo.new(.64, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+                {Scale=1}):Play()
+            TweenService:Create(WinShadow, TweenInfo.new(.44, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+                {BackgroundTransparency=0.68}):Play()
         end)
     end)
 
@@ -426,11 +550,14 @@ function Library:CreateWindow(Cfg)
         end
         task.wait(.40) LoadBG:Destroy()
         local nw,nh=GetWinSize()
-        Win.Visible=true Win.BackgroundTransparency=1
-        Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+52)
-        WinScale.Scale=.78
-        TweenService:Create(Win,TweenInfo.new(.56,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=0,Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)}):Play()
-        TweenService:Create(WinScale,TweenInfo.new(.66,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        -- Position window and shadow for entry
+        Win.Visible=true Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+54) WinScale.Scale=.76
+        WinShadow.Visible=true WinShadow.BackgroundTransparency=1
+        TweenService:Create(Win,TweenInfo.new(.58,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
+            {Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)}):Play()
+        TweenService:Create(WinScale,TweenInfo.new(.68,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
+        TweenService:Create(WinShadow,TweenInfo.new(.52,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
+            {BackgroundTransparency=0.68}):Play()
     end)
 
     local WindowObj={}
