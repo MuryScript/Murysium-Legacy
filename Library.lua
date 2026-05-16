@@ -296,7 +296,7 @@ function Library:CreateWindow(Cfg)
 
     local TabListScroll=Instance.new("ScrollingFrame")
     TabListScroll.BackgroundTransparency=1 TabListScroll.BorderSizePixel=0
-    TabListScroll.Size=UDim2.new(1,0,1,-(HEADER_H+40)) TabListScroll.Position=UDim2.new(0,0,0,HEADER_H)
+    TabListScroll.Size=UDim2.new(1,0,1,-(HEADER_H+72)) TabListScroll.Position=UDim2.new(0,0,0,HEADER_H)
     TabListScroll.CanvasSize=UDim2.new(0,0,0,0) TabListScroll.ScrollBarThickness=0
     TabListScroll.ScrollingDirection=Enum.ScrollingDirection.Y
     TabListScroll.ZIndex=13 TabListScroll.Parent=Sidebar
@@ -313,13 +313,78 @@ function Library:CreateWindow(Cfg)
     end)
 
     local SideBottom=Instance.new("Frame") SideBottom.BackgroundTransparency=1
-    SideBottom.Size=UDim2.new(1,0,0,40) SideBottom.AnchorPoint=Vector2.new(0,1)
+    SideBottom.Size=UDim2.new(1,0,0,72) SideBottom.AnchorPoint=Vector2.new(0,1)
     SideBottom.Position=UDim2.new(0,0,1,0) SideBottom.ZIndex=13 SideBottom.Parent=Sidebar
     Pad(SideBottom,0,8,8,8)
 
+    -- ── Theme picker: a row of colour dots ──
+    local ThemeRow=Instance.new("Frame") ThemeRow.BackgroundTransparency=1
+    ThemeRow.BorderSizePixel=0 ThemeRow.Size=UDim2.new(1,0,0,28)
+    ThemeRow.Position=UDim2.new(0,0,0,0) ThemeRow.ZIndex=14 ThemeRow.Parent=SideBottom
+
+    local ThemeRowLayout=Instance.new("UIListLayout")
+    ThemeRowLayout.FillDirection=Enum.FillDirection.Horizontal
+    ThemeRowLayout.HorizontalAlignment=Enum.HorizontalAlignment.Center
+    ThemeRowLayout.VerticalAlignment=Enum.VerticalAlignment.Center
+    ThemeRowLayout.Padding=UDim.new(0,5) ThemeRowLayout.Parent=ThemeRow
+
+    local ThemeDotSize=14
+    local ThemeAccents={
+        Onyx    = Color3.fromRGB(0,   152, 255),
+        Phantom = Color3.fromRGB(162, 102, 255),
+        Arctic  = Color3.fromRGB(0,   112, 230),
+        Ember   = Color3.fromRGB(255, 138,  24),
+        Rose    = Color3.fromRGB(220,  56, 108),
+    }
+    local ThemeOrder={"Onyx","Phantom","Arctic","Ember","Rose"}
+    local ActiveDot=nil
+
+    for _,Name in ipairs(ThemeOrder) do
+        local Dot=Instance.new("TextButton") Dot.BackgroundColor3=ThemeAccents[Name]
+        Dot.BorderSizePixel=0 Dot.Size=UDim2.new(0,ThemeDotSize,0,ThemeDotSize)
+        Dot.Text="" Dot.ZIndex=15 Dot.Parent=ThemeRow
+        Corner(Dot,7)
+        local DotScale=Instance.new("UIScale") DotScale.Scale=1 DotScale.Parent=Dot
+        local DotRing=Stroke(Dot,Color3.fromRGB(255,255,255),1.5) DotRing.Transparency=1
+        -- mark current theme
+        if Name==(ThemeName or "Onyx") then
+            ActiveDot=Dot DotRing.Transparency=0 TwB(DotScale,{Scale=1.22},.30)
+        end
+        Dot.MouseButton1Down:Connect(function() TwL(DotScale,{Scale=.84},.07) end)
+        Dot.MouseButton1Up:Connect(function() TwB(DotScale,{Scale=ActiveDot==Dot and 1.22 or 1},.30) end)
+        Dot.MouseButton1Click:Connect(function()
+            if ActiveDot then
+                local OldRing=ActiveDot:FindFirstChildOfClass("UIStroke")
+                if OldRing then Tw(OldRing,{Transparency=1},.18) end
+                local OldSc=ActiveDot:FindFirstChildOfClass("UIScale")
+                if OldSc then TwB(OldSc,{Scale=1},.28) end
+            end
+            ActiveDot=Dot
+            DotRing.Transparency=1
+            Tw(DotRing,{Transparency=0},.18)
+            TwB(DotScale,{Scale=1.22},.36)
+            -- apply theme via WindowObj:SetTheme
+            T=Themes[Name] or Themes.Onyx
+            local Live={}
+            for _,N in ipairs(Nodes) do
+                if N.fn then N.fn() Live[#Live+1]=N
+                elseif N.o and N.o.Parent then
+                    local v=T[N.k] if v then Tw(N.o,{[N.p]=v},.26) end
+                    Live[#Live+1]=N
+                end
+            end
+            Nodes=Live
+        end)
+    end
+
+    local ThemeSep=Instance.new("Frame") ThemeSep.BackgroundColor3=T.Separator
+    ThemeSep.BorderSizePixel=0 ThemeSep.Size=UDim2.new(1,0,0,1)
+    ThemeSep.Position=UDim2.new(0,0,0,30) ThemeSep.ZIndex=14 ThemeSep.Parent=SideBottom
+    Reg(ThemeSep,"BackgroundColor3","Separator")
+
     local CloseBtn=Instance.new("TextButton") CloseBtn.BackgroundColor3=T.SectionBG
     CloseBtn.BorderSizePixel=0 CloseBtn.Size=UDim2.new(1,0,0,22)
-    CloseBtn.Position=UDim2.new(0,0,0,0) CloseBtn.Text=""
+    CloseBtn.Position=UDim2.new(0,0,0,34) CloseBtn.Text=""
     CloseBtn.ZIndex=14 CloseBtn.Parent=SideBottom
     Corner(CloseBtn,7)
     Reg(CloseBtn,"BackgroundColor3","SectionBG")
@@ -349,18 +414,6 @@ function Library:CreateWindow(Cfg)
     TabFadeOverlay.Size=UDim2.new(1,0,1,0) TabFadeOverlay.ZIndex=50
     TabFadeOverlay.Parent=ContentArea
     Reg(TabFadeOverlay,"BackgroundColor3","BG")
-
-    -- Shadow frame sitting behind the main window
-    local WinShadow = Instance.new("Frame")
-    WinShadow.BackgroundColor3   = Color3.fromRGB(0,0,0)
-    WinShadow.BackgroundTransparency = 0.68
-    WinShadow.BorderSizePixel    = 0
-    WinShadow.Size               = UDim2.new(0, winW+20, 0, winH+24)
-    WinShadow.Position           = UDim2.new(0.5, -(winW+20)/2, 0.5, -(winH+24)/2+10)
-    WinShadow.ZIndex             = 9
-    WinShadow.Visible            = false
-    WinShadow.Parent             = Gui
-    Corner(WinShadow, 18)
 
     -- Overlay that slides in during close to mask children cleanly
     local CloseOverlay = Instance.new("Frame")
@@ -393,61 +446,6 @@ function Library:CreateWindow(Cfg)
     Reg(ShowBtn, "BackgroundColor3", "Sidebar")
     local ShowBtnScale = Instance.new("UIScale") ShowBtnScale.Scale=1 ShowBtnScale.Parent=ShowBtn
 
-    -- Soft glow ring behind the button (sits at ZIndex 98, behind the button)
-    local ShowBtnGlow = Instance.new("Frame")
-    ShowBtnGlow.BackgroundColor3        = T.Accent
-    ShowBtnGlow.BackgroundTransparency  = 1
-    ShowBtnGlow.BorderSizePixel         = 0
-    ShowBtnGlow.AnchorPoint             = Vector2.new(0.5, 0.5)
-    ShowBtnGlow.Size                    = UDim2.new(1, 22, 1, 22)
-    ShowBtnGlow.Position                = UDim2.new(0.5, 0, 0.5, 0)
-    ShowBtnGlow.ZIndex                  = 98
-    ShowBtnGlow.Parent                  = ShowBtn
-    Corner(ShowBtnGlow, 20)
-    Reg(ShowBtnGlow, "BackgroundColor3", "Accent")
-
-    -- Small label tag beneath the button ("MENU")
-    local ShowBtnTag = Instance.new("TextLabel")
-    ShowBtnTag.BackgroundColor3        = T.Sidebar
-    ShowBtnTag.BackgroundTransparency  = 0
-    ShowBtnTag.BorderSizePixel         = 0
-    ShowBtnTag.AnchorPoint             = Vector2.new(0.5, 0)
-    ShowBtnTag.Size                    = UDim2.new(0, 40, 0, 14)
-    ShowBtnTag.Position                = UDim2.new(0.5, 0, 0, 56)
-    ShowBtnTag.Text                    = "MENU"
-    ShowBtnTag.TextColor3              = T.SubText
-    ShowBtnTag.Font                    = Enum.Font.GothamBold
-    ShowBtnTag.TextSize                = 7
-    ShowBtnTag.TextTransparency        = 1
-    ShowBtnTag.ZIndex                  = 100
-    ShowBtnTag.Visible                 = false
-    ShowBtnTag.Parent                  = Gui
-    Corner(ShowBtnTag, 4)
-    Stroke(ShowBtnTag, T.Separator, 0.8)
-    Reg(ShowBtnTag, "BackgroundColor3", "Sidebar")
-    Reg(ShowBtnTag, "TextColor3",       "SubText")
-
-    -- Glow pulse controller
-    local GlowActive = false
-    local function StartGlow()
-        if GlowActive then return end
-        GlowActive = true
-        local function Pulse()
-            if not GlowActive or not ShowBtn.Visible then GlowActive=false ShowBtnGlow.BackgroundTransparency=1 return end
-            TweenService:Create(ShowBtnGlow, TweenInfo.new(1.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency=0.78}):Play()
-            task.delay(1.1, function()
-                if not GlowActive or not ShowBtn.Visible then GlowActive=false ShowBtnGlow.BackgroundTransparency=1 return end
-                TweenService:Create(ShowBtnGlow, TweenInfo.new(1.1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {BackgroundTransparency=0.50}):Play()
-                task.delay(1.1, Pulse)
-            end)
-        end
-        Pulse()
-    end
-    local function StopGlow()
-        GlowActive = false
-        TweenService:Create(ShowBtnGlow, TweenInfo.new(.18, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency=1}):Play()
-    end
-
     ShowBtn.MouseButton1Down:Connect(function()
         TweenService:Create(ShowBtnScale,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{Scale=.84}):Play()
         TweenService:Create(ShowBtn,TweenInfo.new(.10,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),{BackgroundTransparency=.3}):Play()
@@ -478,61 +476,41 @@ function Library:CreateWindow(Cfg)
 
     CloseBtn.MouseButton1Click:Connect(function()
         local wp = Win.Position
-        -- Fade in overlay FIRST so children disappear cleanly (no ghost effect)
         Tw(CloseOverlay, {BackgroundTransparency=0}, .18, Enum.EasingStyle.Quint)
-        -- Scale down (slightly up-drift for a natural "dismissed" feel)
         TweenService:Create(WinScale, TweenInfo.new(.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.80}):Play()
         TweenService:Create(Win, TweenInfo.new(.38, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
             {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset-22)}):Play()
-        TweenService:Create(WinShadow, TweenInfo.new(.28, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
-            {BackgroundTransparency=1}):Play()
         task.delay(.42, function()
-            -- Reset window state silently
             Win.Visible       = false
-            WinShadow.Visible = false
             CloseOverlay.BackgroundTransparency = 1
             Win.Position      = wp
             WinScale.Scale    = 1
-            -- ── Reveal ShowBtn with proper fade-in ──
             ShowBtn.Visible              = true
-            ShowBtn.ImageTransparency    = 1   -- start invisible, tween in
+            ShowBtn.ImageTransparency    = 1
             ShowBtn.BackgroundTransparency = 1
             ShowBtnScale.Scale           = 0.46
-            ShowBtnTag.Visible           = true
-            ShowBtnTag.TextTransparency  = 1
             TweenService:Create(ShowBtn,      TweenInfo.new(.36, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
                 {ImageTransparency=0, BackgroundTransparency=0}):Play()
             TweenService:Create(ShowBtnScale, TweenInfo.new(.60, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
                 {Scale=1}):Play()
-            TweenService:Create(ShowBtnTag,   TweenInfo.new(.40, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
-                {TextTransparency=0}):Play()
-            task.delay(.30, StartGlow)
         end)
     end)
 
     ShowBtn.MouseButton1Click:Connect(function()
-        StopGlow()
         TweenService:Create(ShowBtnScale, TweenInfo.new(.14, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale=.70}):Play()
         TweenService:Create(ShowBtn,      TweenInfo.new(.20, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
             {ImageTransparency=1, BackgroundTransparency=1}):Play()
-        TweenService:Create(ShowBtnTag,   TweenInfo.new(.14, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
-            {TextTransparency=1}):Play()
         task.delay(.22, function()
             ShowBtn.Visible    = false
-            ShowBtnTag.Visible = false
             ShowBtnScale.Scale = 1
             local wp = Win.Position
             Win.Visible        = true
-            WinShadow.Visible  = true
-            WinShadow.BackgroundTransparency = 1
             Win.Position       = UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset+46)
             WinScale.Scale     = .78
             TweenService:Create(Win,       TweenInfo.new(.54, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
                 {Position=UDim2.new(wp.X.Scale, wp.X.Offset, wp.Y.Scale, wp.Y.Offset)}):Play()
             TweenService:Create(WinScale,  TweenInfo.new(.64, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
                 {Scale=1}):Play()
-            TweenService:Create(WinShadow, TweenInfo.new(.44, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
-                {BackgroundTransparency=0.68}):Play()
         end)
     end)
 
@@ -550,14 +528,10 @@ function Library:CreateWindow(Cfg)
         end
         task.wait(.40) LoadBG:Destroy()
         local nw,nh=GetWinSize()
-        -- Position window and shadow for entry
         Win.Visible=true Win.Position=UDim2.new(0.5,-nw/2,0.5,-nh/2+54) WinScale.Scale=.76
-        WinShadow.Visible=true WinShadow.BackgroundTransparency=1
         TweenService:Create(Win,TweenInfo.new(.58,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
             {Position=UDim2.new(0.5,-nw/2,0.5,-nh/2)}):Play()
         TweenService:Create(WinScale,TweenInfo.new(.68,Enum.EasingStyle.Back,Enum.EasingDirection.Out),{Scale=1}):Play()
-        TweenService:Create(WinShadow,TweenInfo.new(.52,Enum.EasingStyle.Quint,Enum.EasingDirection.Out),
-            {BackgroundTransparency=0.68}):Play()
     end)
 
     local WindowObj={}
