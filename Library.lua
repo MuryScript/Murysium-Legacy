@@ -631,7 +631,7 @@ function Library:CreateWindow(Config)
 	end
 
 	local Gui = Instance.new("ScreenGui")
-	Gui.Name = "PremiumUI"
+	Gui.Name = "MurysiumLegacy"
 	Gui.ResetOnSpawn = false
 	Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	Gui.IgnoreGuiInset = true
