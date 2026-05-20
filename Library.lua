@@ -616,6 +616,7 @@ function Library:CreateWindow(Config)
 	local LoadSub       = Config.LoadingSubtitle or "Please wait…"
 	local LoadImage     = Config.LoadingImage
 	local ThemeName     = Config.Theme           or "Onyx"
+	local ShowBtnImage  = Config.ShowBtnImage
 
 	T = Themes[ThemeName] or Themes.Onyx
 
@@ -913,11 +914,16 @@ function Library:CreateWindow(Config)
 	Corner(CloseOverlay, 14)
 	Register(CloseOverlay, "BackgroundColor3", "BG")
 
-	local ShowBtn = Instance.new("TextButton")
-	ShowBtn.Text                   = "☰"
-	ShowBtn.Font                   = Enum.Font.GothamBold
-	ShowBtn.TextSize               = 20
-	ShowBtn.TextColor3             = T.Accent
+	local ShowBtnAssetId
+	do
+		local Resolved, Ok = ResolveIcon(ShowBtnImage)
+		ShowBtnAssetId = Ok and Resolved or "rbxassetid://85798284091961"
+	end
+
+	local ShowBtn = Instance.new("ImageButton")
+	ShowBtn.Image                  = ShowBtnAssetId
+	ShowBtn.ScaleType              = Enum.ScaleType.Fit
+	ShowBtn.ImageColor3            = T.Accent
 	ShowBtn.BackgroundColor3       = T.Sidebar
 	ShowBtn.BorderSizePixel        = 0
 	ShowBtn.Size                   = UDim2.new(0, 48, 0, 48)
@@ -928,7 +934,7 @@ function Library:CreateWindow(Config)
 	ShowBtn.Parent                 = Gui
 	Corner(ShowBtn, 14)
 	Register(ShowBtn, "BackgroundColor3", "Sidebar")
-	Register(ShowBtn, "TextColor3",       "Accent")
+	Register(ShowBtn, "ImageColor3",      "Accent")
 
 	local ShowBtnStroke = Stroke(ShowBtn, T.Accent, 1.8)
 	Register(ShowBtnStroke, "Color", "Accent")
