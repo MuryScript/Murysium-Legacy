@@ -5,21 +5,13 @@ local TweenService     = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local RunService       = game:GetService("RunService")
 
--- Number-first icon resolution.
--- Passing a plain number (asset ID) is the intended usage.
--- Strings are accepted as a safety fallback so existing scripts don't break,
--- but any unrecognised value resolves to ("", false) rather than forwarding
--- raw garbage to an ImageLabel.
 local function ResolveIcon(Id)
 	if type(Id) == "number" then
 		return "rbxassetid://" .. tostring(Id), true
 	elseif type(Id) == "string" then
-		-- fallback 1: bare numeric string  →  "12345"
 		if Id:match("^%d+$") then return "rbxassetid://" .. Id, true end
-		-- fallback 2: already a full asset URL
 		if Id:match("^rbxassetid://") then return Id, true end
 	end
-	-- unrecognised: return empty string so callers get a safe no-op
 	return "", false
 end
 
@@ -623,8 +615,6 @@ function Library:CreateWindow(Config)
 	local LoadTitle     = Config.LoadingTitle    or "Loading"
 	local LoadSub       = Config.LoadingSubtitle or "Please wait…"
 	local LoadImage     = Config.LoadingImage
-	-- ButtonId kept in Config for backward compatibility but no longer used
-	-- internally since the toggle is now a native TextButton.
 	local ThemeName     = Config.Theme           or "Onyx"
 
 	T = Themes[ThemeName] or Themes.Onyx
@@ -654,8 +644,6 @@ function Library:CreateWindow(Config)
 		local H  = math.clamp(math.floor(Sh * .62), 290, 432)
 		return W, H
 	end
-
-	-- ── Loading screen ────────────────────────────────────────────────────────
 
 	local LoadBG = Instance.new("Frame")
 	LoadBG.BackgroundColor3 = Color3.fromRGB(10, 10, 16)
@@ -750,8 +738,6 @@ function Library:CreateWindow(Config)
 		BarFill.Size = UDim2.new(tick() % 2 / 2, 0, 1, 0)
 	end)
 
-	-- ── Window frame ──────────────────────────────────────────────────────────
-
 	local WinW, WinH   = GetWindowSize()
 	local SidebarWidth = 88
 	local HeaderHeight = 40
@@ -775,8 +761,6 @@ function Library:CreateWindow(Config)
 
 	local WinStroke = Stroke(Win, T.Separator, 1)
 	Register(WinStroke, "Color", "Separator")
-
-	-- ── Sidebar ───────────────────────────────────────────────────────────────
 
 	local Sidebar = Instance.new("Frame")
 	Sidebar.Name             = "Sidebar"
@@ -873,8 +857,6 @@ function Library:CreateWindow(Config)
 	Corner(SideAccentBar, 1)
 	Register(SideAccentBar, "BackgroundColor3", "Accent")
 
-	-- Tab list now fills the full sidebar height below the header (no close
-	-- button row at the bottom any more).
 	local TabListScroll = Instance.new("ScrollingFrame")
 	TabListScroll.BackgroundTransparency = 1
 	TabListScroll.BorderSizePixel        = 0
@@ -896,8 +878,6 @@ function Library:CreateWindow(Config)
 	TabListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 		TabListScroll.CanvasSize = UDim2.new(0, 0, 0, TabListLayout.AbsoluteContentSize.Y + 12)
 	end)
-
-	-- ── Main content area ─────────────────────────────────────────────────────
 
 	local MainArea = Instance.new("Frame")
 	MainArea.BackgroundTransparency = 1
@@ -933,11 +913,6 @@ function Library:CreateWindow(Config)
 	Corner(CloseOverlay, 14)
 	Register(CloseOverlay, "BackgroundColor3", "BG")
 
-	-- ── Toggle button (native TextButton) ─────────────────────────────────────
-	-- Always visible after the loading screen dismisses.
-	-- Clicking it toggles window visibility with the same animations that the
-	-- old separate close + show buttons used.
-
 	local ShowBtn = Instance.new("TextButton")
 	ShowBtn.Text                   = "☰"
 	ShowBtn.Font                   = Enum.Font.GothamBold
@@ -949,7 +924,7 @@ function Library:CreateWindow(Config)
 	ShowBtn.AnchorPoint            = Vector2.new(0.5, 0)
 	ShowBtn.Position               = UDim2.new(0.5, 0, 0, 14)
 	ShowBtn.ZIndex                 = 100
-	ShowBtn.Visible                = false   -- revealed after load
+	ShowBtn.Visible                = false
 	ShowBtn.Parent                 = Gui
 	Corner(ShowBtn, 14)
 	Register(ShowBtn, "BackgroundColor3", "Sidebar")
@@ -962,7 +937,6 @@ function Library:CreateWindow(Config)
 	ShowBtnScale.Scale  = 1
 	ShowBtnScale.Parent = ShowBtn
 
-	-- Track whether the window is currently shown so the button toggles correctly.
 	local WinShown = false
 
 	local function DoShowWindow()
@@ -1009,8 +983,6 @@ function Library:CreateWindow(Config)
 		end
 	end)
 
-	-- ── Drag (sidebar drag-to-move) ───────────────────────────────────────────
-
 	local IsDragging   = false
 	local DragStart    = nil
 	local StartWinPos  = nil
@@ -1034,8 +1006,6 @@ function Library:CreateWindow(Config)
 		end
 	end)
 
-	-- ── Loading → window transition ───────────────────────────────────────────
-
 	task.spawn(function()
 		task.wait(2.4)
 		BarConn:Disconnect()
@@ -1051,10 +1021,8 @@ function Library:CreateWindow(Config)
 		task.wait(.48)
 		LoadBG:Destroy()
 
-		-- Reveal the toggle button.
 		ShowBtn.Visible = true
 
-		-- Animate the window into view (starts shown; user can hide via toggle).
 		WinShown = true
 		local Nw, Nh = GetWindowSize()
 		Win.Visible    = true
@@ -1065,8 +1033,6 @@ function Library:CreateWindow(Config)
 		TweenService:Create(WinScale, TweenInfo.new(.88, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
 			{Scale = 1}):Play()
 	end)
-
-	-- ── WindowObj API ─────────────────────────────────────────────────────────
 
 	local WindowObj = {}
 	local Tabs      = {}
