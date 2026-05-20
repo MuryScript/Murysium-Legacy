@@ -5,14 +5,22 @@ local TweenService     = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local RunService       = game:GetService("RunService")
 
+-- Number-first icon resolution.
+-- Passing a plain number (asset ID) is the intended usage.
+-- Strings are accepted as a safety fallback so existing scripts don't break,
+-- but any unrecognised value resolves to ("", false) rather than forwarding
+-- raw garbage to an ImageLabel.
 local function ResolveIcon(Id)
 	if type(Id) == "number" then
 		return "rbxassetid://" .. tostring(Id), true
 	elseif type(Id) == "string" then
+		-- fallback 1: bare numeric string  →  "12345"
 		if Id:match("^%d+$") then return "rbxassetid://" .. Id, true end
-		if Id:match("rbxassetid://") then return Id, true end
+		-- fallback 2: already a full asset URL
+		if Id:match("^rbxassetid://") then return Id, true end
 	end
-	return Id, false
+	-- unrecognised: return empty string so callers get a safe no-op
+	return "", false
 end
 
 local Themes = {
@@ -615,7 +623,8 @@ function Library:CreateWindow(Config)
 	local LoadTitle     = Config.LoadingTitle    or "Loading"
 	local LoadSub       = Config.LoadingSubtitle or "Please wait…"
 	local LoadImage     = Config.LoadingImage
-	local ButtonId      = Config.ButtonId
+	-- ButtonId kept in Config for backward compatibility but no longer used
+	-- internally since the toggle is now a native TextButton.
 	local ThemeName     = Config.Theme           or "Onyx"
 
 	T = Themes[ThemeName] or Themes.Onyx
@@ -645,6 +654,8 @@ function Library:CreateWindow(Config)
 		local H  = math.clamp(math.floor(Sh * .62), 290, 432)
 		return W, H
 	end
+
+	-- ── Loading screen ────────────────────────────────────────────────────────
 
 	local LoadBG = Instance.new("Frame")
 	LoadBG.BackgroundColor3 = Color3.fromRGB(10, 10, 16)
@@ -739,7 +750,9 @@ function Library:CreateWindow(Config)
 		BarFill.Size = UDim2.new(tick() % 2 / 2, 0, 1, 0)
 	end)
 
-	local WinW, WinH  = GetWindowSize()
+	-- ── Window frame ──────────────────────────────────────────────────────────
+
+	local WinW, WinH   = GetWindowSize()
 	local SidebarWidth = 88
 	local HeaderHeight = 40
 
@@ -762,6 +775,8 @@ function Library:CreateWindow(Config)
 
 	local WinStroke = Stroke(Win, T.Separator, 1)
 	Register(WinStroke, "Color", "Separator")
+
+	-- ── Sidebar ───────────────────────────────────────────────────────────────
 
 	local Sidebar = Instance.new("Frame")
 	Sidebar.Name             = "Sidebar"
@@ -858,10 +873,12 @@ function Library:CreateWindow(Config)
 	Corner(SideAccentBar, 1)
 	Register(SideAccentBar, "BackgroundColor3", "Accent")
 
+	-- Tab list now fills the full sidebar height below the header (no close
+	-- button row at the bottom any more).
 	local TabListScroll = Instance.new("ScrollingFrame")
 	TabListScroll.BackgroundTransparency = 1
 	TabListScroll.BorderSizePixel        = 0
-	TabListScroll.Size                   = UDim2.new(1, 0, 1, -(HeaderHeight + 48))
+	TabListScroll.Size                   = UDim2.new(1, 0, 1, -HeaderHeight)
 	TabListScroll.Position               = UDim2.new(0, 0, 0, HeaderHeight)
 	TabListScroll.CanvasSize             = UDim2.new(0, 0, 0, 0)
 	TabListScroll.ScrollBarThickness     = 0
@@ -880,57 +897,7 @@ function Library:CreateWindow(Config)
 		TabListScroll.CanvasSize = UDim2.new(0, 0, 0, TabListLayout.AbsoluteContentSize.Y + 12)
 	end)
 
-	local SideBottom = Instance.new("Frame")
-	SideBottom.BackgroundTransparency = 1
-	SideBottom.Size                   = UDim2.new(1, 0, 0, 48)
-	SideBottom.AnchorPoint            = Vector2.new(0, 1)
-	SideBottom.Position               = UDim2.new(0, 0, 1, 0)
-	SideBottom.ZIndex                 = 13
-	SideBottom.Parent                 = Sidebar
-	ApplyPadding(SideBottom, 0, 8, 8, 8)
-
-	local BottomSep = Instance.new("Frame")
-	BottomSep.BackgroundColor3 = T.Separator
-	BottomSep.BorderSizePixel  = 0
-	BottomSep.Size             = UDim2.new(1, 0, 0, 1)
-	BottomSep.Position         = UDim2.new(0, 0, 0, 0)
-	BottomSep.ZIndex           = 14
-	BottomSep.Parent           = SideBottom
-	Register(BottomSep, "BackgroundColor3", "Separator")
-
-	local CloseBtn = Instance.new("TextButton")
-	CloseBtn.BackgroundColor3 = T.SectionBG
-	CloseBtn.BorderSizePixel  = 0
-	CloseBtn.Size             = UDim2.new(1, 0, 0, 30)
-	CloseBtn.Position         = UDim2.new(0, 0, 0, 6)
-	CloseBtn.Text             = ""
-	CloseBtn.ZIndex           = 14
-	CloseBtn.Parent           = SideBottom
-	Corner(CloseBtn, 8)
-	Register(CloseBtn, "BackgroundColor3", "SectionBG")
-
-	local CloseBtnStroke = Stroke(CloseBtn, T.Separator, 1)
-	Register(CloseBtnStroke, "Color", "Separator")
-
-	local CloseBtnLbl = Instance.new("TextLabel")
-	CloseBtnLbl.BackgroundTransparency = 1
-	CloseBtnLbl.Size                   = UDim2.new(1, 0, 1, 0)
-	CloseBtnLbl.Text                   = "✕  Close"
-	CloseBtnLbl.TextColor3             = T.SubText
-	CloseBtnLbl.Font                   = Enum.Font.GothamBold
-	CloseBtnLbl.TextSize               = 10
-	CloseBtnLbl.ZIndex                 = 15
-	CloseBtnLbl.Parent                 = CloseBtn
-	Register(CloseBtnLbl, "TextColor3", "SubText")
-
-	local CloseBtnScale = Instance.new("UIScale")
-	CloseBtnScale.Scale  = 1
-	CloseBtnScale.Parent = CloseBtn
-
-	CloseBtn.MouseEnter:Connect(function()        Tween(CloseBtnLbl, {TextColor3 = T.Text}, .18) end)
-	CloseBtn.MouseLeave:Connect(function()        Tween(CloseBtnLbl, {TextColor3 = T.SubText}, .24) end)
-	CloseBtn.MouseButton1Down:Connect(function()  TweenLinear(CloseBtnScale, {Scale = .93}, .08) end)
-	CloseBtn.MouseButton1Up:Connect(function()    TweenBack(CloseBtnScale, {Scale = 1}, .40) end)
+	-- ── Main content area ─────────────────────────────────────────────────────
 
 	local MainArea = Instance.new("Frame")
 	MainArea.BackgroundTransparency = 1
@@ -966,36 +933,83 @@ function Library:CreateWindow(Config)
 	Corner(CloseOverlay, 14)
 	Register(CloseOverlay, "BackgroundColor3", "BG")
 
-	local ImgId  = ButtonId and tostring(ButtonId) or "85798284091961"
-	local ShowBtn = Instance.new("ImageButton")
-	ShowBtn.Image                  = "rbxassetid://" .. ImgId
-	ShowBtn.ImageTransparency      = 1
+	-- ── Toggle button (native TextButton) ─────────────────────────────────────
+	-- Always visible after the loading screen dismisses.
+	-- Clicking it toggles window visibility with the same animations that the
+	-- old separate close + show buttons used.
+
+	local ShowBtn = Instance.new("TextButton")
+	ShowBtn.Text                   = "☰"
+	ShowBtn.Font                   = Enum.Font.GothamBold
+	ShowBtn.TextSize               = 20
+	ShowBtn.TextColor3             = T.Accent
 	ShowBtn.BackgroundColor3       = T.Sidebar
-	ShowBtn.BackgroundTransparency = 1
+	ShowBtn.BorderSizePixel        = 0
 	ShowBtn.Size                   = UDim2.new(0, 48, 0, 48)
 	ShowBtn.AnchorPoint            = Vector2.new(0.5, 0)
 	ShowBtn.Position               = UDim2.new(0.5, 0, 0, 14)
 	ShowBtn.ZIndex                 = 100
-	ShowBtn.Visible                = false
+	ShowBtn.Visible                = false   -- revealed after load
 	ShowBtn.Parent                 = Gui
 	Corner(ShowBtn, 14)
+	Register(ShowBtn, "BackgroundColor3", "Sidebar")
+	Register(ShowBtn, "TextColor3",       "Accent")
 
 	local ShowBtnStroke = Stroke(ShowBtn, T.Accent, 1.8)
 	Register(ShowBtnStroke, "Color", "Accent")
-	Register(ShowBtn, "BackgroundColor3", "Sidebar")
 
 	local ShowBtnScale = Instance.new("UIScale")
 	ShowBtnScale.Scale  = 1
 	ShowBtnScale.Parent = ShowBtn
 
+	-- Track whether the window is currently shown so the button toggles correctly.
+	local WinShown = false
+
+	local function DoShowWindow()
+		WinShown = true
+		local Wp = Win.Position
+		Win.Visible    = true
+		Win.Position   = UDim2.new(Wp.X.Scale, Wp.X.Offset, Wp.Y.Scale, Wp.Y.Offset + 32)
+		WinScale.Scale = .82
+		TweenService:Create(Win, TweenInfo.new(.64, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+			{Position = UDim2.new(Wp.X.Scale, Wp.X.Offset, Wp.Y.Scale, Wp.Y.Offset)}):Play()
+		TweenService:Create(WinScale, TweenInfo.new(.80, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+			{Scale = 1}):Play()
+	end
+
+	local function DoHideWindow()
+		WinShown = false
+		local Wp = Win.Position
+		Tween(CloseOverlay, {BackgroundTransparency = 0}, .22, Enum.EasingStyle.Quint)
+		TweenService:Create(WinScale, TweenInfo.new(.50, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+			{Scale = .86}):Play()
+		TweenService:Create(Win, TweenInfo.new(.50, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
+			{Position = UDim2.new(Wp.X.Scale, Wp.X.Offset, Wp.Y.Scale, Wp.Y.Offset - 14)}):Play()
+		task.delay(.56, function()
+			Win.Visible                         = false
+			CloseOverlay.BackgroundTransparency = 1
+			Win.Position                        = Wp
+			WinScale.Scale                      = 1
+		end)
+	end
+
 	ShowBtn.MouseButton1Down:Connect(function()
-		TweenService:Create(ShowBtnScale, TweenInfo.new(.10, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Scale = .84}):Play()
-		TweenService:Create(ShowBtn, TweenInfo.new(.10, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = .3}):Play()
+		TweenService:Create(ShowBtnScale, TweenInfo.new(.10, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
+			{Scale = .84}):Play()
 	end)
 	ShowBtn.MouseButton1Up:Connect(function()
-		TweenService:Create(ShowBtnScale, TweenInfo.new(.48, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
-		TweenService:Create(ShowBtn, TweenInfo.new(.26, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0}):Play()
+		TweenService:Create(ShowBtnScale, TweenInfo.new(.48, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+			{Scale = 1}):Play()
 	end)
+	ShowBtn.MouseButton1Click:Connect(function()
+		if WinShown then
+			DoHideWindow()
+		else
+			DoShowWindow()
+		end
+	end)
+
+	-- ── Drag (sidebar drag-to-move) ───────────────────────────────────────────
 
 	local IsDragging   = false
 	local DragStart    = nil
@@ -1020,45 +1034,7 @@ function Library:CreateWindow(Config)
 		end
 	end)
 
-	CloseBtn.MouseButton1Click:Connect(function()
-		local Wp = Win.Position
-		Tween(CloseOverlay, {BackgroundTransparency = 0}, .22, Enum.EasingStyle.Quint)
-		TweenService:Create(WinScale, TweenInfo.new(.50, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale = .86}):Play()
-		TweenService:Create(Win, TweenInfo.new(.50, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
-			{Position = UDim2.new(Wp.X.Scale, Wp.X.Offset, Wp.Y.Scale, Wp.Y.Offset - 14)}):Play()
-		task.delay(.56, function()
-			Win.Visible                        = false
-			CloseOverlay.BackgroundTransparency = 1
-			Win.Position                        = Wp
-			WinScale.Scale                      = 1
-			ShowBtn.Visible                     = true
-			ShowBtn.ImageTransparency           = 1
-			ShowBtn.BackgroundTransparency      = 1
-			ShowBtnScale.Scale                  = 0.50
-			TweenService:Create(ShowBtn, TweenInfo.new(.44, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
-				{ImageTransparency = 0, BackgroundTransparency = 0}):Play()
-			TweenService:Create(ShowBtnScale, TweenInfo.new(.74, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
-				{Scale = 1}):Play()
-		end)
-	end)
-
-	ShowBtn.MouseButton1Click:Connect(function()
-		TweenService:Create(ShowBtnScale, TweenInfo.new(.18, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {Scale = .72}):Play()
-		TweenService:Create(ShowBtn, TweenInfo.new(.26, Enum.EasingStyle.Quint, Enum.EasingDirection.In),
-			{ImageTransparency = 1, BackgroundTransparency = 1}):Play()
-		task.delay(.28, function()
-			ShowBtn.Visible    = false
-			ShowBtnScale.Scale = 1
-			local Wp           = Win.Position
-			Win.Visible        = true
-			Win.Position       = UDim2.new(Wp.X.Scale, Wp.X.Offset, Wp.Y.Scale, Wp.Y.Offset + 32)
-			WinScale.Scale     = .82
-			TweenService:Create(Win, TweenInfo.new(.64, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
-				{Position = UDim2.new(Wp.X.Scale, Wp.X.Offset, Wp.Y.Scale, Wp.Y.Offset)}):Play()
-			TweenService:Create(WinScale, TweenInfo.new(.80, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
-				{Scale = 1}):Play()
-		end)
-	end)
+	-- ── Loading → window transition ───────────────────────────────────────────
 
 	task.spawn(function()
 		task.wait(2.4)
@@ -1067,21 +1043,30 @@ function Library:CreateWindow(Config)
 		for _, Descendant in ipairs(LoadBG:GetDescendants()) do
 			if Descendant:IsA("GuiObject") then
 				local Props = {BackgroundTransparency = 1}
-				if Descendant:IsA("TextLabel") then Props.TextTransparency = 1 end
+				if Descendant:IsA("TextLabel")  then Props.TextTransparency  = 1 end
 				if Descendant:IsA("ImageLabel") then Props.ImageTransparency = 1 end
 				Tween(Descendant, Props, .32, Enum.EasingStyle.Quint)
 			end
 		end
 		task.wait(.48)
 		LoadBG:Destroy()
+
+		-- Reveal the toggle button.
+		ShowBtn.Visible = true
+
+		-- Animate the window into view (starts shown; user can hide via toggle).
+		WinShown = true
 		local Nw, Nh = GetWindowSize()
-		Win.Visible  = true
-		Win.Position = UDim2.new(0.5, -Nw / 2, 0.5, -Nh / 2 + 32)
+		Win.Visible    = true
+		Win.Position   = UDim2.new(0.5, -Nw / 2, 0.5, -Nh / 2 + 32)
 		WinScale.Scale = .82
 		TweenService:Create(Win, TweenInfo.new(.72, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
 			{Position = UDim2.new(0.5, -Nw / 2, 0.5, -Nh / 2)}):Play()
-		TweenService:Create(WinScale, TweenInfo.new(.88, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {Scale = 1}):Play()
+		TweenService:Create(WinScale, TweenInfo.new(.88, Enum.EasingStyle.Back, Enum.EasingDirection.Out),
+			{Scale = 1}):Play()
 	end)
+
+	-- ── WindowObj API ─────────────────────────────────────────────────────────
 
 	local WindowObj = {}
 	local Tabs      = {}
@@ -1177,12 +1162,12 @@ function Library:CreateWindow(Config)
 		TabLbl.Parent                 = TabBtn
 
 		local TabFrame = Instance.new("Frame")
-		TabFrame.Name                = "Tab_" .. Idx
+		TabFrame.Name                   = "Tab_" .. Idx
 		TabFrame.BackgroundTransparency = 1
-		TabFrame.Size                = UDim2.new(1, 0, 1, 0)
-		TabFrame.Visible             = false
-		TabFrame.ZIndex              = 11
-		TabFrame.Parent              = ContentArea
+		TabFrame.Size                   = UDim2.new(1, 0, 1, 0)
+		TabFrame.Visible                = false
+		TabFrame.ZIndex                 = 11
+		TabFrame.Parent                 = ContentArea
 
 		local ColPad = 8
 		local ColGap = 6
@@ -1268,7 +1253,7 @@ function Library:CreateWindow(Config)
 		end)
 		if Idx == 1 then ActivateThis() end
 
-		local TabObj    = {}
+		local TabObj       = {}
 		local SectionCount = 0
 
 		function TabObj:CreateSection(SectionConfig)
@@ -1473,7 +1458,7 @@ function Library:CreateWindow(Config)
 					if Busy then return end
 					Busy  = true
 					State = Value
-					local Target    = Value and UDim2.new(0, 14, .5, 0) or UDim2.new(0, 2, .5, 0)
+					local Target     = Value and UDim2.new(0, 14, .5, 0) or UDim2.new(0, 2, .5, 0)
 					local TrackColor = Value and T.ToggleOn or T.ToggleOff
 					if Animated then
 						TweenService:Create(Track, TweenInfo.new(.26, Enum.EasingStyle.Quint, Enum.EasingDirection.Out),
@@ -1580,9 +1565,9 @@ function Library:CreateWindow(Config)
 					return table.concat(Parts, ", ")
 				end
 
-				local IsOpen       = false
+				local IsOpen         = false
 				local CurrentOptions = {table.unpack(Options)}
-				local Row          = MakeRow(32)
+				local Row            = MakeRow(32)
 
 				local TitleLbl = Instance.new("TextLabel")
 				TitleLbl.BackgroundTransparency = 1
@@ -1783,8 +1768,8 @@ function Library:CreateWindow(Config)
 						end)
 					end
 
-					local ItemH    = #NewOptions * 30 + (#NewOptions > 1 and (#NewOptions - 1) or 0)
-					PanelHeight    = math.min(ItemH, 150)
+					local ItemH = #NewOptions * 30 + (#NewOptions > 1 and (#NewOptions - 1) or 0)
+					PanelHeight = math.min(ItemH, 150)
 					return PanelHeight
 				end
 
@@ -1812,16 +1797,16 @@ function Library:CreateWindow(Config)
 					end
 				end)
 
-				local Obj    = {}
-				Obj.Name     = {Set = function(_, N) TitleLbl.Text = N end}
-				Obj.Options  = {Set = function(_, NewOpts)
+				local Obj   = {}
+				Obj.Name    = {Set = function(_, N) TitleLbl.Text = N end}
+				Obj.Options = {Set = function(_, NewOpts)
 					CurrentOptions = NewOpts
 					SelectedMap    = {}
 					if not Multi and #NewOpts > 0 then SelectedMap[NewOpts[1]] = true end
 					RebuildOptions(NewOpts)
 					SelectedLbl.Text = GetSelectedText()
 				end}
-				Obj.Value    = {Set = function(_, V)
+				Obj.Value   = {Set = function(_, V)
 					SelectedMap = {}
 					if type(V) == "table" then
 						for _, S in ipairs(V) do SelectedMap[S] = true end
@@ -1888,7 +1873,7 @@ function Library:CreateWindow(Config)
 				Corner(TrackBG, 2)
 				Register(TrackBG, "BackgroundColor3", "SliderTrack")
 
-				local InitPct  = (Current - Min) / math.max(Max - Min, .0001)
+				local InitPct = (Current - Min) / math.max(Max - Min, .0001)
 
 				local TrackFill = Instance.new("Frame")
 				TrackFill.BackgroundColor3 = T.SliderFill
@@ -1938,14 +1923,14 @@ function Library:CreateWindow(Config)
 				end
 
 				local function ApplyValue(Value, Animated)
-					Current    = Value
-					local Pct  = (Value - Min) / math.max(Max - Min, .0001)
+					Current   = Value
+					local Pct = (Value - Min) / math.max(Max - Min, .0001)
 					if Animated then
 						Tween(TrackFill, {Size = UDim2.new(Pct, 0, 1, 0)}, .14)
 						Tween(Thumb,     {Position = UDim2.new(Pct, 0, .5, 0)}, .14)
 					else
-						TrackFill.Size    = UDim2.new(Pct, 0, 1, 0)
-						Thumb.Position    = UDim2.new(Pct, 0, .5, 0)
+						TrackFill.Size = UDim2.new(Pct, 0, 1, 0)
+						Thumb.Position = UDim2.new(Pct, 0, .5, 0)
 					end
 					ValueLbl.Text = tostring(Value) .. Suffix
 				end
@@ -1959,8 +1944,8 @@ function Library:CreateWindow(Config)
 
 				Hit.InputBegan:Connect(function(Input)
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-						Sliding    = true
-						local Val  = CalculateValue(Input.Position)
+						Sliding   = true
+						local Val = CalculateValue(Input.Position)
 						ApplyValue(Val, false)
 						SliderCallback(Val)
 						TweenBack(ThumbScale, {Scale = 1.32}, .28)
@@ -1981,16 +1966,16 @@ function Library:CreateWindow(Config)
 					end
 				end)
 
-				local Obj    = {}
-				Obj.Value    = {Set = function(_, V) ApplyValue(math.clamp(V, Min, Max), true) SliderCallback(Current) end}
-				Obj.Name     = {Set = function(_, N) TitleLbl.Text = N end}
+				local Obj = {}
+				Obj.Value = {Set = function(_, V) ApplyValue(math.clamp(V, Min, Max), true) SliderCallback(Current) end}
+				Obj.Name  = {Set = function(_, N) TitleLbl.Text = N end}
 				return Obj
 			end
 
 			function SecObj:CreateLabel(Content)
-				Content    = Content or ""
-				local Row  = MakeRow(26)
-				local Lbl  = Instance.new("TextLabel")
+				Content   = Content or ""
+				local Row = MakeRow(26)
+				local Lbl = Instance.new("TextLabel")
 				Lbl.BackgroundTransparency = 1
 				Lbl.AnchorPoint            = Vector2.new(0, .5)
 				Lbl.Size                   = UDim2.new(1, 0, 0, 12)
@@ -2004,8 +1989,8 @@ function Library:CreateWindow(Config)
 				Lbl.ZIndex                 = 15
 				Lbl.Parent                 = Row
 				Register(Lbl, "TextColor3", "SubText")
-				local Obj    = {}
-				Obj.Value    = {Set = function(_, V) Lbl.Text = V end}
+				local Obj = {}
+				Obj.Value = {Set = function(_, V) Lbl.Text = V end}
 				return Obj
 			end
 
@@ -2065,9 +2050,9 @@ function Library:CreateWindow(Config)
 				ContentLbl.Parent                 = Container
 				Register(ContentLbl, "TextColor3", "SubText")
 
-				local Obj      = {}
-				Obj.Title      = {Set = function(_, V) if TitleLbl then TitleLbl.Text = V end end}
-				Obj.Content    = {Set = function(_, V) ContentLbl.Text = V end}
+				local Obj   = {}
+				Obj.Title   = {Set = function(_, V) if TitleLbl then TitleLbl.Text = V end end}
+				Obj.Content = {Set = function(_, V) ContentLbl.Text = V end}
 				return Obj
 			end
 
