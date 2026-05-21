@@ -17,6 +17,8 @@
 -- The trick: wrap the original return value and bolt the new systems on.
 
 -- ── Signal ────────────────────────────────────────────────────────────────────
+local Library = {}
+Library.__index = Library
 Library.Flags   = Library.Flags   or {}
 Library.Version = "2.0.0"
 
