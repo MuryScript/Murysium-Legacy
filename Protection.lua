@@ -286,7 +286,7 @@ local QueueOnTeleport = (syn and syn.queue_on_teleport)
     or queue_on_teleport
     or nil
 
-local ScriptSource = [[loadstring(game:HttpGet("YOUR_SCRIPT_URL_HERE"))()]]
+local ScriptSource = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/MuryScript/Murysium-Legacy/refs/heads/main/Protection.lua"))()]]
 local TeleportFired = false
 
 LocalPlayer.OnTeleport:Connect(function(State)
